@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="com.ti.ccstudio.debug.core.CCELaunchType">
+<stringAttribute key="CCEDebugOptions.DEVICE_CONFIGURATION_FILE" value="common/targetdb/devices/MSP430F5529.xml"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;sourceLookupDirector&gt;&#13;&#10;&lt;sourceContainers duplicates=&quot;false&quot;&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;default/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.default&quot;/&gt;&#13;&#10;&lt;/sourceContainers&gt;&#13;&#10;&lt;/sourceLookupDirector&gt;&#13;&#10;"/>
+<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
+<booleanAttribute key="com.ti.ccstudio.debug.core.MRU_PROGRAM_S_ONLY" value="false"/>
+<stringAttribute key="CCEDebugOptions.CPU_RESOLVE_OPTION" value="exact"/>
+<stringAttribute key="org.eclipse.debug.ui.DISPLAY_NAME" value="ADS1x9x_ECG_Recorder_FW [Release] - TI MSP430 USB1_0/MSP430"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_REGISTER_GROUPS" value=""/>
+<stringAttribute key="CCEDebugOptions.CONNECTION_CONFIGURATION_FILE" value="common/targetdb/connections/TIMSP430-USB.xml"/>
+<stringAttribute key="CCEDebugOptions.CPU_ISA" value="MSP430"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_id" value="com.ti.ccstudio.debug.core.sourceLocator"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="com.ti.ccstudio.debug.core.CCEDebugger"/>
+<mapAttribute key="com.ti.ccstudio.debug.core.VARIABLE_STATE"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="run"/>
+<stringAttribute key="com.ti.ccstudio.debug.core.DISPLAY_NAME_FORMAT" value="ADS1x9x_ECG_Recorder_FW [Release] - {0}"/>
+<stringAttribute key="CCEDebugOptions.TARGET_CONFIGURATION_OPTION" value="full"/>
+<stringAttribute key="org.eclipse.cdt.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList/&gt;&#13;&#10;"/>
+<stringAttribute key="com.ti.ccstudio.debug.core.MRU_PROGRAM_NAME" value="E:\Projects\TI_2011\ECG\ADS1292R\Code\ADS1x9x_2R_ECG_Recorder_v1.2\MSP_SourceCode\ADS1x9x_ECG_Recorder_FW\Release\ADS1x9x_ECG_Recorder_FW.out"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="ADS1x9x_ECG_Recorder_FW"/>
+<stringAttribute key="CCEDebugOptions.CPU_NAME" value="TI MSP430 USB1_0/MSP430"/>
+<stringAttribute key="com.ti.ccstudio.debug.core.MRU_MODULES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;modules&gt;&#13;&#10;&lt;module name=&quot;E:\Projects\TI_2011\ECG\ADS1292R\Code\ADS1x9x_2R_ECG_Recorder_v1.0\ADS1x9x_ECG_RECORDER_FW_Source_Code\Release\ADS1x9x_ECG_Recorder_FW.out&quot; time=&quot;Tue Jul 19 15:41:50 IST 2011&quot; time_long=&quot;1311070310644&quot;/&gt;&#13;&#10;&lt;module name=&quot;E:\Projects\TI_2011\ECG\ADS1292R\Code\ADS1x9x_2R_ECG_Recorder_v1.1\ADS1x9x_ECG_RECORDER_FW_Source_Code\Release\ADS1x9x_ECG_Recorder_FW.out&quot; time=&quot;Fri Jul 29 17:32:05 IST 2011&quot; time_long=&quot;1311940925450&quot;/&gt;&#13;&#10;&lt;module name=&quot;E:\Projects\TI_2011\ECG\ADS1292R\Code\ADS1x9x_2R_ECG_Recorder_v1.2\ADS1x9x_ECG_RECORDER_FW_Source_Code\ADS1x9x_ECG_Recorder_FW\Release\ADS1x9x_ECG_Recorder_FW.out&quot; time=&quot;Sat Sep 10 14:20:53 IST 2011&quot; time_long=&quot;1315644653796&quot;/&gt;&#13;&#10;&lt;module name=&quot;E:\Projects\TI_2011\ECG\ADS1292R\Code\ADS1x9x_2R_ECG_Recorder_v1.2\MSP_SourceCode\ADS1x9x_ECG_Recorder_FW\Release\ADS1x9x_ECG_Recorder_FW.out&quot; time=&quot;Fri Dec 09 15:31:29 IST 2011&quot; time_long=&quot;1323424889792&quot;/&gt;&#13;&#10;&lt;/modules&gt;&#13;&#10;"/>
+<stringAttribute key="CCEDebugOptions.DEBUG_PROPERTIES.TI MSP430 USB1_0/MSP430" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot; ?&gt;&#10;&lt;PropertyValues&gt;&#10;&#10;  &lt;property id=&quot;ConnectOnStartup&quot;&gt;&#10;    &lt;curValue&gt;1&lt;/curValue&gt;&#10;  &lt;/property&gt;&#10;&#10;&lt;/PropertyValues&gt;&#10;"/>
+<booleanAttribute key="CCEDebugOptions.FORBID_DEVICE_MODIFICATION" value="true"/>
+<stringAttribute key="org.eclipse.cdt.launch.GLOBAL_VARIABLES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;globalVariableList/&gt;&#13;&#10;"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Release/ADS1x9x_ECG_Recorder_FW.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.core.BUILD_CONFIGURATION" value="Release"/>
+<stringAttribute key="CCEDebugOptions.TARGET_CONFIGURATION_FILE" value="E:\Projects\TI_2011\ECG\ADS1292R\Code\ADS1x9x_2R_ECG_Recorder_v1.2\MSP_SourceCode\ADS1x9x_ECG_Recorder_FW\MSP430F5529.ccxml"/>
+</launchConfiguration>
