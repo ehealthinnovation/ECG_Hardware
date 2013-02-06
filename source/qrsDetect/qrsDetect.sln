@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qrsDetect", "qrsDetect\qrsDetect.vcxproj", "{EAF7F350-C673-4977-9114-520A5B106572}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAF7F350-C673-4977-9114-520A5B106572}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EAF7F350-C673-4977-9114-520A5B106572}.Debug|Win32.Build.0 = Debug|Win32
+		{EAF7F350-C673-4977-9114-520A5B106572}.Release|Win32.ActiveCfg = Release|Win32
+		{EAF7F350-C673-4977-9114-520A5B106572}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
