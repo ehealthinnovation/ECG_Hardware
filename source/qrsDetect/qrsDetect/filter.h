@@ -1,4 +1,4 @@
-#define SAMPLERATE	853	/* Sample rate in Hz. */
+#define SAMPLERATE	360	/* Sample rate in Hz. */
 #define SAMPLE_PER_MS ((double) SAMPLERATE / (double) 1000)
  
 int LowPassFilter(int data);

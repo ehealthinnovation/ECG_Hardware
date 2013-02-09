@@ -9,25 +9,43 @@
 #include <deque>
 #include <algorithm>
 #include <iterator>
-
-//The preprocessor statements SINGLE AND MULTIPLE are used to tell the program to 
-//look for one input file or  predefined multiple input files.
-//Never use BOTH!!! Always use ONE!!!
-//#define MULTIPLE
-#define SINGLE
-
-//Only 1 of MITCOMPARE AND TIDATA can be true at any time
-const bool MITCOMPARE = 0;
-const bool TIDATA=1;
+#include <cmath>
 
 using namespace std;
 using namespace std::tr1;
 
-const double scalingFactor= 1000.0;
-const double baselineShift=0.0;
-const double thc = 0.3;
-const double matchWindow = 0.010; //in seconds
+/* Preprocesser statements SINGLE and MULTIPLE are used to define whether the program 
+looks for one input or muliple predefined input files. Always use one. Never both! */
+//#define MULTIPLE
+#define SINGLE
 
+/*These boolean variables define whether the program is going to analyze
+MIT data or TI data. Only 1 of MITCOMPARE AND TIDATA can be true at any time. */
+const bool MITCOMPARE = 1;
+const bool TIDATA=0;
+
+/* This boolean variable is used to determine which Threshold Calcuation Method to use.
+If true, then the threshold will be calculated using the means of the last 8 QRS and 
+noise peaks, as described in the Hamilton/Tompkins paper. If false, then the threshold 
+will be calculated using running estimates of noise and signal, as described in the
+Biomedical Signal Processing textbook. */
+const bool thresholdBasedonMean= 0;
+
+/* Scaling Factors are used to convert input ECG data to microVolts. 
+MIT data is stored as milliVolts. TI data is stored as Volts.
+The baseline shift is used sometimes for TI data due to a wandering baseline. */
+const double scalingFactorMIT= 1000.0;
+const double scalingFactorTI = 1000000.0;
+const double baselineShift=0.0;
+
+/* The threshold coefficient is used in the calulation of the peak detection threshold. */
+const double thc = 0.25;
+
+/* Match window is used to determine the accuracy of the peak detection for MIT data. 
+Any peaks within matchWindow of the correct value is considered "detected". */
+const double matchWindow = 0.050; //in seconds
+
+/* These are used to determine the number of samples for a period of time. */
 const int SAMPLES_IN_100MS = (int)(100*SAMPLE_PER_MS);
 const int SAMPLES_IN_125MS = (int)(125*SAMPLE_PER_MS);
 const int SAMPLES_IN_200MS = (int)(200*SAMPLE_PER_MS);
@@ -36,16 +54,15 @@ const int SAMPLES_IN_360MS = (int)(360*SAMPLE_PER_MS);
 const int SAMPLES_IN_1000MS = (int)(1000*SAMPLE_PER_MS);
 
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {		
-	if (TIDATA==MITCOMPARE){
+	if (TIDATA == MITCOMPARE){
 		cout << "ERROR: You cannot analyze MIT and TI data at the same time" << endl;
 		exit (EXIT_FAILURE);
 	}
 
 #ifdef MULTIPLE
-	//Performance Summary Details
+	//Performance Summary Buffers
 	vector <int> outputDataSize;
 	vector <int> outputSampleRate;
 	vector <double> outputSamplingTime;
@@ -59,28 +76,30 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector <double> outputFalsePositiveCount;
 	vector <double> outputSensitivity;
 	vector <double> outputPositivePredictivity; 
+	vector <double> outputMeanNNInterval;
+	vector <double> outputSDNN;
+	vector <double> outputSDANN;
+	vector <double> outputMeanHR;
 
-	//for testing
+	//Predefined input filenames for MIT-BIH data evaluation
 	string mitSamples[46] = {"100", "101", "103", "105", "106", "107", "108", "109", "111", "112", 
 		"113", "114", "115", "116", "117", "118", "119", "121", "122", "123", "124", "200", "201", "202", "203", 
 		"205", "207", "208", "209", "210", "212", "213", "214", "215", "217", "219", "220", "221", 
 		"222", "223", "228", "230", "231", "232", "233", "234"};
+	
 	//string mitSamples[2]= {"900", "908"}; //These are just smaller versions of 100 and 108
 
-	////
+	//Loop to cycle through multiple input files
 	for (int c=0; c < 46; c++){
 #endif
 
-	cout << "Starting QRS Detection Program" << endl; 
-	//Input Declarations
-	string ECGDataFile;
-	string processedDataFile;
-	
-	string sampleNumber;
+	cout << "Starting QRS Detection Program" << endl << endl; 
+
+	string ECGDataFile; //Input File
+	string processedDataFile; //Output File
+	string sampleNumber; //File Number
 	
 	if (MITCOMPARE){
-
-		cout << endl;
 		cout << "Please enter sample number: ";
 
 #ifdef SINGLE
@@ -92,42 +111,48 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << sampleNumber << endl;
 #endif
 
-		if (sampleNumber=="none")
+		if (sampleNumber == "none")
 			sampleNumber="";
 		
-		ECGDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\mitdb\\samples"+sampleNumber+".csv"; //INPUT FILE
-		processedDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\output"+sampleNumber+".csv"; //OUTPUT FILE
-	} else if (TIDATA==1){
-
-		cout << endl;
-		cout << "Please enter sample number: ";
+		ECGDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\mitdb\\samples"+sampleNumber+".csv";
+		processedDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\output"+sampleNumber+".csv";
+	} 
+	else if (TIDATA){
+		cout << endl << "Please enter sample number: ";
 		cin >> sampleNumber;
 
-		if (sampleNumber=="none")
+		if (sampleNumber == "none")
 			sampleNumber="";
 		
-		ECGDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\tidata\\beatSim"+sampleNumber+".csv"; //INPUT FILE
-		processedDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\output"+sampleNumber+".csv"; //OUTPUT FILE
+		ECGDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\tidata\\beatSim"+sampleNumber+".csv";
+		processedDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\output"+sampleNumber+".csv";
 	}
 	else{
-		ECGDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\samples.csv"; //INPUT FILE
-		processedDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\output.csv"; //OUTPUT FILE
+		ECGDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\samples.csv";
+		processedDataFile = "C:\\Users\\Akib\\Desktop\\sampleData\\output.csv";
 	}
+	
+	//Input File Parser//
+	/**********************************************************************************
+	Parse input data from CSV file into vector. 
+
+	File format is as follows:
+	'Elapsed Time'	'MLII Voltage'			Line 1
+	'seconds'	'mV OR V'			Line 2
+	0	-0.145						Line 3 onwards
+
+	We must ignore first two lines of data as they are not data. 
+
+	The MLII Voltage for MIT-BIH comes in milliVolts, while the data from TI comes in volts.
+	The scaling factors are used to convert the data from double to integers and to convert
+	units to microVolts.
+
+	ECGData takes in the input as (Elapsed Time, MLII Voltage). 
+	Elapsed Time is in seconds, while MLII Voltage is in microVolts ((uV).
+	**********************************************************************************/
 
 	vector<pair<double, double> > ECGData;
 	vector<pair<double, double> > RPeakData;
-
-	int dataSize;
-
-	//////////
-	//PARSER//
-	//////////
-	//Parse Data from CSV file into vector
-	//We must ignore first two lines of data as that is string
-	//Data is formatted as Elapsed Time (seconds) and MLII (mV or V)
-	//MIT-BIH data comes in mV, while TI data comes in V,
-	//The voltage will be scaled by scalingFactor=1000 so that we can work in integers and not in doubles, 
-	//The program takes MLII in microVolts (uV)
 
 	ifstream inFile;
 	inFile.open(ECGDataFile);
@@ -135,12 +160,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "ERROR: The input signal file does not exist" << endl;
 		exit (EXIT_FAILURE);
 	}
-
+	
+	cout << "Parsing Input Data" << endl; 
+	
 	string line;
 	string header1;
 	string header2;
-	
-	cout << "Parsing Input Data" << endl; 
 	
 	getline(inFile, header1);//Skip first 2 lines, which are just column headings
 	getline(inFile, header2);
@@ -149,40 +174,56 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		stringstream lineStream(line);
 		string cell;
-		double value1;
-		double value2;
-		int value3;
+		double secondValue;
+		double temp;
+		int ecgValue;
 		int x=0;
 
 		while(getline(lineStream, cell, ','))
 		{
-			if (x==0){ //First Value
-				value1=atof(cell.c_str()); 
+			if (x==0){ //Get Time value
+				secondValue=atof(cell.c_str()); 
 				x++;
 			}
-			else { //Second Value
-				value2=atof(cell.c_str()); 
+			else { //Get Voltage value
+				temp=atof(cell.c_str()); 
 
 				if (MITCOMPARE)
-					value3=(int) (value2*scalingFactor); //Scaling and integerizing the leadII milliVolts to microVolts
+					ecgValue=(int) (temp*scalingFactorMIT); //Scaling and integerizing the leadII milliVolts to microVolts
 				else
-					value3=(int) (value2*scalingFactor*scalingFactor)-baselineShift; // Scaling and intergerizing the leadII volts to microVolts
+					ecgValue=(int) (temp*scalingFactorTI)-baselineShift; // Scaling and intergerizing the leadII volts to microVolts
 			}	
 		}
 
-		ECGData.push_back(make_pair(value1, value3)); //Add to end of vector array
+		ECGData.push_back(make_pair(secondValue, ecgValue)); //Add to end of vector array
 	}
 	inFile.close();
 
-	dataSize=ECGData.size();
 
-	//////////////
-	//Processing//
-	//////////////
+	//QRS Detection Processing//
+	/************************************************************************
+	This section analyzes the ECG data in real-time to detect beats.
+
+	This is done using the a modification of the Hamilton-Tompkins Algorithms,
+	as described in the paper, "Quantitative Investigation of QRS Detection 
+	Rules Using the MIT/BIH Arrhythmia Database, by Patrick S. Hamilton and
+	Willis J. Tompkins. 
+
+	The algorithm works as follows:
+		ECG -> Low-pass Filter -> High-pass Filter -> Differentiator
+			-> Squaring Function -> Moving Window Integrator 
+			-> Decision Rules and Thresholding
+
+	Decision Rules and Thresholding include:
+		Peak Threshold
+		Searchback Threshold
+		200MS Refractory Blanking
+
+	************************************************************************/
 	
 	cout << "QRS Processing" << endl;
 
-	//Preprocessing Buffers
+	//Data Buffers
 	vector <int> lowPassOutput;
 	vector <int> highPassOutput;
 	vector <int> derivativeOutput;
@@ -191,39 +232,97 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector <double> peaks;
 	vector <double> thresholdLevel;
 	vector <double>  RRInterval;
+	vector <double> heartRate;
+	vector <double> RRI_Buffer;
+	vector <double> MeanRRI_SDANN;
 
-	//FIFO Queue to store last 8 noise and QRS peaks
+	//Threshold Values for Textbook Method
+	double SPKI=0;
+	double NPKI=0;
+
+	//FIFO Queue to store last 8 noise and QRS peaks for Threshold Paper Method
 	deque <int> last8Noise; 
 	deque <int> last8QRS;
+	double QRSMean; //mean of last 8 QRS peaks
+	double noiseMean; //mean of last 8 noise peaks
+
+	//FIFO Queue to store last 8 RR intervals
+	deque <double> rrAvg1;
+	deque <double> rrAvg2;
+
+	double avgrr = 0.85; // RRi for Heart Rate of 70
+	for(int x=0;x<8;x++)
+		rrAvg1.push_back(avgrr);
+	for(int x=0;x<8;x++)
+		rrAvg2.push_back(avgrr);
+
+	//Calculating the Searchback Limits
+	double rrAverage2=avgrr;
+	double rrLowLimit=0.92*rrAverage2;
+	double rrHighLimit=1.16*rrAverage2;
+	double rrMissedLimit=1.66*rrAverage2;
 	
-	//initialize to the typical threshold value
+	//Threshold Initialization
+	double detectionThreshold=0;
+	double thres=0;
+	double noi=0;
+	double sig=0;
+
 	if(MITCOMPARE){
-		for(int x=0;x<8;x++)
-			last8Noise.push_back(500);
-		for(int x=0;x<8;x++)
-			last8QRS.push_back(11000);
+		if ((sampleNumber == "108") || (sampleNumber == "121") || (sampleNumber == "207") || (sampleNumber == "222")) //These records tend to have a lower threshold
+			thres=1000;
+		else
+			thres=4000;
+
+		noi=1000;
+		sig=(thres+(noi*(thc-1)))/thc;
+		
+		if (thresholdBasedonMean){
+			for(int x=0;x<8;x++)
+				last8Noise.push_back(noi);
+			for(int x=0;x<8;x++)
+				last8QRS.push_back(sig);
+		}
+		else{
+			SPKI=sig;
+			NPKI=noi;
+		}
 	}
-	else
-	{
-		for(int x=0;x<8;x++)
-			last8Noise.push_back(1000);
-		for(int x=0;x<8;x++)
-			last8QRS.push_back(7700);
+	else{
+		thres=1000;
+		noi=500;
+		sig=(thres+(noi*(thc-1)))/thc;
+
+		if (thresholdBasedonMean){
+			for(int x=0;x<8;x++)
+				last8Noise.push_back(noi);
+			for(int x=0;x<8;x++)
+				last8QRS.push_back(sig);
+		}
+		else {
+			SPKI=sig;
+			NPKI=noi;
+		}
 	}
 	
+	//Temporary Variables for Algorithm Function
 	int peakValue=0;
 	int peakSample=0;
 	int maxValue=0;
 	int maxSample=0;
 	int prevValue = 0;
 	int halfPeakSample=0;
-
-	double detectionThreshold=0;
-	int RCount=0;
 	int previousIntPeakSample=0;
 	int prevRPeakLocation=-1;
-	int max=0;
+	int RCount=0;
+	
+	//Temporary Variables for HRV Analysis
+	double hr=0;
+	double time=0;
+	
+	int dataSize = ECGData.size();
 
+	//Loop through each sample in the record
 	for(int n=0; n < dataSize; n++){
 
 		int currentSample=n;
@@ -249,8 +348,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		int currentValue = MovingWindowIntegral(sqSample);
 		integralOutput.push_back(currentValue);
 
-		peaks.push_back(0); //initialize to 0
-
 		//Threshold and Decision Rules//
 		/**********************************************************************************
 		This algorithm finds the R-peak by analyzing the time averaged signal. The R peak 
@@ -270,61 +367,55 @@ int _tmain(int argc, _TCHAR* argv[])
 			Threshold = Noise Level + Coefficient * (QRS Level - Noise Level)
 		The coefficient is currently set to 0.333 with the variable "thc".
 		**********************************************************************************/
-		
-		//Correcting Threshold:
-		//The threshold is initialized to 4000, however this is too high for some of the MIT-BIH records
-		//So we then correct threshold by setting the "QRS" mean to the max integral value in the 
-		//first 1 second with the noise mean being set to 0.
-		if (currentValue>max){
-			max=currentValue;
-		}
-		if (currentSample == SAMPLES_IN_1000MS){
-			cout << max << endl;
-			for(int x=0;x<8;x++)
-				last8Noise.at(x)=0;
-			for(int x=0;x<8;x++)
-				last8QRS.at(x)=max;
-		}
-		
+	
+		peaks.push_back(0); //initialize to 0
+
 		//Peak Detection
 		if ((currentValue > maxValue) && (currentValue>prevValue)){
-			//new potential peak
-			maxValue = currentValue;
+			maxValue = currentValue; 
 			maxSample = currentSample;
 		}
 		else if (currentValue <= maxValue >> 1){
-			//we found the middle of falling slope
-
-			double QRSMean=0; //mean of last 8 QRS peans
-			double noiseMean=0; //mean of last 8 noise peaks
-			double temp=0;
-			double count=0;
+			//As described in the paper, the middle of the falling slope indicates that a peak
+			//was detected at maxSample. 
 		
-			//Calculate QRS mean
-			for(int i=0;i<last8QRS.size();i++){
-				temp=temp+last8QRS.at(i);
-				count++;
-			}
-			QRSMean=temp/count;
+			if (thresholdBasedonMean){
+				QRSMean=0;
+				noiseMean=0;
 
-			//Calculate Noise mean
-			temp=0;
-			count=0;
-			for(int i=0;i<last8Noise.size();i++){
-				temp=temp+last8Noise.at(i);
-				count++;
-			}
-			noiseMean=temp/count;
-		
-			//set Threshold
-			detectionThreshold = noiseMean+thc*(QRSMean-noiseMean);
+				for(int i=0;i<last8QRS.size();i++) 	//Calculate QRS mean
+					QRSMean+=last8QRS.at(i);
+				QRSMean=QRSMean/last8QRS.size();
 
-			//Check if Peak is higher than the thershold
-			if (maxValue > detectionThreshold){
-				//peaks.at(currentSample)=1000;
-				//now we need to look at an interval from 225ms to 125ms prior to half way point
-				//and find highest peak in bandpassed signal (hpSample)
-				//This is setting the fiducial point
+				for(int i=0;i<last8Noise.size();i++) //Calculate Noise mean
+					noiseMean+=last8Noise.at(i);
+				noiseMean=noiseMean/last8Noise.size();
+			}else {
+				noiseMean=NPKI;
+				QRSMean=SPKI;
+			}
+			
+			//Determine Threshold based on Past Noise and QRS Means
+			detectionThreshold = noiseMean + thc*(QRSMean-noiseMean);
+			
+			/*Threshold Verification for Peak+ Searchback
+			Two thresholds are used.
+			1. In the normal situation the max value must be greater than detectedThreshold.
+			
+			2. However if the last rPeak occured more than rrMissedLimit seconds ago, then we need 
+				to SEARCHBACK and find a peak using a lower threshold (detectedThreshold/2.0). 
+				This peak is then considered a QRS complex*/
+
+			if ((maxValue > detectionThreshold) || 
+				((abs(maxSample-previousIntPeakSample) >= rrMissedLimit*SAMPLE_PER_MS) && (maxValue > (detectionThreshold/2.0)))){
+
+				bool searchback =0;
+				if ((abs(maxSample-previousIntPeakSample) >= rrMissedLimit*SAMPLE_PER_MS) && (maxValue > (detectionThreshold/2.0)))
+					searchback=1;
+
+				/*We need to analyze the bandpassed signal in an interval 225ms to 125ms prior to the middle 
+				of the falling slope of the integrated signal. Within this interval, we need to find the 
+				highest peak and mark this as the fiducial point OR R-Peak of the QRS complex.*/ 
 				int beginInt = currentSample-SAMPLES_IN_225MS;
 				int endInt=currentSample-SAMPLES_IN_125MS;
 				if (beginInt<0)	
@@ -335,69 +426,96 @@ int _tmain(int argc, _TCHAR* argv[])
 				int maxBPSignal=0;
 				int maxBPLocation=0;
 
-				//cout << "SI225: " << SAMPLES_IN_225MS << "; " << "SI125: " << SAMPLES_IN_125MS << endl;
-				//cout << "Current: " << currentSample << "; " << "BI: " << beginInt << "; " << "EI: " << endInt << endl;
-
 				for (int i=beginInt; i<=endInt;  i++){
 					if (highPassOutput.at(i)>maxBPSignal){
-						maxBPSignal=highPassOutput.at(i); //finding R-peak
+						maxBPSignal=highPassOutput.at(i); //Identifiy highest point
 						maxBPLocation=i;
 					}
-					//peaks.at(i)=i;
 				}
 
-				//The low pass filter has a delay of 5 samples (see paper)
-				//The high pass filter has a delay of 15.5 samples (see paper)
-				//This is compensated here, as the R-peak is found 20.5 samples prior to the max bandpass signal point
-				//peaks.at(maxBPLocation)=300;
+				/*Filter Compensation
+				The low pass filters has a delay of 5 samples, while the high-pass filter has a delay
+				of 15.5 sampels (see Textbook). We compensate by setting the R-peak 20.5 samples prior 
+				to the max bandpass signal point. As we have integer samples we round down to 20.*/
 				int rPeakSample = maxBPLocation-20;
-				double rPeak=0;
 
-				//Check if Peak occurs more than 200ms from previous peak (refractory period blanking)
-				//If not, it is probably noise peaks
+				/*200MS Refractory Blanking
+				After a R-peak occurs, another cannot occur for 200MS. If any peaks are detected
+				within 200MS, it is most likely noise, and is ignored.*/
+				double rPeak=0;
+				
 				if (rPeakSample<0){
 					rPeakSample=0;
 					rPeak=0;
-				}else if (abs(rPeakSample-prevRPeakLocation) >= SAMPLES_IN_200MS){ //200ms refractory blanking
-
+				}else if (abs(rPeakSample-prevRPeakLocation) >= SAMPLES_IN_200MS){ //200ms Refractory Blanking
 					rPeak = ECGData.at(rPeakSample).second;
+					RPeakData.push_back(make_pair(ECGData.at(rPeakSample).first, rPeak));
 					RCount++;
 
-					RPeakData.push_back(make_pair(ECGData.at(rPeakSample).first, rPeak));
-					
 					if(MITCOMPARE){
 						peaks.at(rPeakSample)=1;
 					} else{
 						peaks.at(rPeakSample)=2000;
-						//peaks.at(currentSample)=2500;
-						//peaks.at(maxSample)=2500;
 					}
 
-					//Determine the RR intervals between each peak
-					//The time from the start of record to first peak is not counted as an RR interval
+					//Determine the R-R interval
+					//Note: The time from the start of record to first peak is not counted as an RR interval
 					if (prevRPeakLocation != -1){
 						double rri = ECGData.at(rPeakSample).first - ECGData.at(prevRPeakLocation).first;
-						//cout << ECGData.at(rPeakSample).first << ", " << ECGData.at(rPeakSample).second << ", " << rri << endl;
 						RRInterval.push_back(rri);
+						RRI_Buffer.push_back(rri); //Place it in the 5 minute buffer, used for SDANN calculation
+
+						hr=60.0/rri; //Calculate Heart Rate
+
+						//Adaptive Threshold Parameter Update
+						//8 most recent beats are added to rrAvg1
+						if(rrAvg1.size() > 8)
+							rrAvg1.pop_front();
+						rrAvg1.push_back(rri);
+
+						//If RRi falls between the limits it is added to rrAvg2
+						if ((rri>=rrLowLimit) && (rri<=rrHighLimit)){
+							if(rrAvg2.size() > 8)
+								rrAvg2.pop_front();
+							rrAvg2.push_back(rri);
+
+							rrAverage2=0;
+							for(int i=0; i<8;i++)
+								rrAverage2+=rrAvg2.at(i);
+							rrLowLimit=0.92*0.125*rrAverage2;
+							rrHighLimit=1.16*0.125*rrAverage2;
+							rrMissedLimit=1.66*rrAverage2;
+						}
 					}
 
-					prevRPeakLocation=rPeakSample;
-					previousIntPeakSample=maxSample; //this is now the new previous peak location
-					//cout << "Found peak at " << rPeakSample << " of " << rPeak << endl;
+					prevRPeakLocation=rPeakSample; //Previous R-peak sample location
+					previousIntPeakSample=maxSample; //Previous Integrated Peak location, corresponding to prevRPeakLocation
 					
-					if(last8QRS.size() > 8)
-						last8QRS.pop_front();
-					last8QRS.push_back(maxValue); //add QRS to buffer of 8 most recent peaks
+					if (thresholdBasedonMean){
+						if(last8QRS.size() > 8)
+							last8QRS.pop_front();
+						last8QRS.push_back(maxValue); //Signal is QRS
+					} else{
+						if (searchback)
+							SPKI= 0.25*maxValue + 0.75*SPKI; //Signal estimate is updated for QRS found with searchback
+						SPKI=0.125*maxValue + 0.875*SPKI; //Signal estimate is updated for normal QRS
+					}
 				} else{
-					if(last8Noise.size() > 8)
-						last8Noise.front();
-					last8Noise.push_back(maxValue); //add noise to buffer of 8 most recent peaks
+					if (thresholdBasedonMean){
+						if(last8Noise.size() > 8)
+							last8Noise.front();
+						last8Noise.push_back(maxValue); //Signal is noise
+					}else
+						NPKI=0.125*maxValue + 0.875*NPKI; //Noise estimate is updated
 				}
 			} 
 			else{
-				if(last8Noise.size() > 8)
+				if (thresholdBasedonMean){
+					if(last8Noise.size() > 8)
 						last8Noise.front();
-				last8Noise.push_back(maxValue); //add noise to buffer of 8 most recent peaks
+					last8Noise.push_back(maxValue); //Signal is noise
+				}else
+					NPKI=0.125*maxValue + 0.875*NPKI; //Noise estimate is updated
 			}
 
 			maxValue=0;
@@ -405,33 +523,58 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		
 		prevValue=currentValue;
+
 		thresholdLevel.push_back(detectionThreshold);
+		heartRate.push_back(hr);
+
+		//Every 5 minute calculate the average RR interval 
+		//This is for SDANN calculations
+		if (abs(ECGData.at(currentSample).first - time)>=(5*60)){
+			cout << ECGData.at(currentSample).first << endl;
+			double meanRROver5Min=0;
+			for(int i=0; i < RRI_Buffer.size(); i++)
+				meanRROver5Min += RRI_Buffer.at(i);
+			meanRROver5Min = meanRROver5Min/RRI_Buffer.size();
+
+			MeanRRI_SDANN.push_back(meanRROver5Min);
+
+			RRI_Buffer.clear();
+			time = ECGData.at(currentSample).first;
+		}
 
 	}
 	
-	//cout << "Number of R-peaks Detected: " << RCount << endl;
+	//Clear out what is remaining in RRI_Buffer, if record ended before 5 min passed
+	if (!RRI_Buffer.empty()){
+		double meanRROver5Min=0;
+		for(int i=0; i < RRI_Buffer.size(); i++)
+			meanRROver5Min += RRI_Buffer.at(i);
+		meanRROver5Min = meanRROver5Min/RRI_Buffer.size();
+
+		MeanRRI_SDANN.push_back(meanRROver5Min);
+		RRI_Buffer.clear();
+	}
+
 	if (RCount != RPeakData.size())
 		cout << "ERROR: R-peak counts do not match" << endl;
 	
 	//Calculate the mean threshold value
-	double x=0;
-	double y=0;
+	double meanThreshold=0;
 	for(int i=0;i<thresholdLevel.size();i++){
-		x=x+thresholdLevel.at(i);
-		y++;
+		meanThreshold += thresholdLevel.at(i);
 	}
-	double meanThreshold = x/y;
+	meanThreshold = meanThreshold/thresholdLevel.size();
 
-	//Calculate average R peak in mV
+	//Calculate average R peak value and convert to mV
 	double avgRPeak=0;
 	for (int i=0; i<RPeakData.size(); i++)
 		avgRPeak=avgRPeak+RPeakData.at(i).second;
 	avgRPeak = avgRPeak/RPeakData.size();
 	
 	if (MITCOMPARE)
-		avgRPeak = avgRPeak/scalingFactor;
-		else
-			avgRPeak = avgRPeak/(scalingFactor*scalingFactor);
+		avgRPeak = avgRPeak/scalingFactorMIT;
+	else
+		avgRPeak = avgRPeak/scalingFactorTI;
 
 	//Calculate average RR Intervals
 	double avgRRInterval=0;
@@ -446,10 +589,65 @@ int _tmain(int argc, _TCHAR* argv[])
 	//HEART RATE VARIABILITY//
 	//////////////////////////
 	/**********************************************************************************
-	
+	LF, HF, LF/HF, SDNN/SDANN, mean HR, root mean square
+
+	Time Domain Methods
+	meanNNInterval - Mean NN Intervals
+	SDNN - Standard Deviation of NN Intervals
+	SDANN- Standard deviation of the average NN intervals calculated over short periods, usually 5 minutes,
+	meanHR - Mean Heart Rate
+	RMSSD - square root of the mean squared differences of successive NN intervals ? (is this root mean square)
+			- sqrt of the mean of the sum of squares of differences between adjacent noraml RR-intervals
+
+	Frequency Domain Methods
+	LF
+	HF
+
+	The measurement of VLF, LF, and HF power components is usually made in
+absolute values of power (milliseconds squared). LF and HF may also be measured
+in normalized units, [15,24] which represent the relative value of each power
+component in proportion to the total power minus the VLF component. The Figure 3
+component in proportion to the total power minus the VLF component. The
+representation of LF and HF in normalized units emphasizes the controlled and
+balanced behavior of the two branches of the autonomic nervous system.
+M oreover, the normalization tends to minimize the effect of the changes in total
+power on the values of LF and HF components (Figure 3). Nevertheless, normalized
+units should always be quoted with absolute values of the LF and HF power in
+order to describe completely the distribution of power in spectral components.
+
 	**********************************************************************************/
 
+	//Determine Mean N-N Interval
+	double meanNNInterval=0;
+	for(int i=0; i < RRInterval.size(); i++)
+		meanNNInterval += RRInterval.at(i);
+	meanNNInterval = meanNNInterval/RRInterval.size();
 
+	//Determine Standard Deviation of N-N Intervals (SDNN)
+	double diffSq=0;
+	for(int i=0; i < RRInterval.size(); i++)
+		diffSq += pow((RRInterval.at(i)-meanNNInterval), 2);
+	double SDNN = sqrt(diffSq/RRInterval.size());
+
+	//Determine Mean HR
+	double meanHR;
+	meanHR = 60.0/meanNNInterval;
+
+	//Determine Standard Deviation of Sequential Five Minute N-N Interval Averages/Means (SDANN)
+	double meanRRIAverage=0;
+	for(int i=0; i < MeanRRI_SDANN.size(); i++)
+		meanRRIAverage += MeanRRI_SDANN.at(i);
+	meanRRIAverage = meanRRIAverage/MeanRRI_SDANN.size();
+
+	diffSq=0;
+	for(int i=0; i < MeanRRI_SDANN.size(); i++)
+		diffSq += pow((MeanRRI_SDANN.at(i)-meanRRIAverage), 2);
+	double SDANN = sqrt(diffSq/MeanRRI_SDANN.size());
+
+	cout << "Mean NN Interval: " << meanNNInterval << endl;
+	cout << "SDNN: " << SDNN << endl;
+	cout << "SDANN: " << SDANN << endl;
+	cout << "Mean HR: " << meanHR << endl;
 
 	///////////////////
 	//DATA EVALUATION//
@@ -478,12 +676,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	if (MITCOMPARE){
 
 		cout << "Data Validation with MIT-BIH database" << endl;
-		//Load the annotation files to determine which samples are Peaks
+		
 		string PeakAnnotationFile;
 		PeakAnnotationFile = "C:\\Users\\Akib\\Desktop\\sampleData\\mitdb\\annotations"+sampleNumber+".csv"; //INPUT Annotation FILE
 
 		vector<pair<double, string> > PeakAnnotation; //stores the sample time and type for each beat
-		vector <int> binList; //used in calculating Se and Sp // If 1, then the PeakAnnotation sample at the value was found in RPeakData
+		vector <int> binList; //Used in calculating Se and Sp. If 1, then the PeakAnnotation sample at the value was found in RPeakData
 
 		ifstream inFileAnno;
 		inFileAnno.open(PeakAnnotationFile);
@@ -494,15 +692,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		string line2;
 		string annoHeader1;
-		double peakTime=0;
 		string peakType;
-
-		//Not all samples in annotation file are beat annotations. We must filter out the others. 
-		//Annotation types:
-		//http://www.physionet.org/physiobank/annotations.shtml#aux
-		//For beats, it can be of the following types:
-		//N, L, R, B, A, a, J, S, V, r, F, e, j, n, E, /, f, Q, ?
-		string typeList[19] = {"N", "L", "R", "B", "A", "a", "J", "S", "V", "r", "F", "e", "j", "n", "E", "/", "f", "Q", "?"};
+		double peakTime=0;
 
 		getline(inFileAnno, annoHeader1);//Skip first line, which are just column headings
 
@@ -513,15 +704,24 @@ int _tmain(int argc, _TCHAR* argv[])
 			int h=0;
 
 			while(getline(lineStream, cell2, ',')){
-				if (h==0){ // first value
+				if (h==0){ // Peak Time
 					peakTime = atof(cell2.c_str()); 
 					h++;
 				}
-				else{ // second value
-						peakType = cell2.c_str();
+				else{ // Annotation
+					peakType = cell2.c_str();
 				}
 			}
 			
+			/*The MIT-BIH database annotations are for more than beat. We only need to compare to 
+			annotations that are considered beats. We must filter out the others 
+			Annotation types:
+			http://www.physionet.org/physiobank/annotations.shtml#aux
+			For beats, it can be of the following types:
+				N, L, R, B, A, a, J, S, V, r, F, e, j, n, E, /, f, Q, ? 
+			*/
+			string typeList[19] = {"N", "L", "R", "B", "A", "a", "J", "S", "V", "r", "F", "e", "j", "n", "E", "/", "f", "Q", "?"};
+
 			//Check to see if type is acceptable and matches one in the list
 			if (std::end(typeList) != std::find(std::begin(typeList), std::end(typeList), cell2)) {
 				PeakAnnotation.push_back(make_pair(peakTime, peakType));
@@ -557,32 +757,20 @@ int _tmain(int argc, _TCHAR* argv[])
 				fn.push_back(PeakAnnotation.at(k).first);
 			}
 		}
-
-
-		/*ofstream outFile2("C:\\Users\\Akib\\Desktop\\sampleData\\test.csv");
-
-		outFile2 << "Time" << ", " << "Type" << endl;
-
-		int yy=PeakAnnotation.size();
-		for(int u=0; u < yy; u++){
-			outFile2 << PeakAnnotation.at(u).first << ", " << PeakAnnotation.at(u).second << endl;
-		}
-
-		outFile2.close();*/
 	}
 
 
 	///////////////
 	//DATA OUTPUT//
 	///////////////
-	//Write data into output file
-	//Parse Data from CSV file into vector
-	//We must first put in two headers
-	//Data format is <time><LeadII voltage>: 'hh:mm:ss.mmm','mV'
+	/**********************************************************************************
+	Write data into output file
+	Parse Data from CSV file into vector
+	We must first put in two headers
+	Data format is <time><LeadII voltage>: 'hh:mm:ss.mmm','mV'
 
-	//Note, the voltage is divided by 1000 to rescale it to mV from microVolts
-	//The scaling doesn't apply to the Squaring function, as we scaled already!
-
+	Note, the voltage is rescaled into the appropriate unit
+	**********************************************************************************/
 	ofstream outFile;
 	outFile.open(processedDataFile);
 	if (!outFile){
@@ -601,6 +789,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Average R-Peak: " << avgRPeak << " mV" << endl;
 	cout << "Average RR Interval: " << avgRRInterval << " s" << endl;
 	cout << "Mean Threshold: " << meanThreshold << endl;
+	cout << "Mean NN Interval: " << meanNNInterval << endl;
+	cout << "SDNN: " << SDNN << endl;
+	cout << "SDANN: " << SDANN << endl;
+	cout << "Mean HR: " << meanHR << endl;
 
 	outFile << "Performance Summary" << endl;
 	outFile << "Number of Samples" << ", " << dataSize << endl;
@@ -610,6 +802,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	outFile << "Average R-Peak" << ", " << avgRPeak << endl;
 	outFile << "Average RR Interval" << ", " << avgRRInterval << endl;
 	outFile << "Mean Threshold" << ", " << meanThreshold << endl;
+	outFile << "Mean NN Interval" << ", " << meanNNInterval << endl;
+	outFile << "SDNN" << ", " << SDNN << endl;
+	outFile << "SDANN" << ", " << SDANN << endl;
+	outFile << "Mean HR" << ", " << meanHR << endl;
 
 #ifdef MULTIPLE
 	outputDataSize.push_back(dataSize);
@@ -619,6 +815,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	outputAvgRPeak.push_back(avgRPeak);
 	outputAvgRRInterval.push_back(avgRRInterval);
 	outputMeanThreshold.push_back(meanThreshold);
+	outputMeanNNInterval.push_back(meanNNInterval);
+	outputSDNN.push_back(SDNN);
+	outputSDANN.push_back(SDANN);
+	outputMeanHR.push_back(meanHR); 
 #endif
 
 	if (MITCOMPARE){
@@ -662,15 +862,16 @@ int _tmain(int argc, _TCHAR* argv[])
 		
 		double v=0;
 		if (MITCOMPARE)
-			v = (ECGData.at(y).second)/scalingFactor;
+			v = (ECGData.at(y).second)/scalingFactorMIT;
 		else
-			v = (ECGData.at(y).second)/(scalingFactor*scalingFactor);
+			v = (ECGData.at(y).second)/(scalingFactorTI);
 
 		outFile << ECGData.at(y).first << ", " << v << ", " 
 				<< ECGData.at(y).second << ", " << lowPassOutput.at(y) 
 				<< ", " << highPassOutput.at(y) << ", " << derivativeOutput.at(y) 
 				<< ", " << squaringOutput.at(y) << ", " << integralOutput.at(y) 
-				<< ", " << peaks.at(y) << ", " << thresholdLevel.at(y) << endl;
+				<< ", " << peaks.at(y) << ", " << thresholdLevel.at(y) 
+				<< endl;
 	}
 
 	outFile << endl << endl;
@@ -705,7 +906,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		outFile << RRInterval.at(u) << endl;
 	}
 	
-
 	outFile.close();
 	
 #ifdef MULTIPLE
@@ -725,17 +925,24 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 
 		outFile3 << "Performance Summary" << endl;
-		outFile3 << "Record Number" << ", " << "Number of Samples" << ", " << "Sampling Rate" << ", " << "Sampling Time" << ", " << "Number of Detected Peaks" << 
-			", " << "Average R-Peak" << ", " << "Average RR Interval" << ", " << "Mean Threshold" << ", " << "Match Window" << ", " << 
-			"True Positives (TP)" << ", " << "False Negatives (FP)" << ", " << "False Positives (FP)" << ", " << "Sensitivity" << ", " 
-			<< "Positive Predictivity" << endl;
+		outFile3 << "Record Number" << ", " << "Number of Samples" << ", " << "Sampling Rate" << ", " << "Sampling Time" << ", " << "Number of Detected Peaks"  
+			<< ", " << "Average R-Peak" << ", " << "Average RR Interval" << ", " << "Mean Threshold" << ", "
+			<< "Mean NN Interval" << ", " << "SDNN" << ", " << "SDANN" << ", "<< "Mean Heart Rate" << ", "
+			<< "Match Window" << ", " <<  "True Positives (TP)" << ", " << "False Negatives (FP)" << ", " << "False Positives (FP)" << ", " 
+			<< "Sensitivity" << ", " << "Positive Predictivity" << endl;
 
 		int numInput=outputDataSize.size();
+				
+		vector <double> outputMeanNNInterval;
+	vector <double> outputSDNN;
+	vector <double> outputSDANN;
+	vector <double> outputMeanHR;
 
 		for(int u=0; u < numInput; u++){
 			outFile3 << mitSamples[u] << ", " << outputDataSize.at(u) << ", " << outputSampleRate.at(u) << ", " << outputSamplingTime.at(u) << ", " 
 				<< outputRCount.at(u) << ", " << outputAvgRPeak.at(u) << ", " << outputAvgRRInterval.at(u) << ", " 
-				<< outputMeanThreshold.at(u) << ", " << outputMatchWindow.at(u) << ", " << outputTruePositiveCount.at(u) << ", " 
+				<< outputMeanThreshold.at(u) << ", " << outputMeanNNInterval.at(u) << ", " << outputSDNN.at(u) << ", " << outputSDANN.at(u) 
+				<< ", " << outputMeanHR.at(u) << ", " << outputMatchWindow.at(u) << ", " << outputTruePositiveCount.at(u) << ", " 
 				<<  outputFalseNegativeCount.at(u) << ", " << outputFalsePositiveCount.at(u) << ", " << outputSensitivity.at(u) << ", " 
 				<< outputPositivePredictivity.at(u) << endl;
 		}
