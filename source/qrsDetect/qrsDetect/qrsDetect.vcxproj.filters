@@ -27,6 +27,15 @@
     <ClInclude Include="filter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="_kiss_fft_guts.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kiss_fft.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kiss_fftr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -38,5 +47,16 @@
     <ClCompile Include="filter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="kiss_fft.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kiss_fftr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="kissfft.hh">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

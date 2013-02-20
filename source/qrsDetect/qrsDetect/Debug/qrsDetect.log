@@ -1,31 +1,50 @@
-﻿Build started 08/02/2013 10:06:19 PM.
+﻿Build started 20/02/2013 5:02:34 PM.
      1>Project "C:\Users\Akib\documents\visual studio 2012\Projects\qrsDetect\qrsDetect\qrsDetect.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt qrsDetect.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt filter.cpp qrsDetect.cpp
          qrsDetect.cpp
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(194): warning C4244: '=' : conversion from 'const double' to 'int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(282): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(284): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(298): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(300): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(386): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(390): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(535): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(550): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(563): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(570): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(581): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(622): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(628): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(638): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(643): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(881): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(886): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(891): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(899): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(905): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(199): warning C4244: '=' : conversion from 'const double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(294): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(296): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(310): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(312): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(400): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(404): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(553): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(628): warning C4244: 'initializing' : conversion from 'const double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(631): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(632): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(725): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(726): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(727): warning C4244: 'argument' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(742): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(755): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(762): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(773): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(803): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(809): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(819): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(824): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(830): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(1066): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(1071): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(1076): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(1084): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(1090): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\qrsdetect.cpp(1097): warning C4018: '<' : signed/unsigned mismatch
+         filter.cpp
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(316): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(320): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(362): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(430): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(431): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(432): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsdetect\qrsdetect\filter.cpp(442): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Akib\documents\visual studio 2012\Projects\qrsDetect\Debug\qrsDetect.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Akib\documents\visual studio 2012\Projects\qrsDetect\Debug\qrsDetect.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Akib\documents\visual studio 2012\Projects\qrsDetect\Debug\qrsDetect.lib" /MACHINE:X86 Debug\filter.obj
+         Debug\kiss_fft.obj
+         Debug\kiss_fftr.obj
          Debug\qrsDetect.obj
          Debug\stdafx.obj
          qrsDetect.vcxproj -> C:\Users\Akib\documents\visual studio 2012\Projects\qrsDetect\Debug\qrsDetect.exe
@@ -33,4 +52,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.25
+Time Elapsed 00:00:04.44

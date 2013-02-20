@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <iterator>
 #include <cmath>
+#include "kiss_fft.h"
+#include "kiss_fftr.h"
 
 using namespace std;
 using namespace std::tr1;
@@ -52,10 +54,12 @@ const int SAMPLES_IN_200MS = (int)(200*SAMPLE_PER_MS);
 const int SAMPLES_IN_225MS = (int)(225*SAMPLE_PER_MS);
 const int SAMPLES_IN_360MS = (int)(360*SAMPLE_PER_MS);
 const int SAMPLES_IN_1000MS = (int)(1000*SAMPLE_PER_MS);
-
+const int SAMPLES_IN_60S = (int)(60*1000*SAMPLE_PER_MS);
+const int SAMPLES_IN_windowWidthTime = (int)(windowWidthTime*1000*SAMPLE_PER_MS);
 
 int _tmain(int argc, _TCHAR* argv[])
 {		
+
 	if (TIDATA == MITCOMPARE){
 		cout << "ERROR: You cannot analyze MIT and TI data at the same time" << endl;
 		exit (EXIT_FAILURE);
@@ -79,6 +83,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector <double> outputMeanNNInterval;
 	vector <double> outputSDNN;
 	vector <double> outputSDANN;
+	vector <double> outputRMSSD;
 	vector <double> outputMeanHR;
 
 	//Predefined input filenames for MIT-BIH data evaluation
@@ -231,10 +236,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector <int> integralOutput;
 	vector <double> peaks;
 	vector <double> thresholdLevel;
-	vector <double>  RRInterval;
+	//vector <double>  RRInterval;
+	vector<pair<double, double> > RRi; //r-r interval, time of occurance (first R)
 	vector <double> heartRate;
 	vector <double> RRI_Buffer;
 	vector <double> MeanRRI_SDANN;
+	vector <double> diffBetweenNNIntervals;
+	vector<pair<double, double> > windowed_RRi; //only contains RRi for previous 128s -> rr interval, time of occurance (first R)
+	vector <int> VLF_Data;
+	vector <int> LF_Data;
+	vector <int> HF_Data;
+	vector <string> PSD;
 
 	//Threshold Values for Textbook Method
 	double SPKI=0;
@@ -245,6 +257,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	deque <int> last8QRS;
 	double QRSMean; //mean of last 8 QRS peaks
 	double noiseMean; //mean of last 8 noise peaks
+
+	//Threshold Initialization
+	double detectionThreshold=0;
+	double thres=0;
+	double noi=0;
+	double sig=0;
 
 	//FIFO Queue to store last 8 RR intervals
 	deque <double> rrAvg1;
@@ -262,12 +280,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	double rrHighLimit=1.16*rrAverage2;
 	double rrMissedLimit=1.66*rrAverage2;
 	
-	//Threshold Initialization
-	double detectionThreshold=0;
-	double thres=0;
-	double noi=0;
-	double sig=0;
-
 	if(MITCOMPARE){
 		if ((sampleNumber == "108") || (sampleNumber == "121") || (sampleNumber == "207") || (sampleNumber == "222")) //These records tend to have a lower threshold
 			thres=1000;
@@ -315,11 +327,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	int previousIntPeakSample=0;
 	int prevRPeakLocation=-1;
 	int RCount=0;
-	
+	int minuteCount=0;
+	float * prevData= (float *) malloc((windowWidthSamples+4) * sizeof(float));
+
 	//Temporary Variables for HRV Analysis
 	double hr=0;
 	double time=0;
-	
+	double VLF, LF, HF;
 	int dataSize = ECGData.size();
 
 	//Loop through each sample in the record
@@ -462,9 +476,13 @@ int _tmain(int argc, _TCHAR* argv[])
 					//Note: The time from the start of record to first peak is not counted as an RR interval
 					if (prevRPeakLocation != -1){
 						double rri = ECGData.at(rPeakSample).first - ECGData.at(prevRPeakLocation).first;
-						RRInterval.push_back(rri);
-						RRI_Buffer.push_back(rri); //Place it in the 5 minute buffer, used for SDANN calculation
 
+						if (!RRi.empty())
+							diffBetweenNNIntervals.push_back(rri - RRi.back().first); //Place in difference buffer to calculate RMSNN;
+						
+						RRi.push_back(make_pair(rri, ECGData.at(prevRPeakLocation).first));
+						RRI_Buffer.push_back(rri); //Place it in the 5 minute buffer, used for SDANN calculation
+						
 						hr=60.0/rri; //Calculate Heart Rate
 
 						//Adaptive Threshold Parameter Update
@@ -542,8 +560,182 @@ int _tmain(int argc, _TCHAR* argv[])
 			time = ECGData.at(currentSample).first;
 		}
 
+		//Power Spectrum Analysis of HRV//
+		/**********************************************************************************
+		The code for this part of the algorithm was modified from code created by Moussa Chehade on 12-03-10. 
+		Copyright (c) 2012 UHN. All rights reserved.
+		We are using the calcspline, computeHamming and windowData functions implemented by Moussa Chehade on 12-03-10. 
+		Copyright (c) 2012 UHN. All rights reserved.
+
+		The approach we take to find the power spectral density is known as Welch's method.
+
+		We are doing the power spectrum analysis every 60 seconds for the previous 128 seconds
+		of data. This overlaps allow the power spectrum to be smoothed out.
+
+		RRi Interpolation
+		RRi data is an discrete even series that is unevenly spaced in time so it must be interpolated 
+		into uniformly sampled data for FFT. We must interpolate it so that we get a continuous signal
+		as a function of time. The sampling frequency must be higher than the Nyquist frequency of 0.08Hz
+		(for signals ranging from 0.04-0.4Hz), and is set at 4Hz for interpolation.We interpolate with piecewise 
+		cubic interpolation method: http://stackoverflow.com/questions/4625604/akima-interpolation-algorithm.
+		
+		Data Windowing
+		We perform the analysis on a window of 128s, which at a RRFreq of 4Hz is 512 samples.
+		A Hamming window is applied to the data to avoid introducing spectral components
+		that correspond to the window itself. It is described by the following function:
+			w(n) = 0.54 - 0.46*cos((2*pi*n)/(N-1)) where n is index and N is length of window
+
+		Spectral Analysis
+		We need to compute the LF and HF. This is done by integrating the fourier transofrm data
+		The bands are defined as follows:
+			VLF: 0 Hz to 0.04 Hz
+			LF: 0.04 Hz to 0.15 Hz
+			HF: 0.15 Hz to 0.4 Hz
+		The FFT function is from the Kiss-FFT library by Mark Borgerding under BSD License
+
+		Our sampling rate is 4Hz, and the nyquist frequency is 2Hz. The FFT will produce
+		an output of nfft/2+1 points, with nfft=512 (4Hz*128seconds) and 1 bin being the
+		DC value. So our output will be 256 bins and we have a resolution of 2/256 or 
+		0.0078125Hz (each bin contains the magnitude for 0.0078125Hz). 
+	
+		To compute the band powers we need to integrate the magnitude of the complex number 
+		over the bins that fall under the specified band. The band power is the square of 
+		the integrated value. This is essentially a Periodogram of the signal.
+		**********************************************************************************/
+		if (minuteCount==SAMPLES_IN_60S){
+			
+			windowed_RRi.clear();
+			minuteCount=0;
+			double currentTime = ECGData.at(n).first;
+
+			//Loop through the RRi buffer backwards and window the previous windowWidthTime (128.0) seconds worth of RRi
+			//This will be added to windowed_RRi buffer backwards (newest to oldest)
+			int t = RRi.size()-1;
+			double time = RRi.at(t).second;
+			while (abs(time-currentTime) < windowWidthTime){ 				
+				windowed_RRi.push_back(make_pair(RRi.at(t).first, RRi.at(t).second));
+			
+				t=t-1;
+				if (t>=0)
+					time = RRi.at(t).second;
+				else
+					break;
+			}
+
+			//Interpolate the Data
+			int rriCount = windowed_RRi.size();
+			double timediff = windowed_RRi.front().second - windowed_RRi.back().second; // note windowed_RRi is stored backwards!
+			int numInterpolatedPoints = (int) timediff * RRFREQ;
+			
+			
+			int pointStart = windowed_RRi.back().second*RRFREQ;
+			int pointEnd = windowed_RRi.front().second*RRFREQ;
+			numInterpolatedPoints = pointEnd - pointStart;
+			//cout << numInterpolatedPoints << endl;
+
+			if (numInterpolatedPoints > windowWidthSamples){
+				cout << "ERROR: The number of interpolated points must be below the max window width (something went wrong in window creation)" << endl;
+				exit (EXIT_FAILURE);
+			}
+			
+			double * rrinterval;
+			double * rrtime;
+			float * interpolatedData;
+ 
+			int missingPoints = windowWidthSamples - numInterpolatedPoints; 
+	
+			//cout << RRi.at(0).second << " " << RRi.back().second << " " << timediff << endl;
+			//cout << "number of interpolated points: " << numInterpolatedPoints << " missingpoints " << missingPoints << " sum " << numInterpolatedPoints+missingPoints << endl;
+			 
+			rrinterval= (double *) malloc((rriCount+4) * sizeof(double));
+			rrtime = (double *) malloc((rriCount+4) * sizeof(double));
+			interpolatedData= (float *) malloc((numInterpolatedPoints+4) * sizeof(float));
+
+			//copy data into array, while rearranging it into chronological order
+
+			int n=0;
+			int m=windowed_RRi.size()-1;
+			while (m>=0){
+				rrinterval[n]=windowed_RRi.at(m).first;
+				rrtime[n]=windowed_RRi.at(m).second;
+
+				n++;
+				m--;
+			}
+
+			//Calculate the interpolated data stream
+			calcspline(rrtime, rrinterval, rriCount, interpolatedData, pointStart, numInterpolatedPoints);
+
+			free(rrinterval); free(rrtime); 
+			
+			float * rrFinalData;
+			rrFinalData = (float *) malloc((windowWidthSamples+4) * sizeof(float));
+
+			int count=0;
+			//Add the missing data
+			//if we are within the first 128 seconds, we need to pad zeros
+			if (currentSample <= SAMPLES_IN_windowWidthTime){
+				for(int i=0; i < missingPoints; i++){
+					rrFinalData[i]=0;
+					count++;
+					//cout << "x" << endl;
+				}
+				for(int j=missingPoints; j < numInterpolatedPoints+missingPoints; j++){
+					rrFinalData[j]=interpolatedData[j-missingPoints];
+					count++;
+					//cout << "y" << endl;
+				}
+			}
+			//else we need to fill the missing data with data from prevData
+			else{
+				for(int i=0; i < missingPoints; i++){
+					rrFinalData[i]=prevData[windowWidthSamples-missingPoints+i];
+					//rrFinalData[i]=0;
+					count++;
+				}
+				for(int j=missingPoints; j < numInterpolatedPoints+missingPoints; j++){
+					rrFinalData[j]=interpolatedData[j-missingPoints];
+					count++;
+				}
+			}
+
+			free(interpolatedData);
+
+			if (count != windowWidthSamples){
+				cout << "ERROR: The number of interpolated points must equal windowWidthSamples (something went wrong with filling the gaps)" << " " << count << endl;
+				exit (EXIT_FAILURE);
+			}
+
+			for (int i=0; i<windowWidthSamples; i++)
+				prevData[i]=rrFinalData[i];
+
+			//Window the data
+			double * window;
+			window = (double *) malloc((windowWidthSamples+4) * sizeof(double));
+			computeHamming(window,windowWidthSamples);
+			windowData(rrFinalData,windowWidthSamples,window,windowWidthSamples);
+
+			//Calculate the LF and HF powers
+			string powerspectrum="";
+			computeBandPwr(rrFinalData,windowWidthSamples,&VLF,&LF,&HF, &powerspectrum);
+
+			PSD.push_back(powerspectrum);
+
+			cout << "VLF: " << VLF << " LF: " << LF << " HF: " << HF << endl;
+			VLF_Data.push_back(VLF);
+			LF_Data.push_back(LF);
+			HF_Data.push_back(HF);
+			free(rrFinalData); free(window);
+
+		}
+
+		
+
+		minuteCount++;
 	}
 	
+	free(prevData);
+
 	//Clear out what is remaining in RRI_Buffer, if record ended before 5 min passed
 	if (!RRI_Buffer.empty()){
 		double meanRROver5Min=0;
@@ -578,9 +770,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Calculate average RR Intervals
 	double avgRRInterval=0;
-	for (int i=0; i<RRInterval.size(); i++)
-		avgRRInterval=avgRRInterval+RRInterval.at(i);
-	avgRRInterval = avgRRInterval/RRInterval.size();
+	for (int i=0; i<RRi.size(); i++)
+		avgRRInterval=avgRRInterval+RRi.at(i).first;
+	avgRRInterval = avgRRInterval/RRi.size();
 
 	//Calculate the total sampling time
 	double samplingTime = ECGData.at(dataSize-1).first - ECGData.at(0).first;
@@ -596,38 +788,27 @@ int _tmain(int argc, _TCHAR* argv[])
 	SDNN - Standard Deviation of NN Intervals
 	SDANN- Standard deviation of the average NN intervals calculated over short periods, usually 5 minutes,
 	meanHR - Mean Heart Rate
-	RMSSD - square root of the mean squared differences of successive NN intervals ? (is this root mean square)
-			- sqrt of the mean of the sum of squares of differences between adjacent noraml RR-intervals
+	RMSSD - square root of the mean squared differences of successive NN intervals (standard deviation of root mean square)
 
 	Frequency Domain Methods
-	LF
-	HF
-
-	The measurement of VLF, LF, and HF power components is usually made in
-absolute values of power (milliseconds squared). LF and HF may also be measured
-in normalized units, [15,24] which represent the relative value of each power
-component in proportion to the total power minus the VLF component. The Figure 3
-component in proportion to the total power minus the VLF component. The
-representation of LF and HF in normalized units emphasizes the controlled and
-balanced behavior of the two branches of the autonomic nervous system.
-M oreover, the normalization tends to minimize the effect of the changes in total
-power on the values of LF and HF components (Figure 3). Nevertheless, normalized
-units should always be quoted with absolute values of the LF and HF power in
-order to describe completely the distribution of power in spectral components.
+	VLF - spectral power of RRi in the 0.003-0.04 Hz band (or 0 to 0.04)
+	LF - spectral power of RRi in the 0.04-0.15 Hz band
+	HF - spectral power of RRi in the 0.15-0.4 Hz band
+	LFHF - LF/HF Ratio, also known as symphatovagal index
 
 	**********************************************************************************/
 
 	//Determine Mean N-N Interval
 	double meanNNInterval=0;
-	for(int i=0; i < RRInterval.size(); i++)
-		meanNNInterval += RRInterval.at(i);
-	meanNNInterval = meanNNInterval/RRInterval.size();
+	for(int i=0; i < RRi.size(); i++)
+		meanNNInterval += RRi.at(i).first;
+	meanNNInterval = meanNNInterval/RRi.size();
 
 	//Determine Standard Deviation of N-N Intervals (SDNN)
 	double diffSq=0;
-	for(int i=0; i < RRInterval.size(); i++)
-		diffSq += pow((RRInterval.at(i)-meanNNInterval), 2);
-	double SDNN = sqrt(diffSq/RRInterval.size());
+	for(int i=0; i < RRi.size(); i++)
+		diffSq += pow((RRi.at(i).first-meanNNInterval), 2);
+	double SDNN = sqrt(diffSq/RRi.size());
 
 	//Determine Mean HR
 	double meanHR;
@@ -644,10 +825,11 @@ order to describe completely the distribution of power in spectral components.
 		diffSq += pow((MeanRRI_SDANN.at(i)-meanRRIAverage), 2);
 	double SDANN = sqrt(diffSq/MeanRRI_SDANN.size());
 
-	cout << "Mean NN Interval: " << meanNNInterval << endl;
-	cout << "SDNN: " << SDNN << endl;
-	cout << "SDANN: " << SDANN << endl;
-	cout << "Mean HR: " << meanHR << endl;
+	// Determine Square Root of the Mean Squared Differences of Successive NN Intervals (RMSSD)
+	diffSq=0;
+	for(int i=0; i < diffBetweenNNIntervals.size(); i++)
+		diffSq += pow(diffBetweenNNIntervals.at(i), 2);
+	double RMSSD = sqrt(diffSq/diffBetweenNNIntervals.size()); 
 
 	///////////////////
 	//DATA EVALUATION//
@@ -792,6 +974,7 @@ order to describe completely the distribution of power in spectral components.
 	cout << "Mean NN Interval: " << meanNNInterval << endl;
 	cout << "SDNN: " << SDNN << endl;
 	cout << "SDANN: " << SDANN << endl;
+	cout << "RMSSD: " << RMSSD << endl;
 	cout << "Mean HR: " << meanHR << endl;
 
 	outFile << "Performance Summary" << endl;
@@ -805,6 +988,7 @@ order to describe completely the distribution of power in spectral components.
 	outFile << "Mean NN Interval" << ", " << meanNNInterval << endl;
 	outFile << "SDNN" << ", " << SDNN << endl;
 	outFile << "SDANN" << ", " << SDANN << endl;
+	outFile << "RMSSD" << ", " << RMSSD << endl;
 	outFile << "Mean HR" << ", " << meanHR << endl;
 
 #ifdef MULTIPLE
@@ -818,6 +1002,7 @@ order to describe completely the distribution of power in spectral components.
 	outputMeanNNInterval.push_back(meanNNInterval);
 	outputSDNN.push_back(SDNN);
 	outputSDANN.push_back(SDANN);
+	outputRMSSD.push_back(RMSSD);
 	outputMeanHR.push_back(meanHR); 
 #endif
 
@@ -902,12 +1087,26 @@ order to describe completely the distribution of power in spectral components.
 
 	outFile << endl << endl;
 	outFile << "R-R Interval Times" << endl;
-	for(int u=0; u < RRInterval.size(); u++){
-		outFile << RRInterval.at(u) << endl;
+	for(int u=0; u < RRi.size(); u++){
+		outFile << RRi.at(u).first << endl;
 	}
 	
+	outFile << endl << endl;
+	outFile << "Power Spectrum " << endl;
+	outFile << "VLF" << ", "<< "LF" << ", " << "HF" << ", " << "PSD" << endl;
+	for(int u=0; u < PSD.size(); u++){
+		outFile << VLF_Data.at(u) << ", " << LF_Data.at(u) << ", " << HF_Data.at(u) << ", " << PSD.at(u) << endl;
+	}
+
+	/*outFile << endl << endl;
+	outFile << "R-R Interpolated" << endl;
+	for(int u=0; u < numInterpolatedPoints; u++){
+		outFile << interpolatedData[u] << endl;
+	}
+	free(interpolatedData); */
+
 	outFile.close();
-	
+
 #ifdef MULTIPLE
 	}// for the FORLOOP
 #endif
@@ -927,7 +1126,7 @@ order to describe completely the distribution of power in spectral components.
 		outFile3 << "Performance Summary" << endl;
 		outFile3 << "Record Number" << ", " << "Number of Samples" << ", " << "Sampling Rate" << ", " << "Sampling Time" << ", " << "Number of Detected Peaks"  
 			<< ", " << "Average R-Peak" << ", " << "Average RR Interval" << ", " << "Mean Threshold" << ", "
-			<< "Mean NN Interval" << ", " << "SDNN" << ", " << "SDANN" << ", "<< "Mean Heart Rate" << ", "
+			<< "Mean NN Interval" << ", " << "SDNN" << ", " << "SDANN" << ", "<< "RMSSD" << ", " << "Mean Heart Rate" << ", "
 			<< "Match Window" << ", " <<  "True Positives (TP)" << ", " << "False Negatives (FP)" << ", " << "False Positives (FP)" << ", " 
 			<< "Sensitivity" << ", " << "Positive Predictivity" << endl;
 
@@ -942,7 +1141,7 @@ order to describe completely the distribution of power in spectral components.
 			outFile3 << mitSamples[u] << ", " << outputDataSize.at(u) << ", " << outputSampleRate.at(u) << ", " << outputSamplingTime.at(u) << ", " 
 				<< outputRCount.at(u) << ", " << outputAvgRPeak.at(u) << ", " << outputAvgRRInterval.at(u) << ", " 
 				<< outputMeanThreshold.at(u) << ", " << outputMeanNNInterval.at(u) << ", " << outputSDNN.at(u) << ", " << outputSDANN.at(u) 
-				<< ", " << outputMeanHR.at(u) << ", " << outputMatchWindow.at(u) << ", " << outputTruePositiveCount.at(u) << ", " 
+				<< ", " << outputRMSSD.at(u) << ", " << outputMeanHR.at(u) << ", " << outputMatchWindow.at(u) << ", " << outputTruePositiveCount.at(u) << ", " 
 				<<  outputFalseNegativeCount.at(u) << ", " << outputFalsePositiveCount.at(u) << ", " << outputSensitivity.at(u) << ", " 
 				<< outputPositivePredictivity.at(u) << endl;
 		}
@@ -954,3 +1153,4 @@ order to describe completely the distribution of power in spectral components.
 
 	return 0;
 }
+
