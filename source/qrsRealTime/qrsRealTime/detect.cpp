@@ -21,16 +21,16 @@ static string abc;
 string retStr(){
 	return abc;
 }
-int QRSDetect(const deque <double>& time, const deque <double>& voltage){
+int QRSDetect(const deque <double>& time, const deque <double>& voltage, string sampleNumber){
 
 	int returnFlag = 0; 
 
+	static bool firstTime = true;
 	static int maxValue = 0;
 	static int prevValue = 0;
 	static int numberOfSamplesSinceLastPeak = 0; //number of func calls since last detection, indicating the shift in buffers
 	static int numberOfSamplesSinceLastQRS = 0;
 	static int numberOfSamplesSinceSecondLastPeak=0;
-	static int thresholdBasedonMean = 0;
 	static int detectionThreshold = 0;
 	static int RCount=0;
 
@@ -39,8 +39,14 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 	static deque <int> last8Noise;
 	static double SPKI=0;
 	static double NPKI=0;
-	if(last8QRS.size() == 0){
-		int thres = 4000;
+
+	if(firstTime){ //must run only once
+		int thres=0;
+		if ((sampleNumber == "108") || (sampleNumber == "121") || (sampleNumber == "207") || (sampleNumber == "222")) //These records tend to have a lower threshold
+			thres=1000;
+		else
+			thres=4000;
+
 		int noi=1000;
 		int sig=(thres+(noi*(thc-1)))/thc;
 
@@ -49,23 +55,26 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 				last8Noise.push_back(noi);
 			for(int x=0;x<8;x++)
 				last8QRS.push_back(sig);
-			}
+		}
 		else{
 			SPKI=sig;
 			NPKI=noi;
-		}
+		}		
 	}
-	
+
 	//FIFO Queue to store last 8 RR intervals
 	static deque <double> rrAvg1;
 	static deque <double> rrAvg2;
 	double avgrr = 0.85; // RRi for Heart Rate of 70
-	if (rrAvg1.size() == 0){
+
+	if(firstTime){ // must run only once
 		for(int x=0;x<8;x++)
 			rrAvg1.push_back(avgrr);
 		for(int x=0;x<8;x++)
 			rrAvg2.push_back(avgrr);
+		firstTime=false;
 	}
+
 	//Calculating the Searchback Limits
 	static double rrAverage2=avgrr;
 	static double rrLowLimit=0.92*avgrr;
@@ -97,7 +106,9 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 
 	abc = "";
 	abc = to_string(time.front()) + ", " + to_string(voltage.front()) + ", " + to_string(lpSample) + ", " + to_string(hpSample)
-		 + ", " + to_string(ddtSample) + ", " + to_string(sqSample) + ", " + to_string(currentValue) + "\n";
+		 + ", " + to_string(ddtSample) + ", " + to_string(sqSample) + ", " + to_string(currentValue)
+		 + ", " + to_string(detectionThreshold) + ", " + to_string(numberOfSamplesSinceLastPeak) + 
+		 + ", " + to_string(numberOfSamplesSinceSecondLastPeak) + ", " + to_string(numberOfSamplesSinceLastQRS);// + ", " + "\n";
 
 	//Threshold and Decision Rules//
 	/**********************************************************************************
@@ -196,13 +207,13 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 					
 					//Adaptive Threshold Parameter Update
 					//8 most recent beats are added to rrAvg1
-					if(rrAvg1.size() > 8)
+					if(rrAvg1.size() >= 8)
 						rrAvg1.pop_front();
 					rrAvg1.push_back(rri);
 
 					//If RRi falls between the limits it is added to rrAvg2
 					if ((rri>=rrLowLimit) && (rri<=rrHighLimit)){
-						if(rrAvg2.size() > 8)
+						if(rrAvg2.size() >= 8)
 							rrAvg2.pop_front();
 						rrAvg2.push_back(rri);
 
@@ -220,7 +231,7 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 				returnFlag = rPeakSample;
 					
 				if (thresholdBasedonMean){
-					if(last8QRS.size() > 8)
+					if(last8QRS.size() >= 8)
 						last8QRS.pop_front();
 					last8QRS.push_back(maxValue); //Signal is QRS
 				} 
@@ -232,8 +243,8 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 			} 
 			else{ // Peak does not meet requirements of QRS and is a noise
 				if (thresholdBasedonMean){
-					if(last8Noise.size() > 8)
-						last8Noise.front();
+					if(last8Noise.size() >= 8)
+						last8Noise.pop_front();
 					last8Noise.push_back(maxValue); //Signal is noise
 				}
 				else
@@ -242,8 +253,8 @@ int QRSDetect(const deque <double>& time, const deque <double>& voltage){
 		}
 		else{ // Peak does not meet requirements of QRS and is a noise
 			if (thresholdBasedonMean){
-				if(last8Noise.size() > 8)
-					last8Noise.front();
+				if(last8Noise.size() >= 8)
+					last8Noise.pop_front();
 				last8Noise.push_back(maxValue); //Signal is noise
 			}else
 				NPKI=0.125*maxValue + 0.875*NPKI; //Noise estimate is updated

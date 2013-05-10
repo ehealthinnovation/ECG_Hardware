@@ -14,6 +14,6 @@ const int ecg_buffer_length = SAMPLES_IN_120S; //ECG Buffer is 2 minutes long, F
 
 const bool thresholdBasedonMean = false;
 
-int QRSDetect(const std::deque <double>& time, const std::deque <double>& voltage);
+int QRSDetect(const std::deque <double>& time, const std::deque <double>& voltage, std::string sampleNumber);
 
 std::string retStr();

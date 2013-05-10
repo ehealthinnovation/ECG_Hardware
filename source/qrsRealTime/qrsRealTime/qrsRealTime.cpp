@@ -21,7 +21,9 @@ using namespace std::tr1;
 MIT data is stored as milliVolts.*/
 const double scalingFactorMIT= 1000.0;
 
-
+/* Match window is used to determine the accuracy of the peak detection for MIT data. 
+Any peaks within matchWindow of the correct value is considered "detected". */
+const double matchWindow = 0.050; //in seconds
 
 //Add to circular buffer
 void addToBuffer(deque <double>& timeDQ, deque <double>& voltageDQ, double seconds, double volt){
@@ -143,7 +145,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Loop through each sample in the record
 
-	outFile << "Time, Voltage, LP, HP, DDT, SQ, INT" << endl;
+	outFile << "Time, Voltage, LP, HP, DDT, SQ, INT, Thres, #LastPeak, #2ndLastPeak, #LastQRS, returnFlag" << endl;
+
+	int counter=0;
 
 	for(int n=0; n < dataSize; n++){ ///replace with a live feedin (wihtout the first big data pull)
 
@@ -152,9 +156,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		//cout << ECG_Buffer_Time.size() << endl;
 	
 		int x=0;
-		x = QRSDetect(ECG_Buffer_Time, ECG_Buffer_Voltage);
+		x = QRSDetect(ECG_Buffer_Time, ECG_Buffer_Voltage, sampleNumber);
 		string temp = retStr();
-		outFile << temp;
+		outFile << temp << ", " << x << endl;
 
 		if (x != 0){
 			count++;
@@ -162,19 +166,185 @@ int _tmain(int argc, _TCHAR* argv[])
 			RPeakData.push_back(make_pair(ECG_Buffer_Time.at(x), ECG_Buffer_Voltage.at(x)));
 		}
 
+		if(counter==10000){
+			cout << 100.0*n/dataSize << endl; // progress bar
+			counter=0;
+		}
+		counter++;
+
 	}
 
 	cout << "QRS Found: " << count << endl;
 
-	outFile << endl <<"Number of Detected Peaks, " << count << endl;
+
+
+
+
+
+
+
+	///////////////////
+	//DATA EVALUATION//
+	///////////////////
+	/**********************************************************************************
+	Evaluation of QRS detection is done using two parameters:
+
+	Sensitivity							Se=TP/(TP+FN)
+	Positive Predictivity				PP=TP/(TP+FP) 
+	where	TP = # of true positves (true peak detected)
+			FP = # of false positives (false peak detected)
+			FN = # of false negatives (true peak not detected)
+
+	Sensitivity is the % of true results that test detected as positive
+	Positive Predictivity is the % of positive results  that are true positives
+
+	Samples are considered positive if it is detected within 10ms of the annotated point. 
+	**********************************************************************************/
+	double truePositiveCount=0;
+	double falsePositiveCount=0;
+	double falseNegativeCount=0;
+	vector <double> tp;
+	vector <double> fp;
+	vector <double> fn;
+
+
+	cout << "Data Validation with MIT-BIH database" << endl;
+		
+	string PeakAnnotationFile;
+	PeakAnnotationFile = "C:\\Users\\Akib\\Desktop\\sampleData\\mitdb\\annotations"+sampleNumber+".csv"; //INPUT Annotation FILE
+
+	vector<pair<double, string> > PeakAnnotation; //stores the sample time and type for each beat
+	vector <int> binList; //Used in calculating Se and Sp. If 1, then the PeakAnnotation sample at the value was found in RPeakData
+
+	ifstream inFileAnno;
+	inFileAnno.open(PeakAnnotationFile);
+	if (!inFileAnno){
+		cout << "ERROR: The input annotation file does not exist" << endl;
+		exit (EXIT_FAILURE);
+	}
+
+	string line2;
+	string annoHeader1;
+	string peakType;
+	double peakTime=0;
+
+	getline(inFileAnno, annoHeader1);//Skip first line, which are just column headings
+
+	while(getline(inFileAnno, line2))
+	{
+		stringstream lineStream(line2);
+		string cell2;
+		int h=0;
+
+		while(getline(lineStream, cell2, ',')){
+			if (h==0){ // Peak Time
+				peakTime = atof(cell2.c_str()); 
+				h++;
+		}
+			else{ // Annotation
+				peakType = cell2.c_str();
+			}
+		}
+			
+		/*The MIT-BIH database annotations are for more than beat. We only need to compare to 
+		annotations that are considered beats. We must filter out the others 
+		Annotation types:
+		http://www.physionet.org/physiobank/annotations.shtml#aux
+		For beats, it can be of the following types:
+			N, L, R, B, A, a, J, S, V, r, F, e, j, n, E, /, f, Q, ? 
+		*/
+		string typeList[19] = {"N", "L", "R", "B", "A", "a", "J", "S", "V", "r", "F", "e", "j", "n", "E", "/", "f", "Q", "?"};
+
+		//Check to see if type is acceptable and matches one in the list
+		if (std::end(typeList) != std::find(std::begin(typeList), std::end(typeList), cell2)) {
+			PeakAnnotation.push_back(make_pair(peakTime, peakType));
+			binList.push_back(0);
+		}
+	}
+	inFileAnno.close();
+
+	int annoSize = PeakAnnotation.size();
+	int flag=0;
+
+	//We will compare the time values in RPeakData and PeakAnnotation
+	for(int i=0; i < RPeakData.size(); i++){ //search through foundPeaks list
+		flag=0;
+		for(int j=0; ((j < annoSize) && (flag==0)) ; j++){ //search through knownPeaks list
+			if(abs(RPeakData.at(i).first - PeakAnnotation.at(j).first) < matchWindow){ // Peak in foundPeaks list is in knownPeaks list = true positive
+				truePositiveCount++;
+				binList.at(j) = 1; // If 1, then the PeakAnnotation sample at the value was found in RPeakData
+				tp.push_back(RPeakData.at(i).first);
+				flag=1;
+			}
+		}
+		if (flag==0){ // Peak in foundPeaks list is not in knownPeaks list = false positive
+			falsePositiveCount++;
+			fp.push_back(RPeakData.at(i).first);
+		}
+	}
+
+	//Now we look through annotation list to find the peaks that weren't found. 
+	for(int k=0; k < annoSize; k++){
+		if (binList.at(k)==0){
+			falseNegativeCount++; //Peak in knownPeaks list was not found in foundPeaks = false negative
+			fn.push_back(PeakAnnotation.at(k).first);
+		}
+	}
+
+	cout << "Performance Summary" << endl;
+	cout << "Number of Samples: " << ECGData.size() << endl;
+	cout << "Sampling Rate: " << SAMPLERATE << " Hz" << endl;
+	cout << "Sampling Time: " << (ECGData.at(dataSize-1).first - ECGData.at(0).first) << " s" << endl;
+	cout << "Number of Detected Peaks: " << RPeakData.size() << endl;
+	//cout << "Average RR Interval: " << avgRRInterval << " s" << endl;
+
+	double sensitivity = 100.0*((truePositiveCount)/(truePositiveCount+falseNegativeCount));
+	double positivePredictivity = 100.0*((truePositiveCount)/(truePositiveCount+falsePositiveCount));
+
+	cout << "Match Window: " << matchWindow <<  " s" <<endl;
+	cout << "True Positives (TP): " << truePositiveCount << endl;
+	cout << "False Negatives (FP): "<< falseNegativeCount << endl;
+	cout << "False Positives (FP): " << falsePositiveCount << endl;
+	cout << "Sensitivity: " << sensitivity << " %" << endl; 
+	cout << "Positive Predictivity: " << positivePredictivity << " %" << endl; 
+
+	outFile << endl;
+	outFile << "Performance Summary" << endl;
+	outFile << "Number of Samples:," << ECGData.size() << endl;
+	outFile << "Sampling Rate:," << SAMPLERATE << endl;
+	outFile << "Sampling Time:," << (ECGData.at(dataSize-1).first - ECGData.at(0).first) << endl;
+	outFile << "Number of Detected Peaks:," << RPeakData.size() << endl;
+	//outFile << "Average RR Interval: " << avgRRInterval << endl;
+	outFile << "Match Window:," << matchWindow <<  endl;
+	outFile << "True Positives (TP):," << truePositiveCount << endl;
+	outFile << "False Negatives (FP):,"<< falseNegativeCount << endl;
+	outFile << "False Positives (FP):," << falsePositiveCount << endl;
+	outFile << "Sensitivity:," << sensitivity << endl; 
+	outFile << "Positive Predictivity:," << positivePredictivity <<endl; 
+
+	//Output all detected peaks and times
+	outFile << endl << endl;
 	outFile << "Time (s), MLII (mV), " << endl;
 	for (int n=0; n < RPeakData.size(); n++){
 		outFile << RPeakData.at(n).first << ", " << RPeakData.at(n).second << endl;
 	}
 
+	//Output TP, FP and FN
+	outFile << endl;
+	outFile << "True Positives" << endl;
+	for(int u=0; u < tp.size(); u++){
+		outFile << tp.at(u) << endl;
+	}
+	outFile << endl << "False Positives" << endl;
+	for(int u=0; u < fp.size(); u++){
+		outFile << fp.at(u) << endl;
+	}
+	outFile << endl << "False Negatives" << endl;
+	for(int u=0; u < fn.size(); u++){
+		outFile << fn.at(u) << endl;
+	}
 
 
-	
 
 
 	outFile.close();

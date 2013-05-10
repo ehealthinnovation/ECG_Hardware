@@ -1,17 +1,26 @@
-﻿Build started 01/05/2013 7:16:22 PM.
+﻿Build started 09/05/2013 11:05:14 PM.
      1>Project "C:\Users\Akib\documents\visual studio 2012\Projects\qrsRealTime\qrsRealTime\qrsRealTime.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt detect.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt detect.cpp qrsRealTime.cpp
          detect.cpp
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(45): warning C4244: 'initializing' : conversion from 'const double' to 'int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(119): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(123): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(128): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(129): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(132): warning C4244: '=' : conversion from 'const double' to 'int', possible loss of data
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(159): warning C4018: '>=' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(161): warning C4018: '>=' : signed/unsigned mismatch
-     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(184): warning C4018: '>=' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(51): warning C4244: 'initializing' : conversion from 'const double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(130): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(134): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(139): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(140): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(143): warning C4244: '=' : conversion from 'const double' to 'int', possible loss of data
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(170): warning C4018: '>=' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(172): warning C4018: '>=' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\detect.cpp(195): warning C4018: '>=' : signed/unsigned mismatch
+         Generating Code...
+         Compiling...
+         qrsRealTime.cpp
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\qrsrealtime.cpp(270): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\qrsrealtime.cpp(328): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\qrsrealtime.cpp(335): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\qrsrealtime.cpp(339): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\akib\documents\visual studio 2012\projects\qrsrealtime\qrsrealtime\qrsrealtime.cpp(343): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Akib\documents\visual studio 2012\Projects\qrsRealTime\Debug\qrsRealTime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Akib\documents\visual studio 2012\Projects\qrsRealTime\Debug\qrsRealTime.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Akib\documents\visual studio 2012\Projects\qrsRealTime\Debug\qrsRealTime.lib" /MACHINE:X86 Debug\detect.obj
          Debug\filter.obj
@@ -24,4 +33,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.83
+Time Elapsed 00:00:03.69
