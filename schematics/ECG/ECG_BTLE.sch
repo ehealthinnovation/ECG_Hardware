@@ -11784,6 +11784,105 @@ Hirose Electric Co.</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="con-molex-microsd">
+<packages>
+<package name="MICRO_SD_CONNECTOR">
+<wire x1="-7.49" y1="-8.4" x2="7.81" y2="-8.4" width="0.127" layer="21"/>
+<wire x1="7.81" y1="-8.4" x2="7.81" y2="7.4" width="0.127" layer="21"/>
+<wire x1="7.81" y1="7.4" x2="-7.49" y2="7.4" width="0.127" layer="21"/>
+<wire x1="-7.49" y1="7.4" x2="-7.49" y2="-8.4" width="0.127" layer="21"/>
+<wire x1="-2.79" y1="-8.4" x2="-2.79" y2="-8.5" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-2.79" y1="-8.5" x2="-1.79" y2="-9.5" width="0.127" layer="51" style="shortdash" curve="90"/>
+<wire x1="-1.79" y1="-9.5" x2="5.01" y2="-9.5" width="0.127" layer="51" style="shortdash"/>
+<wire x1="5.01" y1="-9.5" x2="6.01" y2="-8.5" width="0.127" layer="51" style="shortdash" curve="90"/>
+<wire x1="6.01" y1="-8.5" x2="6.01" y2="-8.4" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-2.79" y1="-8.5" x2="-2.79" y2="-9.4" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-2.79" y1="-9.4" x2="-1.79" y2="-10.4" width="0.127" layer="51" style="shortdash" curve="90"/>
+<wire x1="-1.79" y1="-10.4" x2="5.01" y2="-10.4" width="0.127" layer="51" style="shortdash"/>
+<wire x1="5.01" y1="-10.4" x2="6.01" y2="-9.4" width="0.127" layer="51" style="shortdash" curve="90"/>
+<wire x1="6.01" y1="-9.4" x2="6.01" y2="-8.5" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-2.79" y1="-9.4" x2="-2.79" y2="-13" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-2.79" y1="-13" x2="-1.79" y2="-14" width="0.127" layer="51" style="shortdash" curve="90"/>
+<wire x1="-1.79" y1="-14" x2="5.01" y2="-14" width="0.127" layer="51" style="shortdash"/>
+<wire x1="5.01" y1="-14" x2="6.01" y2="-13" width="0.127" layer="51" style="shortdash" curve="90"/>
+<wire x1="6.01" y1="-13" x2="6.01" y2="-9.4" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-2.79" y1="-8.4" x2="-2.79" y2="-6.8" width="0.127" layer="21"/>
+<wire x1="-2.79" y1="-6.8" x2="-1.79" y2="-5.8" width="0.127" layer="21" curve="-90"/>
+<wire x1="-1.79" y1="-5.8" x2="5.01" y2="-5.8" width="0.127" layer="21"/>
+<wire x1="5.01" y1="-5.8" x2="6.01" y2="-6.8" width="0.127" layer="21" curve="-90"/>
+<wire x1="6.01" y1="-6.8" x2="6.01" y2="-8.4" width="0.127" layer="21"/>
+<smd name="1" x="-2.03" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50" rot="R180"/>
+<smd name="2" x="-0.93" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="3" x="0.17" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="4" x="1.27" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="5" x="2.37" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="6" x="3.47" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="7" x="4.57" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="8" x="5.67" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
+<smd name="9" x="7.735" y="5.7" dx="1.55" dy="2.8" layer="1" roundness="50"/>
+<smd name="10" x="7.735" y="-2" dx="1.55" dy="2.1" layer="1" roundness="50"/>
+<smd name="11" x="7.81" y="-6.75" dx="1.4" dy="1.9" layer="1" roundness="50"/>
+<smd name="12" x="-6.79" y="-7.75" dx="1.4" dy="1.9" layer="1" roundness="50"/>
+<smd name="14" x="-7.49" y="6.6" dx="1.4" dy="3" layer="1" roundness="50"/>
+<smd name="15" x="-4.43" y="7.725" dx="1.6" dy="1.55" layer="1" roundness="50"/>
+<smd name="13" x="-7.49" y="-2.95" dx="1.4" dy="3" layer="1" roundness="50"/>
+<text x="-8.5" y="9.6" size="1.27" layer="25">&gt;NAME</text>
+<text x="-3.5" y="-2.4" size="1.27" layer="27">&gt;VALUE</text>
+<text x="-7.5" y="1.6" size="1.27" layer="48">microSD Connector</text>
+</package>
+</packages>
+<symbols>
+<symbol name="MICROSD_SD_MODE">
+<wire x1="7.62" y1="15.24" x2="7.62" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-15.24" x2="-12.7" y2="-15.24" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-15.24" x2="-12.7" y2="15.24" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="15.24" x2="7.62" y2="15.24" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="15.24" x2="-7.62" y2="10.16" width="0.254" layer="94" curve="-90"/>
+<wire x1="-7.62" y1="10.16" x2="-7.62" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-10.16" x2="-12.7" y2="-15.24" width="0.254" layer="94" curve="-90"/>
+<text x="-12.7" y="20.32" size="1.778" layer="95">&gt;NAME</text>
+<text x="-12.7" y="17.78" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-5.08" y="7.62" size="1.778" layer="94" rot="R270">microSD CARD</text>
+<pin name="DATA2" x="12.7" y="12.7" length="middle" rot="R180"/>
+<pin name="CD/DATA3" x="12.7" y="10.16" length="middle" rot="R180"/>
+<pin name="CMD" x="12.7" y="7.62" length="middle" rot="R180"/>
+<pin name="VDD" x="12.7" y="5.08" length="middle" rot="R180"/>
+<pin name="CLK" x="12.7" y="2.54" length="middle" rot="R180"/>
+<pin name="VSS" x="12.7" y="0" length="middle" rot="R180"/>
+<pin name="DATA0" x="12.7" y="-2.54" length="middle" rot="R180"/>
+<pin name="DATA1" x="12.7" y="-5.08" length="middle" rot="R180"/>
+<pin name="CD(1)" x="12.7" y="-10.16" length="middle" rot="R180"/>
+<pin name="CD(2)" x="12.7" y="-12.7" length="middle" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="MICROSD_SD_MODE">
+<description>&lt;b&gt;MOLEX - 49225-0821 - CONNECTEUR MICRO SD PUSH/PUSH REV&lt;/b&gt;&lt;hr&gt;&lt;p&gt;Fabricant: MOLEX&lt;br&gt;Code commande Farnell: &lt;a href="http://fr.farnell.com/molex/49225-0821/connecteur-micro-sd-push-push-rev/dp/1366700?Ntt=1366700"&gt;1366700&lt;/a&gt;&lt;br&gt;Référence fabricant: 49225-0821 &lt;/p&gt;&lt;img src="MOLEX - 49225-0821 - CONNECTEUR MICRO SD.png"&gt;</description>
+<gates>
+<gate name="G$1" symbol="MICROSD_SD_MODE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="MICRO_SD_CONNECTOR">
+<connects>
+<connect gate="G$1" pin="CD(1)" pad="9"/>
+<connect gate="G$1" pin="CD(2)" pad="10"/>
+<connect gate="G$1" pin="CD/DATA3" pad="2"/>
+<connect gate="G$1" pin="CLK" pad="5"/>
+<connect gate="G$1" pin="CMD" pad="3"/>
+<connect gate="G$1" pin="DATA0" pad="7"/>
+<connect gate="G$1" pin="DATA1" pad="8"/>
+<connect gate="G$1" pin="DATA2" pad="1"/>
+<connect gate="G$1" pin="VDD" pad="4"/>
+<connect gate="G$1" pin="VSS" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -11833,6 +11932,7 @@ Hirose Electric Co.</description>
 <part name="U$2" library="tagconnect" deviceset="TC2030" device="-MCP-NL"/>
 <part name="U$3" library="hirose" deviceset="DF12-3.5-30DP" device=""/>
 <part name="U$4" library="hirose" deviceset="DF12-3.5-30DP" device=""/>
+<part name="U$5" library="con-molex-microsd" deviceset="MICROSD_SD_MODE" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11880,6 +11980,7 @@ Hirose Electric Co.</description>
 <instance part="U$2" gate="G$1" x="198.12" y="172.72"/>
 <instance part="U$3" gate="CONN" x="53.34" y="274.32"/>
 <instance part="U$4" gate="CONN" x="134.62" y="274.32"/>
+<instance part="U$5" gate="G$1" x="45.72" y="185.42"/>
 </instances>
 <busses>
 </busses>
