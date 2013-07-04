@@ -2948,97 +2948,6 @@ Source: http://focus.ti.com/lit/ds/symlink/cc2531.pdf</description>
 </package>
 </packages>
 </library>
-<library name="SparkFun-Sensors">
-<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
-In this library you'll find sensors- accelerometers, gyros, compasses, magnetometers, light sensors, imagers, temp sensors, etc.&lt;br&gt;&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; CC v3.0 Share-Alike You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="ADXL362">
-<smd name="P$1" x="-1.35" y="1" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$2" x="-1.35" y="0.5" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$3" x="-1.35" y="0" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$4" x="-1.35" y="-0.5" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$5" x="-1.35" y="-1" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$6" x="-0.5" y="-1.275" dx="0.8" dy="0.3" layer="1" rot="R90"/>
-<smd name="P$7" x="0" y="-1.275" dx="0.8" dy="0.3" layer="1" rot="R90"/>
-<smd name="P$8" x="0.5" y="-1.275" dx="0.8" dy="0.3" layer="1" rot="R90"/>
-<smd name="P$9" x="1.35" y="-1" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$10" x="1.35" y="-0.5" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$11" x="1.35" y="0" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$12" x="1.35" y="0.5" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$13" x="1.35" y="1" dx="0.8" dy="0.3" layer="1"/>
-<smd name="P$14" x="0.5" y="1.275" dx="0.8" dy="0.3" layer="1" rot="R90"/>
-<smd name="P$15" x="0" y="1.275" dx="0.8" dy="0.3" layer="1" rot="R90"/>
-<smd name="P$16" x="-0.5" y="1.275" dx="0.8" dy="0.3" layer="1" rot="R90"/>
-<wire x1="-0.75" y1="-1.5" x2="-1.6" y2="-1.5" width="0.127" layer="21"/>
-<wire x1="-1.6" y1="-1.5" x2="-1.6" y2="-1.25" width="0.127" layer="21"/>
-<wire x1="0.75" y1="-1.5" x2="1.6" y2="-1.5" width="0.127" layer="21"/>
-<wire x1="1.6" y1="-1.5" x2="1.6" y2="-1.25" width="0.127" layer="21"/>
-<wire x1="0.75" y1="1.5" x2="1.6" y2="1.5" width="0.127" layer="21"/>
-<wire x1="1.6" y1="1.5" x2="1.6" y2="1.25" width="0.127" layer="21"/>
-<wire x1="-0.75" y1="1.5" x2="-1.6" y2="1.5" width="0.127" layer="21"/>
-<wire x1="-1.6" y1="1.5" x2="-1.6" y2="1.25" width="0.127" layer="21"/>
-<wire x1="-1.85" y1="1.25" x2="-1.85" y2="1.75" width="0.127" layer="21"/>
-<wire x1="-1.85" y1="1.75" x2="-1.4" y2="1.75" width="0.127" layer="21"/>
-</package>
-</packages>
-</library>
-<library name="tagconnect">
-<packages>
-<package name="TC2030-MCP-NL">
-<description>&lt;B&gt;TAG-CONNECT ISP Connector&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;&lt;I&gt;Manufacturer:&lt;/I&gt; &lt;a href="www.tag-connect.com"&gt;Tag-Connect&lt;/a&gt;&lt;BR&gt;
-&lt;BR&gt;Cable for easy In-Circuit PCB Programming. Designed for Microchip ICD2, suitable for many others.&lt;BR&gt;
-&lt;TABLE cellspacing=0 cellpadding=0 border=0&gt;
-&lt;TR&gt;&lt;TD width=20&gt;&lt;/TD&gt;&lt;TD&gt;
-&lt;TABLE cellspacing=0 cellpadding=1 border=1&gt;
-&lt;TR bgcolor=silver&gt;&lt;TD align=center&gt;PAD&lt;/TD&gt;&lt;TD align=center&gt;Description&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;&lt;TD align=center&gt;1&lt;/TD&gt;&lt;TD&gt;MCLR/Vpp&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;&lt;TD align=center&gt;2&lt;/TD&gt;&lt;TD&gt;Vdd&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;&lt;TD align=center&gt;3&lt;/TD&gt;&lt;TD&gt;GND&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;&lt;TD align=center&gt;4&lt;/TD&gt;&lt;TD&gt;PGD (ISPDAT)&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;&lt;TD align=center&gt;5&lt;/TD&gt;&lt;TD&gt;PGC (ISPCLK)&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;&lt;TD align=center&gt;6&lt;/TD&gt;&lt;TD&gt;nc (used for LVP)&lt;/TD&gt;&lt;/TR&gt;
-&lt;/TABLE&gt;
-&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&lt;BR&gt;&lt;BR&gt;
-©2009 ROFA.cz</description>
-<hole x="0" y="0" drill="0.889"/>
-<hole x="5.08" y="-1.016" drill="0.889"/>
-<hole x="5.08" y="1.016" drill="0.889"/>
-<smd name="2" x="1.27" y="0.635" dx="0.7874" dy="0.7874" layer="1" roundness="100" cream="no"/>
-<smd name="4" x="2.54" y="0.635" dx="0.7874" dy="0.7874" layer="1" roundness="100" cream="no"/>
-<smd name="6" x="3.81" y="0.635" dx="0.7874" dy="0.7874" layer="1" roundness="100" cream="no"/>
-<smd name="5" x="3.81" y="-0.635" dx="0.7874" dy="0.7874" layer="1" roundness="100" cream="no"/>
-<smd name="3" x="2.54" y="-0.635" dx="0.7874" dy="0.7874" layer="1" roundness="100" cream="no"/>
-<smd name="1" x="1.27" y="-0.635" dx="0.7874" dy="0.7874" layer="1" roundness="100" cream="no"/>
-<polygon width="0.0254" layer="39">
-<vertex x="1.27" y="-0.2413"/>
-<vertex x="1.6637" y="-0.2413"/>
-<vertex x="1.6637" y="-0.635"/>
-<vertex x="2.1463" y="-0.635"/>
-<vertex x="2.1463" y="-0.2413"/>
-<vertex x="2.9337" y="-0.2413"/>
-<vertex x="2.9337" y="-0.635"/>
-<vertex x="3.4163" y="-0.635"/>
-<vertex x="3.4163" y="-0.2413"/>
-<vertex x="3.81" y="-0.2413"/>
-<vertex x="3.81" y="0.2413"/>
-<vertex x="3.4163" y="0.2413"/>
-<vertex x="3.4163" y="0.635"/>
-<vertex x="2.9337" y="0.635"/>
-<vertex x="2.9337" y="0.2413"/>
-<vertex x="2.1463" y="0.2413"/>
-<vertex x="2.1463" y="0.635"/>
-<vertex x="1.6637" y="0.635"/>
-<vertex x="1.6637" y="0.2413"/>
-<vertex x="1.27" y="0.2413"/>
-</polygon>
-<text x="-0.635" y="1.27" size="1.27" layer="25">&gt;name</text>
-<circle x="0.8382" y="-1.143" radius="0.0508" width="0.127" layer="21"/>
-</package>
-</packages>
-</library>
 <library name="hirose">
 <packages>
 <package name="DF12-3.5-30DP">
@@ -3085,54 +2994,6 @@ Hirose Electric Co.</description>
 <hole x="1.5" y="4.55" drill="0.6"/>
 <hole x="-1.5" y="-4.55" drill="0.6"/>
 <hole x="1.5" y="-4.55" drill="0.6"/>
-</package>
-</packages>
-</library>
-<library name="con-molex-microsd">
-<packages>
-<package name="MICRO_SD_CONNECTOR">
-<wire x1="-7.49" y1="-8.4" x2="7.81" y2="-8.4" width="0.127" layer="21"/>
-<wire x1="7.81" y1="-8.4" x2="7.81" y2="7.4" width="0.127" layer="21"/>
-<wire x1="7.81" y1="7.4" x2="-7.49" y2="7.4" width="0.127" layer="21"/>
-<wire x1="-7.49" y1="7.4" x2="-7.49" y2="-8.4" width="0.127" layer="21"/>
-<wire x1="-2.79" y1="-8.4" x2="-2.79" y2="-8.5" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-2.79" y1="-8.5" x2="-1.79" y2="-9.5" width="0.127" layer="51" style="shortdash" curve="90"/>
-<wire x1="-1.79" y1="-9.5" x2="5.01" y2="-9.5" width="0.127" layer="51" style="shortdash"/>
-<wire x1="5.01" y1="-9.5" x2="6.01" y2="-8.5" width="0.127" layer="51" style="shortdash" curve="90"/>
-<wire x1="6.01" y1="-8.5" x2="6.01" y2="-8.4" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-2.79" y1="-8.5" x2="-2.79" y2="-9.4" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-2.79" y1="-9.4" x2="-1.79" y2="-10.4" width="0.127" layer="51" style="shortdash" curve="90"/>
-<wire x1="-1.79" y1="-10.4" x2="5.01" y2="-10.4" width="0.127" layer="51" style="shortdash"/>
-<wire x1="5.01" y1="-10.4" x2="6.01" y2="-9.4" width="0.127" layer="51" style="shortdash" curve="90"/>
-<wire x1="6.01" y1="-9.4" x2="6.01" y2="-8.5" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-2.79" y1="-9.4" x2="-2.79" y2="-13" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-2.79" y1="-13" x2="-1.79" y2="-14" width="0.127" layer="51" style="shortdash" curve="90"/>
-<wire x1="-1.79" y1="-14" x2="5.01" y2="-14" width="0.127" layer="51" style="shortdash"/>
-<wire x1="5.01" y1="-14" x2="6.01" y2="-13" width="0.127" layer="51" style="shortdash" curve="90"/>
-<wire x1="6.01" y1="-13" x2="6.01" y2="-9.4" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-2.79" y1="-8.4" x2="-2.79" y2="-6.8" width="0.127" layer="21"/>
-<wire x1="-2.79" y1="-6.8" x2="-1.79" y2="-5.8" width="0.127" layer="21" curve="-90"/>
-<wire x1="-1.79" y1="-5.8" x2="5.01" y2="-5.8" width="0.127" layer="21"/>
-<wire x1="5.01" y1="-5.8" x2="6.01" y2="-6.8" width="0.127" layer="21" curve="-90"/>
-<wire x1="6.01" y1="-6.8" x2="6.01" y2="-8.4" width="0.127" layer="21"/>
-<smd name="1" x="-2.03" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50" rot="R180"/>
-<smd name="2" x="-0.93" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="3" x="0.17" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="4" x="1.27" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="5" x="2.37" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="6" x="3.47" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="7" x="4.57" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="8" x="5.67" y="8.2" dx="0.8" dy="1.6" layer="1" roundness="50"/>
-<smd name="9" x="7.735" y="5.7" dx="1.55" dy="2.8" layer="1" roundness="50"/>
-<smd name="10" x="7.735" y="-2" dx="1.55" dy="2.1" layer="1" roundness="50"/>
-<smd name="11" x="7.81" y="-6.75" dx="1.4" dy="1.9" layer="1" roundness="50"/>
-<smd name="12" x="-6.79" y="-7.75" dx="1.4" dy="1.9" layer="1" roundness="50"/>
-<smd name="14" x="-7.49" y="6.6" dx="1.4" dy="3" layer="1" roundness="50"/>
-<smd name="15" x="-4.43" y="7.725" dx="1.6" dy="1.55" layer="1" roundness="50"/>
-<smd name="13" x="-7.49" y="-2.95" dx="1.4" dy="3" layer="1" roundness="50"/>
-<text x="-8.5" y="9.6" size="1.27" layer="25">&gt;NAME</text>
-<text x="-3.5" y="-2.4" size="1.27" layer="27">&gt;VALUE</text>
-<text x="-7.5" y="1.6" size="1.27" layer="48">microSD Connector</text>
 </package>
 </packages>
 </library>
@@ -3355,13 +3216,8 @@ design rules under a new name.</description>
 <element name="IC4" library="ST-CC254X" package="RHA_S-PVQFN-N40" value="CC2541" x="44.1978" y="6.7612"/>
 <element name="R8" library="rcl" package="R0201" value="10k" x="58.7262" y="4.074"/>
 <element name="R9" library="rcl" package="R0201" value="10k" x="62.587" y="4.074"/>
-<element name="U1" library="SparkFun-Sensors" package="ADXL362" value="ADXL362" x="41.1" y="4.8">
-<attribute name="PROD_ID" value="IC-11297" x="41.1" y="4.8" size="1.778" layer="27" display="off"/>
-</element>
-<element name="U$2" library="tagconnect" package="TC2030-MCP-NL" value="TC2030-MCP-NL" x="42.7786" y="20.2902"/>
 <element name="U$3" library="hirose" package="DF12-3.5-30DP" value="DF12-3.5-30DP" x="3.5" y="14.5"/>
 <element name="U$4" library="hirose" package="DF12-3.5-30DP" value="DF12-3.5-30DP" x="24" y="14.5"/>
-<element name="U$5" library="con-molex-microsd" package="MICRO_SD_CONNECTOR" value="MICROSD_SD_MODE" x="14" y="15" rot="MR180"/>
 </elements>
 <signals>
 <signal name="N$1">
@@ -3605,12 +3461,6 @@ design rules under a new name.</description>
 </signal>
 <signal name="P0_6">
 <contactref element="IC4" pad="13"/>
-</signal>
-<signal name="2">
-<contactref element="U$2" pad="2"/>
-</signal>
-<signal name="3">
-<contactref element="U$2" pad="3"/>
 </signal>
 </signals>
 </board>
