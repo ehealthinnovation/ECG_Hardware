@@ -11583,7 +11583,7 @@ Hirose Electric Co.</description>
 <parts>
 <part name="IC1" library="texas_instruments" deviceset="ADS1293" device=""/>
 <part name="C2" library="rcl" deviceset="C-US" device="C0201" value="22pF"/>
-<part name="U$1" library="ecs" deviceset="XTAL-CSM7" device=""/>
+<part name="X3" library="ecs" deviceset="XTAL-CSM7" device=""/>
 <part name="CONN1" library="harwin" deviceset="10POS_1.27MM_SMD" device=""/>
 <part name="C1" library="rcl" deviceset="C-US" device="C0201" value="22pF"/>
 <part name="IC3" library="microchip_regulators" deviceset="MCP1703" device=""/>
@@ -11597,7 +11597,7 @@ Hirose Electric Co.</description>
 <part name="R4" library="resistor" deviceset="R-US_" device="R0402" value="0"/>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0402" value="1.5nF"/>
 <part name="R5" library="resistor" deviceset="R-US_" device="R0603" value="1M"/>
-<part name="R6" library="resistor" deviceset="R-US_" device="R0402" value="100K"/>
+<part name="R6" library="resistor" deviceset="R-US_" device="R0402" value="10K"/>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0402" value="1uF (C1005X7S0J105K)"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="C7" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
@@ -11605,22 +11605,22 @@ Hirose Electric Co.</description>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="FRAME1" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="R3" library="rcl" deviceset="R-US_" device="R0201" value="56K"/>
-<part name="C13" library="rcl" deviceset="C-US" device="C0402" value="1.0uF"/>
+<part name="C12" library="rcl" deviceset="C-US" device="C0402" value="1uF"/>
 <part name="R7" library="rcl" deviceset="R-US_" device="R0201" value="2.7K"/>
-<part name="C18" library="rcl" deviceset="C-US" device="C0402" value="1nF"/>
+<part name="C17" library="rcl" deviceset="C-US" device="C0402" value="1nF"/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="IC4" library="ST-CC254X" deviceset="CC2541" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="R8" library="rcl" deviceset="R-US_" device="R0201" value="10k"/>
 <part name="R9" library="rcl" deviceset="R-US_" device="R0201" value="10k"/>
-<part name="U$3" library="hirose" deviceset="DF12-3.5-30DP" device=""/>
-<part name="U$4" library="hirose" deviceset="DF12-3.5-30DP" device=""/>
+<part name="CONN2" library="hirose" deviceset="DF12-3.5-30DP" device=""/>
+<part name="CONN3" library="hirose" deviceset="DF12-3.5-30DP" device=""/>
 <part name="R10" library="resistor" deviceset="R-US_" device="R0402" value="1M"/>
 <part name="C10" library="rcl" deviceset="C-EU" device="C0402" value="1uF"/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="R11" library="resistor" deviceset="R-US_" device="R0402" value="1M"/>
-<part name="U$2" library="st" deviceset="LIS3DH" device=""/>
+<part name="IC2" library="st" deviceset="LIS3DH" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="C9" library="rcl" deviceset="C-EU" device="C0402" value="0.1uF"/>
 <part name="C11" library="rcl" deviceset="C-EU" device="C0402" value="10uF"/>
@@ -11640,14 +11640,14 @@ Hirose Electric Co.</description>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="R15" library="rcl" deviceset="R-US_" device="R0201" value="0"/>
 <part name="TP11" library="testpad" deviceset="TPS" device="TP08SQ"/>
+<part name="C13" library="rcl" deviceset="C-US" device="C0201" value="12pF"/>
 <part name="C14" library="rcl" deviceset="C-US" device="C0201" value="12pF"/>
-<part name="C15" library="rcl" deviceset="C-US" device="C0201" value="12pF"/>
+<part name="C15" library="rcl" deviceset="C-US" device="C0201" value="10pF"/>
 <part name="C16" library="rcl" deviceset="C-US" device="C0201" value="10pF"/>
-<part name="C17" library="rcl" deviceset="C-US" device="C0201" value="10pF"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="X2" library="cts" deviceset="XTAL_403" device=""/>
-<part name="X1-X" library="ecs" deviceset="XTAL-2SMD" device=""/>
+<part name="X1" library="ecs" deviceset="XTAL-2SMD" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11660,7 +11660,7 @@ Hirose Electric Co.</description>
 <instances>
 <instance part="IC1" gate="IC" x="71.12" y="111.76"/>
 <instance part="C2" gate="G$1" x="96.52" y="45.72"/>
-<instance part="U$1" gate="XTAL" x="83.82" y="40.64"/>
+<instance part="X3" gate="XTAL" x="83.82" y="40.64"/>
 <instance part="CONN1" gate="CONN" x="165.1" y="190.5"/>
 <instance part="C1" gate="G$1" x="71.12" y="45.72"/>
 <instance part="IC3" gate="IC" x="233.68" y="195.58"/>
@@ -11683,22 +11683,22 @@ Hirose Electric Co.</description>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="172.72" y="0"/>
 <instance part="R3" gate="G$1" x="193.04" y="91.44" rot="R180"/>
-<instance part="C13" gate="G$1" x="182.88" y="96.52"/>
+<instance part="C12" gate="G$1" x="182.88" y="96.52"/>
 <instance part="R7" gate="G$1" x="172.72" y="137.16" rot="R180"/>
-<instance part="C18" gate="G$1" x="182.88" y="134.62"/>
+<instance part="C17" gate="G$1" x="182.88" y="134.62"/>
 <instance part="GND12" gate="1" x="182.88" y="127"/>
 <instance part="IC4" gate="G$1" x="205.74" y="137.16"/>
 <instance part="GND18" gate="1" x="182.88" y="88.9"/>
 <instance part="GND6" gate="1" x="200.66" y="66.04"/>
 <instance part="R8" gate="G$1" x="187.96" y="81.28" rot="R180"/>
 <instance part="R9" gate="G$1" x="187.96" y="73.66" rot="R180"/>
-<instance part="U$3" gate="CONN" x="147.32" y="78.74"/>
-<instance part="U$4" gate="CONN" x="147.32" y="27.94"/>
+<instance part="CONN2" gate="CONN" x="147.32" y="78.74"/>
+<instance part="CONN3" gate="CONN" x="147.32" y="27.94"/>
 <instance part="R10" gate="G$1" x="106.68" y="119.38"/>
 <instance part="C10" gate="G$1" x="25.4" y="96.52"/>
 <instance part="GND8" gate="1" x="25.4" y="88.9"/>
 <instance part="R11" gate="G$1" x="43.18" y="96.52"/>
-<instance part="U$2" gate="IC" x="91.44" y="177.8"/>
+<instance part="IC2" gate="IC" x="91.44" y="177.8"/>
 <instance part="GND5" gate="1" x="63.5" y="177.8"/>
 <instance part="C9" gate="G$1" x="45.72" y="185.42"/>
 <instance part="C11" gate="G$1" x="35.56" y="185.42"/>
@@ -11718,14 +11718,14 @@ Hirose Electric Co.</description>
 <instance part="GND9" gate="1" x="264.16" y="81.28"/>
 <instance part="R15" gate="G$1" x="149.86" y="180.34" rot="R180"/>
 <instance part="TP11" gate="G$1" x="144.78" y="182.88"/>
-<instance part="C14" gate="G$1" x="228.6" y="55.88"/>
-<instance part="C15" gate="G$1" x="248.92" y="55.88"/>
-<instance part="C16" gate="G$1" x="177.8" y="55.88"/>
-<instance part="C17" gate="G$1" x="195.58" y="55.88"/>
+<instance part="C13" gate="G$1" x="228.6" y="55.88"/>
+<instance part="C14" gate="G$1" x="248.92" y="55.88"/>
+<instance part="C15" gate="G$1" x="177.8" y="55.88"/>
+<instance part="C16" gate="G$1" x="195.58" y="55.88"/>
 <instance part="GND10" gate="1" x="238.76" y="48.26"/>
 <instance part="GND11" gate="1" x="185.42" y="48.26"/>
 <instance part="X2" gate="XTAL" x="185.42" y="58.42"/>
-<instance part="X1-X" gate="XTAL" x="238.76" y="58.42"/>
+<instance part="X1" gate="XTAL" x="238.76" y="58.42"/>
 </instances>
 <busses>
 </busses>
@@ -11775,7 +11775,7 @@ Hirose Electric Co.</description>
 <junction x="53.34" y="93.98"/>
 </segment>
 <segment>
-<pinref part="C18" gate="G$1" pin="2"/>
+<pinref part="C17" gate="G$1" pin="2"/>
 <pinref part="GND12" gate="1" pin="GND"/>
 <junction x="182.88" y="129.54"/>
 </segment>
@@ -11783,7 +11783,7 @@ Hirose Electric Co.</description>
 <pinref part="R3" gate="G$1" pin="2"/>
 <pinref part="GND18" gate="1" pin="GND"/>
 <junction x="182.88" y="91.44"/>
-<pinref part="C13" gate="G$1" pin="2"/>
+<pinref part="C12" gate="G$1" pin="2"/>
 <junction x="182.88" y="91.44"/>
 <wire x1="182.88" y1="91.44" x2="187.96" y2="91.44" width="0.1524" layer="91"/>
 <junction x="187.96" y="91.44"/>
@@ -11811,12 +11811,12 @@ Hirose Electric Co.</description>
 <junction x="25.4" y="91.44"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="IC" pin="GND@5"/>
+<pinref part="IC2" gate="IC" pin="GND@5"/>
 <junction x="71.12" y="182.88"/>
-<pinref part="U$2" gate="IC" pin="GND@10"/>
+<pinref part="IC2" gate="IC" pin="GND@10"/>
 <junction x="71.12" y="180.34"/>
 <wire x1="71.12" y1="182.88" x2="71.12" y2="180.34" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="IC" pin="GND@12"/>
+<pinref part="IC2" gate="IC" pin="GND@12"/>
 <junction x="71.12" y="177.8"/>
 <wire x1="71.12" y1="180.34" x2="71.12" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="180.34" x2="63.5" y2="180.34" width="0.1524" layer="91"/>
@@ -11850,9 +11850,9 @@ Hirose Electric Co.</description>
 <junction x="238.76" y="50.8"/>
 <junction x="228.6" y="50.8"/>
 <junction x="248.92" y="50.8"/>
-<pinref part="C14" gate="G$1" pin="2"/>
+<pinref part="C13" gate="G$1" pin="2"/>
 <pinref part="GND10" gate="1" pin="GND"/>
-<pinref part="C15" gate="G$1" pin="2"/>
+<pinref part="C14" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <wire x1="177.8" y1="50.8" x2="185.42" y2="50.8" width="0.1524" layer="91"/>
@@ -11860,8 +11860,8 @@ Hirose Electric Co.</description>
 <junction x="177.8" y="50.8"/>
 <junction x="195.58" y="50.8"/>
 <junction x="185.42" y="50.8"/>
+<pinref part="C15" gate="G$1" pin="2"/>
 <pinref part="C16" gate="G$1" pin="2"/>
-<pinref part="C17" gate="G$1" pin="2"/>
 <pinref part="GND11" gate="1" pin="GND"/>
 </segment>
 </net>
@@ -11879,7 +11879,7 @@ Hirose Electric Co.</description>
 <pinref part="R13" gate="G$1" pin="2"/>
 <junction x="264.16" y="104.14"/>
 <wire x1="264.16" y1="104.14" x2="261.62" y2="104.14" width="0.1524" layer="91"/>
-<label x="259.08" y="104.14" size="1.27" layer="95"/>
+<label x="261.62" y="104.14" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="IN1" class="0">
@@ -12091,7 +12091,7 @@ Hirose Electric Co.</description>
 <junction x="35.56" y="187.96"/>
 <junction x="45.72" y="187.96"/>
 <label x="38.1" y="187.96" size="1.27" layer="95"/>
-<pinref part="U$2" gate="IC" pin="VDD"/>
+<pinref part="IC2" gate="IC" pin="VDD"/>
 <junction x="71.12" y="187.96"/>
 <wire x1="45.72" y1="187.96" x2="71.12" y2="187.96" width="0.1524" layer="91"/>
 </segment>
@@ -12191,8 +12191,8 @@ Hirose Electric Co.</description>
 <wire x1="228.6" y1="58.42" x2="231.14" y2="58.42" width="0.1524" layer="91"/>
 <junction x="228.6" y="58.42"/>
 <label x="213.36" y="58.42" size="1.27" layer="95"/>
-<pinref part="C14" gate="G$1" pin="1"/>
-<pinref part="X1-X" gate="XTAL" pin="1"/>
+<pinref part="C13" gate="G$1" pin="1"/>
+<pinref part="X1" gate="XTAL" pin="1"/>
 <junction x="231.14" y="58.42"/>
 </segment>
 </net>
@@ -12208,8 +12208,8 @@ Hirose Electric Co.</description>
 <wire x1="246.38" y1="58.42" x2="248.92" y2="58.42" width="0.1524" layer="91"/>
 <junction x="248.92" y="58.42"/>
 <label x="251.46" y="58.42" size="1.27" layer="95"/>
-<pinref part="C15" gate="G$1" pin="1"/>
-<pinref part="X1-X" gate="XTAL" pin="2"/>
+<pinref part="C14" gate="G$1" pin="1"/>
+<pinref part="X1" gate="XTAL" pin="2"/>
 <junction x="246.38" y="58.42"/>
 </segment>
 </net>
@@ -12222,7 +12222,7 @@ Hirose Electric Co.</description>
 </segment>
 <segment>
 <label x="167.64" y="58.42" size="1.27" layer="95"/>
-<pinref part="C16" gate="G$1" pin="1"/>
+<pinref part="C15" gate="G$1" pin="1"/>
 <wire x1="177.8" y1="58.42" x2="170.18" y2="58.42" width="0.1524" layer="91"/>
 <junction x="177.8" y="58.42"/>
 <pinref part="X2" gate="XTAL" pin="1"/>
@@ -12237,7 +12237,7 @@ Hirose Electric Co.</description>
 </segment>
 <segment>
 <label x="198.12" y="58.42" size="1.27" layer="95"/>
-<pinref part="C17" gate="G$1" pin="1"/>
+<pinref part="C16" gate="G$1" pin="1"/>
 <wire x1="195.58" y1="58.42" x2="203.2" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="195.58" y1="58.42" x2="193.04" y2="58.42" width="0.1524" layer="91"/>
 <junction x="195.58" y="58.42"/>
@@ -12247,7 +12247,7 @@ Hirose Electric Co.</description>
 </net>
 <net name="N$8" class="0">
 <segment>
-<pinref part="C18" gate="G$1" pin="1"/>
+<pinref part="C17" gate="G$1" pin="1"/>
 <pinref part="R7" gate="G$1" pin="1"/>
 <wire x1="177.8" y1="137.16" x2="182.88" y2="137.16" width="0.1524" layer="91"/>
 <junction x="177.8" y="137.16"/>
@@ -12271,7 +12271,7 @@ Hirose Electric Co.</description>
 <pinref part="IC4" gate="G$1" pin="DCOUPL"/>
 <wire x1="205.74" y1="96.52" x2="190.5" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="190.5" y1="96.52" x2="190.5" y2="99.06" width="0.1524" layer="91"/>
-<pinref part="C13" gate="G$1" pin="1"/>
+<pinref part="C12" gate="G$1" pin="1"/>
 <wire x1="190.5" y1="99.06" x2="182.88" y2="99.06" width="0.1524" layer="91"/>
 <junction x="182.88" y="99.06"/>
 <junction x="205.74" y="96.52"/>
@@ -12323,14 +12323,6 @@ Hirose Electric Co.</description>
 <junction x="205.74" y="76.2"/>
 </segment>
 </net>
-<net name="P1_1" class="0">
-<segment>
-<pinref part="IC4" gate="G$1" pin="P1_1"/>
-<wire x1="243.84" y1="104.14" x2="248.92" y2="104.14" width="0.1524" layer="91"/>
-<junction x="243.84" y="104.14"/>
-<label x="248.92" y="104.14" size="1.27" layer="95"/>
-</segment>
-</net>
 <net name="XTAL2" class="0">
 <segment>
 <pinref part="IC1" gate="IC" pin="XTAL2"/>
@@ -12339,7 +12331,7 @@ Hirose Electric Co.</description>
 <label x="96.52" y="116.84" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="XTAL" pin="1"/>
+<pinref part="X3" gate="XTAL" pin="1"/>
 <pinref part="C1" gate="G$1" pin="2"/>
 <wire x1="76.2" y1="40.64" x2="71.12" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="40.64" x2="71.12" y2="35.56" width="0.1524" layer="91"/>
@@ -12356,7 +12348,7 @@ Hirose Electric Co.</description>
 <label x="96.52" y="114.3" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="XTAL" pin="2"/>
+<pinref part="X3" gate="XTAL" pin="2"/>
 <pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="40.64" x2="96.52" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="40.64" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
@@ -12435,7 +12427,7 @@ Hirose Electric Co.</description>
 <junction x="106.68" y="104.14"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="IC" pin="SA0/SDO"/>
+<pinref part="IC2" gate="IC" pin="SA0/SDO"/>
 <junction x="111.76" y="180.34"/>
 <wire x1="111.76" y1="180.34" x2="116.84" y2="180.34" width="0.1524" layer="91"/>
 <label x="116.84" y="180.34" size="1.778" layer="95"/>
@@ -12457,7 +12449,7 @@ Hirose Electric Co.</description>
 <junction x="109.22" y="101.6"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="IC" pin="SDA/SDI"/>
+<pinref part="IC2" gate="IC" pin="SDA/SDI"/>
 <junction x="111.76" y="182.88"/>
 <wire x1="111.76" y1="182.88" x2="116.84" y2="182.88" width="0.1524" layer="91"/>
 <label x="116.84" y="182.88" size="1.778" layer="95"/>
@@ -12479,7 +12471,7 @@ Hirose Electric Co.</description>
 <junction x="111.76" y="99.06"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="IC" pin="SCL/SPC"/>
+<pinref part="IC2" gate="IC" pin="SCL/SPC"/>
 <junction x="111.76" y="185.42"/>
 <wire x1="111.76" y1="185.42" x2="116.84" y2="185.42" width="0.1524" layer="91"/>
 <label x="116.84" y="185.42" size="1.778" layer="95"/>
@@ -12501,12 +12493,6 @@ Hirose Electric Co.</description>
 <junction x="114.3" y="96.52"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="IC" pin="CS"/>
-<junction x="111.76" y="187.96"/>
-<wire x1="111.76" y1="187.96" x2="116.84" y2="187.96" width="0.1524" layer="91"/>
-<label x="116.84" y="187.96" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="IC4" gate="G$1" pin="P0_4"/>
 <wire x1="243.84" y1="88.9" x2="248.92" y2="88.9" width="0.1524" layer="91"/>
 <junction x="243.84" y="88.9"/>
@@ -12515,22 +12501,22 @@ Hirose Electric Co.</description>
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="U$2" gate="IC" pin="VDDIO"/>
+<pinref part="IC2" gate="IC" pin="VDDIO"/>
 <junction x="71.12" y="185.42"/>
 </segment>
 </net>
 <net name="ACCEL_INT1" class="0">
 <segment>
-<pinref part="U$2" gate="IC" pin="INT1"/>
+<pinref part="IC2" gate="IC" pin="INT1"/>
 <junction x="111.76" y="175.26"/>
 <wire x1="111.76" y1="175.26" x2="116.84" y2="175.26" width="0.1524" layer="91"/>
 <label x="116.84" y="175.26" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P0_7"/>
-<wire x1="243.84" y1="96.52" x2="248.92" y2="96.52" width="0.1524" layer="91"/>
-<junction x="243.84" y="96.52"/>
-<label x="248.92" y="96.52" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P1_1"/>
+<wire x1="243.84" y1="104.14" x2="248.92" y2="104.14" width="0.1524" layer="91"/>
+<junction x="243.84" y="104.14"/>
+<label x="248.92" y="104.14" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="ALARMB" class="0">
@@ -12638,6 +12624,20 @@ Hirose Electric Co.</description>
 <pinref part="R15" gate="G$1" pin="2"/>
 <pinref part="TP11" gate="G$1" pin="PP"/>
 <junction x="144.78" y="180.34"/>
+</segment>
+</net>
+<net name="SPI_CSB_ACCEL" class="0">
+<segment>
+<pinref part="IC2" gate="IC" pin="CS"/>
+<junction x="111.76" y="187.96"/>
+<wire x1="111.76" y1="187.96" x2="116.84" y2="187.96" width="0.1524" layer="91"/>
+<label x="116.84" y="187.96" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC4" gate="G$1" pin="P0_7"/>
+<wire x1="243.84" y1="96.52" x2="248.92" y2="96.52" width="0.1524" layer="91"/>
+<junction x="243.84" y="96.52"/>
+<label x="248.92" y="96.52" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>

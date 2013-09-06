@@ -3267,7 +3267,7 @@ design rules under a new name.</description>
 <elements>
 <element name="IC1" library="texas_instruments" package="WQFN28" value="ADS1293" x="48.271" y="7.8842"/>
 <element name="C2" library="rcl" package="C0201" value="22pF" x="50.27" y="15.13"/>
-<element name="U$1" library="ecs" package="CSM-7" value="XTAL-CSM7" x="58.89" y="10.59"/>
+<element name="X3" library="ecs" package="CSM-7" value="XTAL-CSM7" x="58.89" y="10.59"/>
 <element name="CONN1" library="harwin" package="1.27MM_SMD" value="10POS_1.27MM_SMD" x="39.7002" y="12.6238" rot="R90"/>
 <element name="C1" library="rcl" package="C0201" value="22pF" x="30.07" y="12.26"/>
 <element name="IC3" library="microchip_regulators" package="SOT23" value="MCP1703" x="47.24" y="10.19"/>
@@ -3281,23 +3281,23 @@ design rules under a new name.</description>
 <element name="R4" library="resistor" package="R0402" value="0" x="30.7688" y="21.8792"/>
 <element name="C3" library="rcl" package="C0402" value="1.5nF" x="40.0602" y="18.4328" rot="R270"/>
 <element name="R5" library="resistor" package="R0603" value="1M" x="38.1044" y="18.5598" rot="R90"/>
-<element name="R6" library="resistor" package="R0402" value="100K" x="36.3518" y="18.509" rot="R270"/>
+<element name="R6" library="resistor" package="R0402" value="10K" x="36.3518" y="18.509" rot="R270"/>
 <element name="C6" library="rcl" package="C0402" value="1uF (C1005X7S0J105K)" x="36.0216" y="27.2212" rot="R180"/>
 <element name="C7" library="rcl" package="C0402" value="0.1uF" x="66.9812" y="29.5502"/>
 <element name="C8" library="rcl" package="C0402" value="0.1uF" x="66.9812" y="24.8004"/>
 <element name="R3" library="rcl" package="R0201" value="56K" x="68.0226" y="8.8238"/>
-<element name="C13" library="rcl" package="C0402" value="1.0uF" x="66.6764" y="20.0506"/>
+<element name="C12" library="rcl" package="C0402" value="1uF" x="66.6764" y="20.0506"/>
 <element name="R7" library="rcl" package="R0201" value="2.7K" x="58.7262" y="8.8238"/>
-<element name="C18" library="rcl" package="C0402" value="1nF" x="63.7554" y="8.8238"/>
+<element name="C17" library="rcl" package="C0402" value="1nF" x="63.7554" y="8.8238"/>
 <element name="IC4" library="ST-CC254X" package="RHA_S-PVQFN-N40" value="CC2541" x="44.1978" y="6.7612"/>
 <element name="R8" library="rcl" package="R0201" value="10k" x="58.7262" y="4.074"/>
 <element name="R9" library="rcl" package="R0201" value="10k" x="62.587" y="4.074"/>
-<element name="U$3" library="hirose" package="DF12-3.5-30DP" value="DF12-3.5-30DP" x="3.5" y="14.5"/>
-<element name="U$4" library="hirose" package="DF12-3.5-30DP" value="DF12-3.5-30DP" x="24" y="14.5"/>
+<element name="CONN2" library="hirose" package="DF12-3.5-30DP" value="DF12-3.5-30DP" x="3.5" y="14.5"/>
+<element name="CONN3" library="hirose" package="DF12-3.5-30DP" value="DF12-3.5-30DP" x="24" y="14.5"/>
 <element name="R10" library="resistor" package="R0402" value="1M" x="2" y="-5"/>
 <element name="C10" library="rcl" package="C0402" value="1uF" x="2" y="-15"/>
 <element name="R11" library="resistor" package="R0402" value="1M" x="2" y="-20"/>
-<element name="U$2" library="st" package="LGA16-3MM" value="LIS3DH" x="-2" y="-19"/>
+<element name="IC2" library="st" package="LGA16-3MM" value="LIS3DH" x="-2" y="-19"/>
 <element name="C9" library="rcl" package="C0402" value="0.1uF" x="-2" y="-25"/>
 <element name="C11" library="rcl" package="C0402" value="10uF" x="-2" y="-30"/>
 <element name="R12" library="resistor" package="R0402" value="0" x="-2" y="-59"/>
@@ -3334,12 +3334,12 @@ design rules under a new name.</description>
 <element name="TP11" library="testpad" package="TP08SQ" value="TPSTP08SQ" x="-3" y="-115">
 <attribute name="TP_SIGNAL_NAME" value="" x="-3" y="-115" size="1.778" layer="27" display="off"/>
 </element>
-<element name="C14" library="rcl" package="C0201" value="12pF" x="-2" y="-119"/>
-<element name="C15" library="rcl" package="C0201" value="12pF" x="-2" y="-124"/>
-<element name="C16" library="rcl" package="C0201" value="10pF" x="-2" y="-129"/>
-<element name="C17" library="rcl" package="C0201" value="10pF" x="-2" y="-134"/>
+<element name="C13" library="rcl" package="C0201" value="12pF" x="-2" y="-119"/>
+<element name="C14" library="rcl" package="C0201" value="12pF" x="-2" y="-124"/>
+<element name="C15" library="rcl" package="C0201" value="10pF" x="-2" y="-129"/>
+<element name="C16" library="rcl" package="C0201" value="10pF" x="-2" y="-134"/>
 <element name="X2" library="cts" package="4-SMD" value="XTAL_403" x="4" y="-133"/>
-<element name="X1-X" library="ecs" package="2-SMD" value="XTAL-2SMD" x="-2" y="-138"/>
+<element name="X1" library="ecs" package="2-SMD" value="XTAL-2SMD" x="-2" y="-138"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -3351,24 +3351,24 @@ design rules under a new name.</description>
 <contactref element="C7" pad="2"/>
 <contactref element="IC1" pad="27"/>
 <contactref element="IC1" pad="14"/>
-<contactref element="C18" pad="2"/>
+<contactref element="C17" pad="2"/>
 <contactref element="R3" pad="2"/>
-<contactref element="C13" pad="2"/>
+<contactref element="C12" pad="2"/>
 <contactref element="IC4" pad="GND"/>
 <contactref element="IC4" pad="1"/>
 <contactref element="IC4" pad="4"/>
 <contactref element="C10" pad="2"/>
-<contactref element="U$2" pad="5"/>
-<contactref element="U$2" pad="10"/>
-<contactref element="U$2" pad="12"/>
+<contactref element="IC2" pad="5"/>
+<contactref element="IC2" pad="10"/>
+<contactref element="IC2" pad="12"/>
 <contactref element="C11" pad="2"/>
 <contactref element="C9" pad="2"/>
 <contactref element="R14" pad="1"/>
 <contactref element="CONN1" pad="1"/>
+<contactref element="C13" pad="2"/>
 <contactref element="C14" pad="2"/>
 <contactref element="C15" pad="2"/>
 <contactref element="C16" pad="2"/>
-<contactref element="C17" pad="2"/>
 <wire x1="-1.75" y1="-129" x2="-1.75" y2="-134" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.75" y1="-124" x2="-1.75" y2="-129" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.75" y1="-119" x2="-1.75" y2="-124" width="0" layer="19" extent="1-1"/>
@@ -3469,7 +3469,7 @@ design rules under a new name.</description>
 <contactref element="IC1" pad="22"/>
 <contactref element="C9" pad="1"/>
 <contactref element="C11" pad="1"/>
-<contactref element="U$2" pad="14"/>
+<contactref element="IC2" pad="14"/>
 <contactref element="C7" pad="1"/>
 <contactref element="C8" pad="1"/>
 <contactref element="IC1" pad="28"/>
@@ -3519,34 +3519,34 @@ design rules under a new name.</description>
 </signal>
 <signal name="P2_3/32K_Q2">
 <contactref element="IC4" pad="33"/>
-<contactref element="C14" pad="1"/>
-<contactref element="X1-X" pad="1"/>
+<contactref element="C13" pad="1"/>
+<contactref element="X1" pad="1"/>
 <wire x1="-2.25" y1="-119" x2="-3.25" y2="-138.05" width="0" layer="19" extent="1-1"/>
 <wire x1="45.4478" y1="9.7612" x2="-2.25" y2="-119" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="P2_4/32K_Q1">
 <contactref element="IC4" pad="32"/>
-<contactref element="C15" pad="1"/>
-<contactref element="X1-X" pad="2"/>
+<contactref element="C14" pad="1"/>
+<contactref element="X1" pad="2"/>
 <wire x1="-2.25" y1="-124" x2="-0.75" y2="-138.05" width="0" layer="19" extent="1-1"/>
 <wire x1="45.9478" y1="9.7612" x2="-2.25" y2="-124" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="XOSC_Q1">
 <contactref element="IC4" pad="23"/>
-<contactref element="C16" pad="1"/>
+<contactref element="C15" pad="1"/>
 <contactref element="X2" pad="P1"/>
 <wire x1="-2.25" y1="-129" x2="2.925" y2="-133.775" width="0" layer="19" extent="1-1"/>
 <wire x1="47.1978" y1="5.5112" x2="-2.25" y2="-129" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="XOSC_Q2">
 <contactref element="IC4" pad="22"/>
-<contactref element="C17" pad="1"/>
+<contactref element="C16" pad="1"/>
 <contactref element="X2" pad="P3"/>
 <wire x1="5.075" y1="-132.225" x2="-2.25" y2="-134" width="0" layer="19" extent="1-1"/>
 <wire x1="47.1978" y1="5.0112" x2="5.075" y2="-132.225" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$8">
-<contactref element="C18" pad="1"/>
+<contactref element="C17" pad="1"/>
 <contactref element="R7" pad="1"/>
 <contactref element="IC4" pad="20"/>
 <wire x1="58.4712" y1="8.8238" x2="63.1054" y2="8.8238" width="0" layer="19" extent="1-1"/>
@@ -3559,7 +3559,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="DCOUPL1">
 <contactref element="IC4" pad="40"/>
-<contactref element="C13" pad="1"/>
+<contactref element="C12" pad="1"/>
 <wire x1="41.9478" y1="9.7612" x2="66.0264" y2="20.0506" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RF_N">
@@ -3581,19 +3581,16 @@ design rules under a new name.</description>
 <contactref element="R9" pad="1"/>
 <wire x1="41.1978" y1="8.0112" x2="62.332" y2="4.074" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="P1_1">
-<contactref element="IC4" pad="9"/>
-</signal>
 <signal name="XTAL2">
 <contactref element="IC1" pad="24"/>
-<contactref element="U$1" pad="1"/>
+<contactref element="X3" pad="1"/>
 <contactref element="C1" pad="2"/>
 <wire x1="48.771" y1="10.2842" x2="54.19" y2="10.59" width="0" layer="19" extent="1-1"/>
 <wire x1="30.32" y1="12.26" x2="48.771" y2="10.2842" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="XTAL1">
 <contactref element="IC1" pad="23"/>
-<contactref element="U$1" pad="2"/>
+<contactref element="X3" pad="2"/>
 <contactref element="C2" pad="2"/>
 <wire x1="50.52" y1="15.13" x2="63.59" y2="10.59" width="0" layer="19" extent="1-1"/>
 <wire x1="49.271" y1="10.2842" x2="50.52" y2="15.13" width="0" layer="19" extent="1-1"/>
@@ -3629,7 +3626,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="SPI_SDO">
 <contactref element="IC1" pad="19"/>
-<contactref element="U$2" pad="7"/>
+<contactref element="IC2" pad="7"/>
 <contactref element="TP6" pad="TP"/>
 <contactref element="IC4" pad="16"/>
 <wire x1="-2" y1="-20.4" x2="-3" y2="-80" width="0" layer="19" extent="1-1"/>
@@ -3638,7 +3635,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="SPI_SDI">
 <contactref element="IC1" pad="18"/>
-<contactref element="U$2" pad="6"/>
+<contactref element="IC2" pad="6"/>
 <contactref element="TP7" pad="TP"/>
 <contactref element="IC4" pad="17"/>
 <wire x1="-2.5" y1="-20.4" x2="-3" y2="-84" width="0" layer="19" extent="1-1"/>
@@ -3647,7 +3644,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="SPI_SCLK">
 <contactref element="IC1" pad="17"/>
-<contactref element="U$2" pad="4"/>
+<contactref element="IC2" pad="4"/>
 <contactref element="TP8" pad="TP"/>
 <contactref element="IC4" pad="14"/>
 <wire x1="-3.4" y1="-19.5" x2="-3" y2="-88" width="0" layer="19" extent="1-1"/>
@@ -3656,20 +3653,18 @@ design rules under a new name.</description>
 </signal>
 <signal name="SPI_CSB">
 <contactref element="IC1" pad="16"/>
-<contactref element="U$2" pad="8"/>
 <contactref element="TP9" pad="TP"/>
 <contactref element="IC4" pad="15"/>
-<wire x1="-1.5" y1="-20.4" x2="-3" y2="-92" width="0" layer="19" extent="1-1"/>
-<wire x1="43.9478" y1="3.7612" x2="-1.5" y2="-20.4" width="0" layer="19" extent="1-1"/>
+<wire x1="43.9478" y1="3.7612" x2="-3" y2="-92" width="0" layer="19" extent="1-1"/>
 <wire x1="50.671" y1="6.8842" x2="43.9478" y2="3.7612" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$13">
-<contactref element="U$2" pad="1"/>
+<contactref element="IC2" pad="1"/>
 </signal>
 <signal name="ACCEL_INT1">
-<contactref element="U$2" pad="11"/>
-<contactref element="IC4" pad="12"/>
-<wire x1="-0.6" y1="-19" x2="42.4478" y2="3.7612" width="0" layer="19" extent="1-1"/>
+<contactref element="IC2" pad="11"/>
+<contactref element="IC4" pad="9"/>
+<wire x1="-0.6" y1="-19" x2="41.1978" y2="5.0112" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ALARMB">
 <contactref element="IC1" pad="15"/>
@@ -3719,6 +3714,11 @@ design rules under a new name.</description>
 <contactref element="R15" pad="2"/>
 <contactref element="TP11" pad="TP"/>
 <wire x1="-1.745" y1="-110" x2="-3" y2="-115" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="SPI_CSB_ACCEL">
+<contactref element="IC2" pad="8"/>
+<contactref element="IC4" pad="12"/>
+<wire x1="-1.5" y1="-20.4" x2="42.4478" y2="3.7612" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
