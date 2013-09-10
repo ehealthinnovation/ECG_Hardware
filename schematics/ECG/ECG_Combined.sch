@@ -8890,6 +8890,95 @@ reflow soldering</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="johanson">
+<packages>
+<package name="BALUN_SMD_2450BM_SERIES">
+<wire x1="-0.835" y1="0.681" x2="-0.835" y2="-0.619" width="0.127" layer="21"/>
+<wire x1="-0.835" y1="-0.619" x2="0.965" y2="-0.619" width="0.127" layer="21"/>
+<wire x1="0.965" y1="-0.619" x2="0.965" y2="0.681" width="0.127" layer="21"/>
+<wire x1="0.965" y1="0.681" x2="-0.835" y2="0.681" width="0.127" layer="21"/>
+<smd name="3" x="-0.635" y="0.631" dx="0.4" dy="0.5" layer="1" rot="R180"/>
+<smd name="2" x="0.065" y="0.631" dx="0.4" dy="0.5" layer="1" rot="R180"/>
+<smd name="1" x="0.765" y="0.631" dx="0.4" dy="0.5" layer="1" rot="R180"/>
+<smd name="4" x="-0.635" y="-0.569" dx="0.4" dy="0.5" layer="1" rot="R180"/>
+<smd name="5" x="0.065" y="-0.569" dx="0.4" dy="0.5" layer="1" rot="R180"/>
+<smd name="6" x="0.765" y="-0.569" dx="0.4" dy="0.5" layer="1" rot="R180"/>
+<rectangle x1="0.365" y1="-0.219" x2="0.765" y2="0.281" layer="21"/>
+</package>
+<package name="ANTENNA_SMD">
+<wire x1="-1.724" y1="0.9" x2="1.876" y2="0.9" width="0.127" layer="21"/>
+<wire x1="1.876" y1="0.9" x2="1.876" y2="-0.9" width="0.127" layer="21"/>
+<wire x1="1.876" y1="-0.9" x2="-1.724" y2="-0.9" width="0.127" layer="21"/>
+<wire x1="-1.724" y1="-0.9" x2="-1.724" y2="0.9" width="0.127" layer="21"/>
+<smd name="2" x="-1.324" y="0" dx="1.8" dy="0.8" layer="1" rot="R90"/>
+<smd name="1" x="1.476" y="0" dx="1.8" dy="0.8" layer="1" rot="R90"/>
+<rectangle x1="0.276" y1="-0.2" x2="0.976" y2="0.2" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="BALUN">
+<wire x1="-5.08" y1="5.08" x2="7.62" y2="5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="5.08" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
+<text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+<text x="-5.08" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-10.16" y="2.54" length="middle"/>
+<pin name="2" x="-10.16" y="0" length="middle"/>
+<pin name="3" x="-10.16" y="-2.54" length="middle"/>
+<pin name="4" x="12.7" y="-2.54" length="middle" rot="R180"/>
+<pin name="5" x="12.7" y="0" length="middle" rot="R180"/>
+<pin name="6" x="12.7" y="2.54" length="middle" rot="R180"/>
+</symbol>
+<symbol name="ANTENNA">
+<wire x1="-2.54" y1="5.08" x2="0" y2="5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<text x="-2.54" y="6.35" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.54" y="0" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="0" y="0" visible="off" length="short" direction="out" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BALUN_2450BM_SERIES_SMD">
+<gates>
+<gate name="IC" symbol="BALUN" x="-7.62" y="2.54"/>
+</gates>
+<devices>
+<device name="" package="BALUN_SMD_2450BM_SERIES">
+<connects>
+<connect gate="IC" pin="1" pad="1"/>
+<connect gate="IC" pin="2" pad="2"/>
+<connect gate="IC" pin="3" pad="3"/>
+<connect gate="IC" pin="4" pad="4"/>
+<connect gate="IC" pin="5" pad="5"/>
+<connect gate="IC" pin="6" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="ANTENNA_SMD">
+<gates>
+<gate name="RF" symbol="ANTENNA" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="ANTENNA_SMD">
+<connects>
+<connect gate="RF" pin="1" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -9000,6 +9089,9 @@ reflow soldering</description>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="GND20" library="supply1" deviceset="GND" device=""/>
 <part name="GND23" library="supply1" deviceset="GND" device=""/>
+<part name="RF" library="johanson" deviceset="ANTENNA_SMD" device=""/>
+<part name="IC8" library="johanson" deviceset="BALUN_2450BM_SERIES_SMD" device="" value=""/>
+<part name="GND24" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9043,10 +9135,10 @@ reflow soldering</description>
 <instance part="TP3" gate="G$1" x="10.16" y="101.6"/>
 <instance part="TP4" gate="G$1" x="10.16" y="78.74"/>
 <instance part="TP5" gate="G$1" x="121.92" y="55.88"/>
-<instance part="TP6" gate="G$1" x="106.68" y="53.34"/>
-<instance part="TP7" gate="G$1" x="109.22" y="50.8"/>
-<instance part="TP8" gate="G$1" x="111.76" y="48.26"/>
-<instance part="TP9" gate="G$1" x="114.3" y="45.72"/>
+<instance part="TP6" gate="G$1" x="109.22" y="50.8" rot="R270"/>
+<instance part="TP7" gate="G$1" x="111.76" y="50.8"/>
+<instance part="TP8" gate="G$1" x="114.3" y="48.26"/>
+<instance part="TP9" gate="G$1" x="116.84" y="45.72"/>
 <instance part="TP10" gate="G$1" x="129.54" y="43.18"/>
 <instance part="R13" gate="G$1" x="15.24" y="187.96" rot="R180"/>
 <instance part="TP11" gate="G$1" x="10.16" y="190.5"/>
@@ -9068,7 +9160,7 @@ reflow soldering</description>
 <instance part="R14" gate="G$1" x="101.6" y="195.58" rot="R90"/>
 <instance part="R15" gate="G$1" x="101.6" y="185.42" rot="R90"/>
 <instance part="GND22" gate="1" x="101.6" y="177.8"/>
-<instance part="CONN3" gate="CONN" x="312.42" y="63.5"/>
+<instance part="CONN3" gate="CONN" x="71.12" y="160.02"/>
 <instance part="R1" gate="G$1" x="22.86" y="175.26" rot="R180"/>
 <instance part="R12" gate="G$1" x="22.86" y="152.4" rot="R180"/>
 <instance part="R2" gate="G$1" x="20.32" y="99.06" rot="R180"/>
@@ -9101,8 +9193,8 @@ reflow soldering</description>
 <instance part="R31" gate="G$1" x="223.52" y="190.5"/>
 <instance part="TRI_LED" gate="LED" x="213.36" y="190.5" rot="R90"/>
 <instance part="R9" gate="G$1" x="223.52" y="195.58"/>
-<instance part="CONN2" gate="CONN" x="312.42" y="76.2"/>
-<instance part="GND17" gate="1" x="302.26" y="73.66"/>
+<instance part="CONN2" gate="CONN" x="71.12" y="172.72"/>
+<instance part="GND17" gate="1" x="60.96" y="170.18"/>
 <instance part="U$1" gate="Z" x="15.24" y="71.12" rot="R90"/>
 <instance part="U$2" gate="Z" x="15.24" y="93.98" rot="R90"/>
 <instance part="U$3" gate="Z" x="17.78" y="147.32" rot="R90"/>
@@ -9111,6 +9203,9 @@ reflow soldering</description>
 <instance part="GND19" gate="1" x="17.78" y="139.7"/>
 <instance part="GND20" gate="1" x="15.24" y="86.36"/>
 <instance part="GND23" gate="1" x="15.24" y="63.5"/>
+<instance part="RF" gate="RF" x="147.32" y="154.94"/>
+<instance part="IC8" gate="IC" x="121.92" y="157.48" rot="R180"/>
+<instance part="GND24" gate="1" x="106.68" y="152.4"/>
 </instances>
 <busses>
 </busses>
@@ -9170,12 +9265,6 @@ reflow soldering</description>
 <junction x="200.66" y="68.58"/>
 <junction x="205.74" y="73.66"/>
 <junction x="205.74" y="68.58"/>
-</segment>
-<segment>
-<pinref part="IC4" gate="G$1" pin="N/C"/>
-<junction x="205.74" y="81.28"/>
-<wire x1="205.74" y1="81.28" x2="200.66" y2="81.28" width="0.1524" layer="91"/>
-<label x="198.12" y="81.28" size="1.27" layer="95"/>
 </segment>
 <segment>
 <pinref part="C10" gate="G$1" pin="2"/>
@@ -9321,7 +9410,7 @@ reflow soldering</description>
 <segment>
 <pinref part="CONN2" gate="CONN" pin="2"/>
 <pinref part="GND17" gate="1" pin="GND"/>
-<junction x="302.26" y="76.2"/>
+<junction x="60.96" y="172.72"/>
 </segment>
 <segment>
 <pinref part="U$4" gate="Z" pin="A"/>
@@ -9342,6 +9431,22 @@ reflow soldering</description>
 <pinref part="U$1" gate="Z" pin="A"/>
 <pinref part="GND23" gate="1" pin="GND"/>
 <junction x="15.24" y="66.04"/>
+</segment>
+<segment>
+<wire x1="109.22" y1="157.48" x2="109.22" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="109.22" y1="154.94" x2="106.68" y2="154.94" width="0.1524" layer="91"/>
+<junction x="109.22" y="154.94"/>
+<junction x="109.22" y="157.48"/>
+<junction x="106.68" y="154.94"/>
+<pinref part="IC8" gate="IC" pin="5"/>
+<pinref part="IC8" gate="IC" pin="6"/>
+<pinref part="GND24" gate="1" pin="GND"/>
+</segment>
+<segment>
+<wire x1="132.08" y1="157.48" x2="139.7" y2="157.48" width="0.1524" layer="91"/>
+<junction x="132.08" y="157.48"/>
+<label x="137.16" y="157.48" size="1.27" layer="95"/>
+<pinref part="IC8" gate="IC" pin="2"/>
 </segment>
 </net>
 <net name="IN1" class="0">
@@ -9384,9 +9489,9 @@ reflow soldering</description>
 </segment>
 <segment>
 <pinref part="CONN3" gate="CONN" pin="1"/>
-<junction x="302.26" y="66.04"/>
-<wire x1="302.26" y1="66.04" x2="297.18" y2="66.04" width="0.1524" layer="91"/>
-<label x="297.18" y="66.04" size="1.778" layer="95" rot="MR0"/>
+<junction x="60.96" y="162.56"/>
+<wire x1="60.96" y1="162.56" x2="55.88" y2="162.56" width="0.1524" layer="91"/>
+<label x="55.88" y="162.56" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="LL" class="0">
@@ -9401,9 +9506,9 @@ reflow soldering</description>
 </segment>
 <segment>
 <pinref part="CONN3" gate="CONN" pin="3"/>
-<junction x="302.26" y="60.96"/>
-<wire x1="302.26" y1="60.96" x2="297.18" y2="60.96" width="0.1524" layer="91"/>
-<label x="297.18" y="60.96" size="1.778" layer="95" rot="MR0"/>
+<junction x="60.96" y="157.48"/>
+<wire x1="60.96" y1="157.48" x2="55.88" y2="157.48" width="0.1524" layer="91"/>
+<label x="55.88" y="157.48" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="RL" class="0">
@@ -9418,9 +9523,9 @@ reflow soldering</description>
 </segment>
 <segment>
 <pinref part="CONN3" gate="CONN" pin="6"/>
-<junction x="325.12" y="66.04"/>
-<wire x1="325.12" y1="66.04" x2="330.2" y2="66.04" width="0.1524" layer="91"/>
-<label x="330.2" y="66.04" size="1.778" layer="95"/>
+<junction x="83.82" y="162.56"/>
+<wire x1="83.82" y1="162.56" x2="88.9" y2="162.56" width="0.1524" layer="91"/>
+<label x="88.9" y="162.56" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RLDOUT" class="0">
@@ -9785,7 +9890,7 @@ reflow soldering</description>
 <junction x="205.74" y="91.44"/>
 </segment>
 </net>
-<net name="DCOUPL1" class="0">
+<net name="DCOUPL" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="DCOUPL"/>
 <wire x1="205.74" y1="96.52" x2="190.5" y2="96.52" width="0.1524" layer="91"/>
@@ -9803,6 +9908,12 @@ reflow soldering</description>
 <junction x="205.74" y="86.36"/>
 <label x="198.12" y="86.36" size="1.27" layer="95"/>
 </segment>
+<segment>
+<wire x1="137.16" y1="160.02" x2="132.08" y2="160.02" width="0.1524" layer="91"/>
+<junction x="132.08" y="160.02"/>
+<pinref part="IC8" gate="IC" pin="3"/>
+<label x="137.16" y="160.02" size="1.27" layer="95"/>
+</segment>
 </net>
 <net name="RF_P" class="0">
 <segment>
@@ -9811,13 +9922,11 @@ reflow soldering</description>
 <junction x="205.74" y="88.9"/>
 <label x="198.12" y="88.9" size="1.27" layer="95"/>
 </segment>
-</net>
-<net name="P1_2/DCDC" class="0">
 <segment>
-<pinref part="IC4" gate="G$1" pin="P1_2"/>
-<wire x1="243.84" y1="106.68" x2="248.92" y2="106.68" width="0.1524" layer="91"/>
-<junction x="243.84" y="106.68"/>
-<label x="248.92" y="106.68" size="1.27" layer="95"/>
+<wire x1="104.14" y1="160.02" x2="109.22" y2="160.02" width="0.1524" layer="91"/>
+<junction x="109.22" y="160.02"/>
+<pinref part="IC8" gate="IC" pin="4"/>
+<label x="101.6" y="160.02" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="XTAL2" class="0">
@@ -9930,9 +10039,9 @@ reflow soldering</description>
 <pinref part="IC1" gate="IC" pin="SDI"/>
 <junction x="91.44" y="48.26"/>
 <label x="96.52" y="48.26" size="1.27" layer="95"/>
-<wire x1="91.44" y1="48.26" x2="109.22" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="48.26" x2="111.76" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="TP7" gate="G$1" pin="PP"/>
-<junction x="109.22" y="48.26"/>
+<junction x="111.76" y="48.26"/>
 </segment>
 </net>
 <net name="SPI_MISO" class="0">
@@ -9962,9 +10071,9 @@ reflow soldering</description>
 <pinref part="IC1" gate="IC" pin="SCLK"/>
 <junction x="91.44" y="45.72"/>
 <label x="96.52" y="45.72" size="1.27" layer="95"/>
-<wire x1="91.44" y1="45.72" x2="111.76" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="45.72" x2="114.3" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="TP8" gate="G$1" pin="PP"/>
-<junction x="111.76" y="45.72"/>
+<junction x="114.3" y="45.72"/>
 </segment>
 <segment>
 <pinref part="IC2" gate="IC" pin="SCL/SPC"/>
@@ -9982,11 +10091,11 @@ reflow soldering</description>
 <net name="SPI_SS" class="0">
 <segment>
 <pinref part="IC1" gate="IC" pin="CSB"/>
-<wire x1="91.44" y1="43.18" x2="114.3" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="43.18" x2="116.84" y2="43.18" width="0.1524" layer="91"/>
 <junction x="91.44" y="43.18"/>
 <label x="96.52" y="43.18" size="1.27" layer="95"/>
 <pinref part="TP9" gate="G$1" pin="PP"/>
-<junction x="114.3" y="43.18"/>
+<junction x="116.84" y="43.18"/>
 </segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="P0_4"/>
@@ -10040,9 +10149,9 @@ reflow soldering</description>
 </segment>
 <segment>
 <pinref part="CONN3" gate="CONN" pin="2"/>
-<junction x="302.26" y="63.5"/>
-<wire x1="302.26" y1="63.5" x2="297.18" y2="63.5" width="0.1524" layer="91"/>
-<label x="297.18" y="63.5" size="1.778" layer="95" rot="MR0"/>
+<junction x="60.96" y="160.02"/>
+<wire x1="60.96" y1="160.02" x2="55.88" y2="160.02" width="0.1524" layer="91"/>
+<label x="55.88" y="160.02" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="IN2" class="0">
@@ -10122,9 +10231,9 @@ reflow soldering</description>
 </segment>
 <segment>
 <pinref part="CONN2" gate="CONN" pin="1"/>
-<wire x1="302.26" y1="78.74" x2="299.72" y2="78.74" width="0.1524" layer="91"/>
-<junction x="302.26" y="78.74"/>
-<label x="297.18" y="78.74" size="1.27" layer="95"/>
+<wire x1="60.96" y1="175.26" x2="58.42" y2="175.26" width="0.1524" layer="91"/>
+<junction x="60.96" y="175.26"/>
+<label x="55.88" y="175.26" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="BATT_CHECK" class="0">
@@ -10321,6 +10430,15 @@ reflow soldering</description>
 <wire x1="243.84" y1="119.38" x2="248.92" y2="119.38" width="0.1524" layer="91"/>
 <junction x="243.84" y="119.38"/>
 <label x="248.92" y="119.38" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<wire x1="132.08" y1="154.94" x2="147.32" y2="154.94" width="0.1524" layer="91"/>
+<junction x="132.08" y="154.94"/>
+<pinref part="IC8" gate="IC" pin="1"/>
+<pinref part="RF" gate="RF" pin="1"/>
+<junction x="147.32" y="154.94"/>
 </segment>
 </net>
 </nets>
