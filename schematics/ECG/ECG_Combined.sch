@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
-<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
-<layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
-<layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
-<layer number="6" name="Route6" color="1" fill="8" visible="no" active="no"/>
-<layer number="7" name="Route7" color="4" fill="8" visible="no" active="no"/>
-<layer number="8" name="Route8" color="1" fill="2" visible="no" active="no"/>
-<layer number="9" name="Route9" color="4" fill="2" visible="no" active="no"/>
-<layer number="10" name="Route10" color="1" fill="7" visible="no" active="no"/>
-<layer number="11" name="Route11" color="4" fill="7" visible="no" active="no"/>
-<layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
-<layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
-<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="no"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="no"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="no"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="no"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="no"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="no"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="no"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="no"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="no"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="no"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,16 +53,16 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
@@ -8994,7 +8994,6 @@ reflow soldering</description>
 <part name="X3" library="ecs" deviceset="XTAL-CSM7" device=""/>
 <part name="CONN1" library="harwin" deviceset="10POS_1.27MM_SMD" device=""/>
 <part name="C1" library="rcl" deviceset="C-US" device="C0201" value="22pF"/>
-<part name="TP1" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0201" value="1nF"/>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0201" value="1uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
@@ -9017,15 +9016,11 @@ reflow soldering</description>
 <part name="C9" library="rcl" deviceset="C-EU" device="C0201" value="0.1uF"/>
 <part name="C11" library="rcl" deviceset="C-EU" device="C0402" value="10uF"/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="TP2" library="testpad" deviceset="TPS" device="TP08SQ"/>
-<part name="TP3" library="testpad" deviceset="TPS" device="TP08SQ"/>
-<part name="TP4" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP5" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP6" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP7" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP8" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP9" library="testpad" deviceset="TPS" device="TP08SQ"/>
-<part name="TP10" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="R13" library="rcl" deviceset="R-US_" device="R0201" value="0"/>
 <part name="TP11" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="C13" library="rcl" deviceset="C-US" device="C0201" value="12pF"/>
@@ -9075,10 +9070,10 @@ reflow soldering</description>
 <part name="SJ1" library="jumper" deviceset="SJ2W" device=""/>
 <part name="SJ2" library="jumper" deviceset="SJ2W" device=""/>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
-<part name="R8" library="rcl" deviceset="R-US_" device="R0402" value="1K"/>
-<part name="R31" library="rcl" deviceset="R-US_" device="R0402" value="1K"/>
+<part name="R8" library="rcl" deviceset="R-US_" device="R0201" value="1K"/>
+<part name="R31" library="rcl" deviceset="R-US_" device="R0201" value="1K"/>
 <part name="TRI_LED" library="lumex" deviceset="SML-LX0404SIUPGUSB" device=""/>
-<part name="R9" library="rcl" deviceset="R-US_" device="R0402" value="1K"/>
+<part name="R9" library="rcl" deviceset="R-US_" device="R0201" value="1K"/>
 <part name="CONN2" library="harwin" deviceset="M80-4" device="V"/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="U$1" library="semtech" deviceset="ZD_0402" device=""/>
@@ -9099,7 +9094,6 @@ reflow soldering</description>
 <text x="96.52" y="33.02" size="1.27" layer="97">4.096MHz crystal (20pF) - ECS-41-20-5PX-TR</text>
 <text x="182.88" y="40.64" size="1.27" layer="95">32MHz</text>
 <text x="236.22" y="40.64" size="1.27" layer="95">32.768KHz</text>
-<text x="175.26" y="33.02" size="1.778" layer="91">switch power header to 4 pin</text>
 </plain>
 <instances>
 <instance part="IC1" gate="IC" x="71.12" y="58.42"/>
@@ -9107,7 +9101,6 @@ reflow soldering</description>
 <instance part="X3" gate="XTAL" x="114.3" y="25.4"/>
 <instance part="CONN1" gate="CONN" x="30.48" y="198.12"/>
 <instance part="C1" gate="G$1" x="106.68" y="22.86"/>
-<instance part="TP1" gate="G$1" x="12.7" y="177.8"/>
 <instance part="C3" gate="G$1" x="73.66" y="27.94"/>
 <instance part="C6" gate="G$1" x="48.26" y="17.78"/>
 <instance part="GND1" gate="1" x="48.26" y="10.16"/>
@@ -9124,22 +9117,18 @@ reflow soldering</description>
 <instance part="IC4" gate="G$1" x="205.74" y="137.16"/>
 <instance part="GND18" gate="1" x="182.88" y="88.9"/>
 <instance part="GND6" gate="1" x="200.66" y="66.04"/>
-<instance part="C10" gate="G$1" x="25.4" y="43.18"/>
-<instance part="GND8" gate="1" x="25.4" y="35.56"/>
+<instance part="C10" gate="G$1" x="20.32" y="43.18"/>
+<instance part="GND8" gate="1" x="20.32" y="35.56"/>
 <instance part="IC2" gate="IC" x="71.12" y="106.68"/>
 <instance part="GND5" gate="1" x="45.72" y="106.68"/>
 <instance part="C9" gate="G$1" x="35.56" y="114.3"/>
 <instance part="C11" gate="G$1" x="25.4" y="114.3"/>
 <instance part="GND7" gate="1" x="30.48" y="106.68"/>
-<instance part="TP2" gate="G$1" x="12.7" y="154.94"/>
-<instance part="TP3" gate="G$1" x="10.16" y="101.6"/>
-<instance part="TP4" gate="G$1" x="10.16" y="78.74"/>
 <instance part="TP5" gate="G$1" x="121.92" y="55.88"/>
 <instance part="TP6" gate="G$1" x="109.22" y="50.8" rot="R270"/>
 <instance part="TP7" gate="G$1" x="111.76" y="50.8"/>
 <instance part="TP8" gate="G$1" x="114.3" y="48.26"/>
 <instance part="TP9" gate="G$1" x="116.84" y="45.72"/>
-<instance part="TP10" gate="G$1" x="129.54" y="43.18"/>
 <instance part="R13" gate="G$1" x="15.24" y="187.96" rot="R180"/>
 <instance part="TP11" gate="G$1" x="10.16" y="190.5"/>
 <instance part="C13" gate="G$1" x="231.14" y="55.88"/>
@@ -9269,7 +9258,7 @@ reflow soldering</description>
 <segment>
 <pinref part="C10" gate="G$1" pin="2"/>
 <pinref part="GND8" gate="1" pin="GND"/>
-<junction x="25.4" y="38.1"/>
+<junction x="20.32" y="38.1"/>
 </segment>
 <segment>
 <pinref part="IC2" gate="IC" pin="GND@5"/>
@@ -9479,9 +9468,7 @@ reflow soldering</description>
 </net>
 <net name="RA" class="0">
 <segment>
-<pinref part="TP1" gate="G$1" pin="PP"/>
 <wire x1="12.7" y1="175.26" x2="17.78" y2="175.26" width="0.1524" layer="91"/>
-<junction x="12.7" y="175.26"/>
 <label x="15.24" y="175.26" size="1.27" layer="95"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <junction x="17.78" y="175.26"/>
@@ -9498,8 +9485,6 @@ reflow soldering</description>
 <segment>
 <wire x1="10.16" y1="99.06" x2="15.24" y2="99.06" width="0.1524" layer="91"/>
 <label x="12.7" y="99.06" size="1.27" layer="95"/>
-<pinref part="TP3" gate="G$1" pin="PP"/>
-<junction x="10.16" y="99.06"/>
 <pinref part="R2" gate="G$1" pin="2"/>
 <junction x="15.24" y="99.06"/>
 <pinref part="U$2" gate="Z" pin="C"/>
@@ -9515,8 +9500,6 @@ reflow soldering</description>
 <segment>
 <wire x1="10.16" y1="76.2" x2="15.24" y2="76.2" width="0.1524" layer="91"/>
 <label x="12.7" y="76.2" size="1.27" layer="95"/>
-<pinref part="TP4" gate="G$1" pin="PP"/>
-<junction x="10.16" y="76.2"/>
 <pinref part="R4" gate="G$1" pin="2"/>
 <junction x="15.24" y="76.2"/>
 <pinref part="U$1" gate="Z" pin="C"/>
@@ -9646,23 +9629,6 @@ reflow soldering</description>
 <label x="195.58" y="121.92" size="1.27" layer="95"/>
 </segment>
 <segment>
-<wire x1="38.1" y1="43.18" x2="35.56" y2="43.18" width="0.1524" layer="91"/>
-<label x="33.02" y="43.18" size="1.27" layer="95"/>
-<pinref part="R11" gate="G$1" pin="2"/>
-<junction x="38.1" y="43.18"/>
-</segment>
-<segment>
-<pinref part="C7" gate="G$1" pin="1"/>
-<pinref part="C8" gate="G$1" pin="1"/>
-<wire x1="20.32" y1="20.32" x2="10.16" y2="20.32" width="0.1524" layer="91"/>
-<junction x="10.16" y="20.32"/>
-<junction x="20.32" y="20.32"/>
-<label x="12.7" y="20.32" size="1.27" layer="95"/>
-<pinref part="C18" gate="G$1" pin="1"/>
-<junction x="30.48" y="20.32"/>
-<wire x1="20.32" y1="20.32" x2="30.48" y2="20.32" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="CONN1" gate="CONN" pin="2"/>
 <wire x1="40.64" y1="203.2" x2="43.18" y2="203.2" width="0.1524" layer="91"/>
 <junction x="40.64" y="203.2"/>
@@ -9681,18 +9647,6 @@ reflow soldering</description>
 <junction x="101.6" y="203.2"/>
 <wire x1="101.6" y1="203.2" x2="106.68" y2="203.2" width="0.1524" layer="91"/>
 <label x="106.68" y="203.2" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="R16" gate="G$1" pin="2"/>
-<wire x1="124.46" y1="50.8" x2="127" y2="50.8" width="0.1524" layer="91"/>
-<junction x="124.46" y="50.8"/>
-<label x="127" y="50.8" size="1.27" layer="95"/>
-</segment>
-<segment>
-<pinref part="R17" gate="G$1" pin="2"/>
-<wire x1="116.84" y1="63.5" x2="119.38" y2="63.5" width="0.1524" layer="91"/>
-<junction x="116.84" y="63.5"/>
-<label x="119.38" y="63.5" size="1.27" layer="95"/>
 </segment>
 <segment>
 <pinref part="IC6" gate="FSA4157" pin="B1"/>
@@ -9989,9 +9943,9 @@ reflow soldering</description>
 <pinref part="IC1" gate="IC" pin="RLDREF"/>
 <junction x="53.34" y="45.72"/>
 <wire x1="53.34" y1="48.26" x2="53.34" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="45.72" x2="25.4" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="45.72" x2="20.32" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="C10" gate="G$1" pin="1"/>
-<junction x="25.4" y="45.72"/>
+<junction x="20.32" y="45.72"/>
 </segment>
 </net>
 <net name="N$12" class="0">
@@ -10124,10 +10078,7 @@ reflow soldering</description>
 <junction x="91.44" y="40.64"/>
 <wire x1="91.44" y1="40.64" x2="124.46" y2="40.64" width="0.1524" layer="91"/>
 <label x="96.52" y="40.64" size="1.27" layer="95"/>
-<pinref part="TP10" gate="G$1" pin="PP"/>
-<junction x="129.54" y="40.64"/>
 <pinref part="R16" gate="G$1" pin="1"/>
-<wire x1="124.46" y1="40.64" x2="129.54" y2="40.64" width="0.1524" layer="91"/>
 <junction x="124.46" y="40.64"/>
 </segment>
 <segment>
@@ -10141,8 +10092,6 @@ reflow soldering</description>
 <segment>
 <wire x1="12.7" y1="152.4" x2="17.78" y2="152.4" width="0.1524" layer="91"/>
 <label x="15.24" y="152.4" size="1.27" layer="95"/>
-<pinref part="TP2" gate="G$1" pin="PP"/>
-<junction x="12.7" y="152.4"/>
 <pinref part="R12" gate="G$1" pin="2"/>
 <junction x="17.78" y="152.4"/>
 <pinref part="U$3" gate="Z" pin="C"/>
@@ -10177,10 +10126,10 @@ reflow soldering</description>
 <label x="106.68" y="190.5" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P1_1"/>
-<wire x1="243.84" y1="104.14" x2="248.92" y2="104.14" width="0.1524" layer="91"/>
-<junction x="243.84" y="104.14"/>
-<label x="248.92" y="104.14" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P1_0"/>
+<wire x1="243.84" y1="101.6" x2="248.92" y2="101.6" width="0.1524" layer="91"/>
+<junction x="243.84" y="101.6"/>
+<label x="248.92" y="101.6" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -10207,10 +10156,10 @@ reflow soldering</description>
 <label x="96.52" y="116.84" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P1_0"/>
-<wire x1="243.84" y1="101.6" x2="248.92" y2="101.6" width="0.1524" layer="91"/>
-<junction x="243.84" y="101.6"/>
-<label x="248.92" y="101.6" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P0_7"/>
+<wire x1="243.84" y1="96.52" x2="248.92" y2="96.52" width="0.1524" layer="91"/>
+<junction x="243.84" y="96.52"/>
+<label x="248.92" y="96.52" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="BATT" class="0">
@@ -10236,7 +10185,7 @@ reflow soldering</description>
 <label x="55.88" y="175.26" size="1.27" layer="95"/>
 </segment>
 </net>
-<net name="BATT_CHECK" class="0">
+<net name="BATT_CHECK_SW" class="0">
 <segment>
 <pinref part="IC5" gate="FSA4157" pin="S"/>
 <junction x="101.6" y="205.74"/>
@@ -10244,10 +10193,10 @@ reflow soldering</description>
 <label x="106.68" y="205.74" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P0_7"/>
-<wire x1="243.84" y1="96.52" x2="248.92" y2="96.52" width="0.1524" layer="91"/>
-<junction x="243.84" y="96.52"/>
-<label x="248.92" y="96.52" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P1_1"/>
+<wire x1="243.84" y1="104.14" x2="248.92" y2="104.14" width="0.1524" layer="91"/>
+<junction x="243.84" y="104.14"/>
+<label x="248.92" y="104.14" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -10368,33 +10317,62 @@ reflow soldering</description>
 <junction x="91.44" y="58.42"/>
 <label x="96.52" y="58.42" size="1.27" layer="95"/>
 </segment>
+<segment>
+<wire x1="38.1" y1="43.18" x2="35.56" y2="43.18" width="0.1524" layer="91"/>
+<label x="27.94" y="43.18" size="1.27" layer="95"/>
+<pinref part="R11" gate="G$1" pin="2"/>
+<junction x="38.1" y="43.18"/>
+</segment>
+<segment>
+<pinref part="C7" gate="G$1" pin="1"/>
+<pinref part="C8" gate="G$1" pin="1"/>
+<wire x1="20.32" y1="20.32" x2="10.16" y2="20.32" width="0.1524" layer="91"/>
+<junction x="10.16" y="20.32"/>
+<junction x="20.32" y="20.32"/>
+<label x="12.7" y="20.32" size="1.27" layer="95"/>
+<pinref part="C18" gate="G$1" pin="1"/>
+<junction x="30.48" y="20.32"/>
+<wire x1="20.32" y1="20.32" x2="30.48" y2="20.32" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R16" gate="G$1" pin="2"/>
+<wire x1="124.46" y1="50.8" x2="127" y2="50.8" width="0.1524" layer="91"/>
+<junction x="124.46" y="50.8"/>
+<label x="127" y="50.8" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="R17" gate="G$1" pin="2"/>
+<wire x1="116.84" y1="63.5" x2="119.38" y2="63.5" width="0.1524" layer="91"/>
+<junction x="116.84" y="63.5"/>
+<label x="119.38" y="63.5" size="1.27" layer="95"/>
+</segment>
 </net>
 <net name="BLUE_LED" class="0">
-<segment>
-<wire x1="231.14" y1="190.5" x2="228.6" y2="190.5" width="0.1524" layer="91"/>
-<label x="231.14" y="190.5" size="1.27" layer="95"/>
-<pinref part="R31" gate="G$1" pin="2"/>
-<junction x="228.6" y="190.5"/>
-</segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="P2_0"/>
 <wire x1="243.84" y1="124.46" x2="248.92" y2="124.46" width="0.1524" layer="91"/>
 <junction x="243.84" y="124.46"/>
 <label x="248.92" y="124.46" size="1.27" layer="95"/>
 </segment>
-</net>
-<net name="GREEN_LED" class="0">
 <segment>
 <pinref part="R8" gate="G$1" pin="2"/>
 <wire x1="228.6" y1="185.42" x2="231.14" y2="185.42" width="0.1524" layer="91"/>
 <junction x="228.6" y="185.42"/>
 <label x="231.14" y="185.42" size="1.27" layer="95"/>
 </segment>
+</net>
+<net name="GREEN_LED" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="P1_6"/>
 <wire x1="243.84" y1="116.84" x2="248.92" y2="116.84" width="0.1524" layer="91"/>
 <junction x="243.84" y="116.84"/>
 <label x="248.92" y="116.84" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="R31" gate="G$1" pin="2"/>
+<wire x1="228.6" y1="190.5" x2="231.14" y2="190.5" width="0.1524" layer="91"/>
+<junction x="228.6" y="190.5"/>
+<label x="231.14" y="190.5" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="N$3" class="0">
