@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
-<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
-<layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
-<layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
-<layer number="6" name="Route6" color="1" fill="8" visible="no" active="no"/>
-<layer number="7" name="Route7" color="4" fill="8" visible="no" active="no"/>
-<layer number="8" name="Route8" color="1" fill="2" visible="no" active="no"/>
-<layer number="9" name="Route9" color="4" fill="2" visible="no" active="no"/>
-<layer number="10" name="Route10" color="1" fill="7" visible="no" active="no"/>
-<layer number="11" name="Route11" color="4" fill="7" visible="no" active="no"/>
-<layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
-<layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
-<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="no"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="no"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="no"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="no"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="no"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="no"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="no"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="no"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="no"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="no"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,16 +53,16 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
@@ -9262,7 +9262,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="R17" library="rcl" deviceset="R-US_" device="R0201" value="1M"/>
 <part name="IC6" library="fairchild" deviceset="FSA4157" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
-<part name="TP12" library="testpad" deviceset="TPS" device="TP08SQ"/>
+<part name="TP12" library="testpad" deviceset="TPS" device="TP06R" value="TPSTP06R"/>
 <part name="C19" library="rcl" deviceset="C-US" device="C0201" value="0.1uF"/>
 <part name="C20" library="rcl" deviceset="C-US" device="C0201" value="0.1uF"/>
 <part name="C21" library="rcl" deviceset="C-US" device="C0201" value="0.1uF"/>
@@ -9292,6 +9292,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="IC8" library="johanson" deviceset="BALUN_2450BM_SERIES_SMD" device="" value=""/>
 <part name="GND24" library="supply1" deviceset="GND" device=""/>
 <part name="U$5" library="tagconnect" deviceset="TC2030" device="-MCP-NL"/>
+<part name="TP1" library="testpad" deviceset="TPS" device="TP08SQ"/>
 </parts>
 <sheets>
 <sheet>
@@ -9397,6 +9398,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <instance part="IC8" gate="IC" x="121.92" y="157.48" rot="R180"/>
 <instance part="GND24" gate="1" x="106.68" y="152.4"/>
 <instance part="U$5" gate="G$1" x="63.5" y="134.62"/>
+<instance part="TP1" gate="G$1" x="96.52" y="119.38"/>
 </instances>
 <busses>
 </busses>
@@ -9671,10 +9673,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="U$4" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="CONN3" gate="CONN" pin="1"/>
-<junction x="60.96" y="162.56"/>
-<wire x1="60.96" y1="162.56" x2="55.88" y2="162.56" width="0.1524" layer="91"/>
-<label x="55.88" y="162.56" size="1.778" layer="95" rot="MR0"/>
+<pinref part="CONN3" gate="CONN" pin="2"/>
+<wire x1="60.96" y1="160.02" x2="58.42" y2="160.02" width="0.1524" layer="91"/>
+<junction x="60.96" y="160.02"/>
+<label x="55.88" y="160.02" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="LL" class="0">
@@ -9686,10 +9688,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="U$2" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="CONN3" gate="CONN" pin="3"/>
-<junction x="60.96" y="157.48"/>
-<wire x1="60.96" y1="157.48" x2="55.88" y2="157.48" width="0.1524" layer="91"/>
-<label x="55.88" y="157.48" size="1.778" layer="95" rot="MR0"/>
+<pinref part="CONN3" gate="CONN" pin="6"/>
+<wire x1="83.82" y1="162.56" x2="86.36" y2="162.56" width="0.1524" layer="91"/>
+<junction x="83.82" y="162.56"/>
+<label x="86.36" y="162.56" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="RL" class="0">
@@ -9701,10 +9703,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="U$1" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="CONN3" gate="CONN" pin="6"/>
-<junction x="83.82" y="162.56"/>
-<wire x1="83.82" y1="162.56" x2="88.9" y2="162.56" width="0.1524" layer="91"/>
-<label x="88.9" y="162.56" size="1.778" layer="95"/>
+<pinref part="CONN3" gate="CONN" pin="5"/>
+<wire x1="83.82" y1="160.02" x2="86.36" y2="160.02" width="0.1524" layer="91"/>
+<junction x="83.82" y="160.02"/>
+<label x="86.36" y="160.02" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="RLDOUT" class="0">
@@ -10178,10 +10180,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="116.84" y1="53.34" x2="91.44" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P0_0"/>
-<wire x1="243.84" y1="78.74" x2="248.92" y2="78.74" width="0.1524" layer="91"/>
-<junction x="243.84" y="78.74"/>
-<label x="248.92" y="78.74" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P0_1"/>
+<wire x1="243.84" y1="81.28" x2="248.92" y2="81.28" width="0.1524" layer="91"/>
+<junction x="243.84" y="81.28"/>
+<label x="248.92" y="81.28" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="SPI_MOSI" class="0">
@@ -10290,10 +10292,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="124.46" y="40.64"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P0_1"/>
-<wire x1="243.84" y1="81.28" x2="248.92" y2="81.28" width="0.1524" layer="91"/>
-<junction x="243.84" y="81.28"/>
-<label x="248.92" y="81.28" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P0_0"/>
+<wire x1="243.84" y1="78.74" x2="248.92" y2="78.74" width="0.1524" layer="91"/>
+<junction x="243.84" y="78.74"/>
+<label x="248.92" y="78.74" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="LA" class="0">
@@ -10305,10 +10307,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="U$3" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="CONN3" gate="CONN" pin="2"/>
-<junction x="60.96" y="160.02"/>
-<wire x1="60.96" y1="160.02" x2="55.88" y2="160.02" width="0.1524" layer="91"/>
-<label x="55.88" y="160.02" size="1.778" layer="95" rot="MR0"/>
+<pinref part="CONN3" gate="CONN" pin="1"/>
+<wire x1="60.96" y1="162.56" x2="58.42" y2="162.56" width="0.1524" layer="91"/>
+<junction x="60.96" y="162.56"/>
+<label x="55.88" y="162.56" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="IN2" class="0">
@@ -10346,6 +10348,8 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="91.44" y="116.84"/>
 <wire x1="91.44" y1="116.84" x2="96.52" y2="116.84" width="0.1524" layer="91"/>
 <label x="96.52" y="116.84" size="1.778" layer="95"/>
+<pinref part="TP1" gate="G$1" pin="PP"/>
+<junction x="96.52" y="116.84"/>
 </segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="P0_7"/>
@@ -10399,12 +10403,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </segment>
 </net>
 <net name="ADS1293_RESET" class="0">
-<segment>
-<pinref part="R10" gate="G$1" pin="1"/>
-<wire x1="111.76" y1="66.04" x2="114.3" y2="66.04" width="0.1524" layer="91"/>
-<junction x="111.76" y="66.04"/>
-<label x="114.3" y="66.04" size="1.27" layer="95"/>
-</segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="P1_3"/>
 <wire x1="243.84" y1="109.22" x2="248.92" y2="109.22" width="0.1524" layer="91"/>
@@ -10531,6 +10529,12 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="C2" gate="G$1" pin="2"/>
 <junction x="121.92" y="17.78"/>
 <label x="124.46" y="17.78" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="111.76" y1="66.04" x2="114.3" y2="66.04" width="0.1524" layer="91"/>
+<junction x="111.76" y="66.04"/>
+<label x="114.3" y="66.04" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="BLUE_LED" class="0">
