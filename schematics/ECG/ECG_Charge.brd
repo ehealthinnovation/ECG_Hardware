@@ -6,9 +6,13 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="1" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -116,31 +120,14 @@
 </layers>
 <board>
 <plain>
-<wire x1="0" y1="0" x2="100" y2="0" width="0" layer="20"/>
-<wire x1="100" y1="0" x2="100" y2="80" width="0" layer="20"/>
-<wire x1="100" y1="80" x2="0" y2="80" width="0" layer="20"/>
-<wire x1="0" y1="80" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="0" y1="0" x2="27.305" y2="0" width="0" layer="20"/>
+<wire x1="27.305" y1="0" x2="27.305" y2="27.305" width="0" layer="20"/>
+<wire x1="27.305" y1="27.305" x2="0" y2="27.305" width="0" layer="20"/>
+<wire x1="0" y1="27.305" x2="0" y2="0" width="0" layer="20"/>
 </plain>
 <libraries>
 <library name="KomodoOpenLab">
 <packages>
-<package name="USB_MICROB_FEMALE_RA_SMT">
-<circle x="-1.3" y="4.04" radius="0.22360625" width="0.4064" layer="21"/>
-<wire x1="5.08" y1="2.54" x2="5.08" y2="-2.41" width="0.127" layer="21"/>
-<wire x1="5.08" y1="-2.41" x2="-5.08" y2="-2.41" width="0.127" layer="21"/>
-<wire x1="-5.08" y1="2.54" x2="-3.81" y2="2.54" width="0.127" layer="21"/>
-<wire x1="3.81" y1="2.54" x2="5.08" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-5.1" y1="2.54" x2="-5.1" y2="-2.41" width="0.127" layer="21"/>
-<smd name="P$1" x="-1.3" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
-<smd name="P$2" x="-0.65" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
-<smd name="P$3" x="0" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
-<smd name="P$4" x="0.65" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
-<smd name="P$5" x="1.3" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
-<pad name="P$6" x="-2.45" y="2.54" drill="0.8"/>
-<pad name="P$7" x="2.45" y="2.54" drill="0.8"/>
-<pad name="P$8" x="-3.6" y="-0.36" drill="1.4"/>
-<pad name="P$9" x="3.6" y="-0.36" drill="1.4"/>
-</package>
 <package name="SOT23-5">
 <wire x1="-1.544" y1="0.713" x2="1.544" y2="0.713" width="0.1524" layer="21"/>
 <wire x1="1.544" y1="0.713" x2="1.544" y2="-0.712" width="0.1524" layer="21"/>
@@ -1255,6 +1242,51 @@ Source: http://www.vishay.com/docs/20008/dcrcw.pdf</description>
 </package>
 </packages>
 </library>
+<library name="usb_con-update">
+<packages>
+<package name="MOLEX-47364-0001">
+<wire x1="-1.45" y1="-4.15" x2="-1.45" y2="4.15" width="0" layer="20"/>
+<wire x1="3.55" y1="3.8" x2="3.55" y2="-3.75" width="0.4064" layer="51"/>
+<wire x1="3.55" y1="-3.75" x2="-1.35" y2="-3.75" width="0.4064" layer="51"/>
+<wire x1="-1.35" y1="-3.75" x2="-2.15" y2="-4.5" width="0.4064" layer="51"/>
+<wire x1="3.55" y1="3.8" x2="-1.4" y2="3.8" width="0.4064" layer="51"/>
+<wire x1="-1.4" y1="3.8" x2="-2.15" y2="4.45" width="0.4064" layer="51"/>
+<wire x1="-2.15" y1="4.45" x2="-2.15" y2="-4.5" width="0.4064" layer="51"/>
+<wire x1="-2.15" y1="-4.5" x2="-2.15" y2="-4.55" width="0.4064" layer="51"/>
+<smd name="3" x="2.8" y="0" dx="0.45" dy="1.7" layer="1" rot="R90"/>
+<smd name="2" x="2.8" y="0.65" dx="0.45" dy="1.7" layer="1" rot="R90"/>
+<smd name="4" x="2.8" y="-0.65" dx="0.45" dy="1.7" layer="1" rot="R90"/>
+<smd name="5" x="2.8" y="-1.3" dx="0.45" dy="1.7" layer="1" rot="R90"/>
+<smd name="1" x="2.8" y="1.3" dx="0.45" dy="1.7" layer="1" rot="R90"/>
+<smd name="GND2" x="2.3" y="2.5" dx="2.1" dy="1.475" layer="1"/>
+<smd name="GND3" x="2.3" y="-2.5" dx="2.1" dy="1.475" layer="1"/>
+<smd name="GND1" x="0" y="2.95" dx="2.375" dy="1.9" layer="1" rot="R90"/>
+<smd name="GND4" x="0" y="-2.95" dx="2.375" dy="1.9" layer="1" rot="R90"/>
+<rectangle x1="-1.05" y1="0.2" x2="1.05" y2="1.35" layer="29"/>
+<rectangle x1="-1.05" y1="-1.35" x2="1.05" y2="-0.2" layer="29"/>
+<rectangle x1="1.2" y1="-1.6" x2="1.85" y2="1.6" layer="41"/>
+</package>
+</packages>
+</library>
+<library name="bourns-fuse">
+<packages>
+<package name="1206">
+<wire x1="-1.8" y1="0.8" x2="-0.9" y2="0.8" width="0.127" layer="21"/>
+<wire x1="-0.9" y1="0.8" x2="0.9" y2="0.8" width="0.127" layer="21"/>
+<wire x1="0.9" y1="0.8" x2="1.8" y2="0.8" width="0.127" layer="21"/>
+<wire x1="1.8" y1="0.8" x2="1.8" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="1.8" y1="-0.8" x2="0.9" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="0.9" y1="-0.8" x2="-0.9" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="-0.9" y1="-0.8" x2="-1.8" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="-1.8" y1="-0.8" x2="-1.8" y2="0.8" width="0.127" layer="21"/>
+<wire x1="-0.9" y1="0.8" x2="-0.9" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="0.9" y1="0.8" x2="0.9" y2="-0.8" width="0.127" layer="21"/>
+<smd name="1" x="-1.35" y="0" dx="0.9" dy="1.6" layer="1"/>
+<smd name="2" x="1.35" y="0" dx="0.9" dy="1.6" layer="1"/>
+<text x="-0.58" y="-0.14" size="0.3048" layer="49">FUSE</text>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1441,34 +1473,26 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="J1" library="KomodoOpenLab" package="USB_MICROB_FEMALE_RA_SMT" value="USB_MICROC" x="-25.4" y="2.54">
-<attribute name="DIGIKEY" value="WM1399CT-ND" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PN" value="ZX62D-B-5PA8" x="0" y="0" size="1.778" layer="27" display="off"/>
-</element>
-<element name="IC1" library="KomodoOpenLab" package="SOT23-5" value="MCP73832_SOT23-5" x="-16.51" y="2.54"/>
-<element name="R2" library="rcl" package="R0201" value="10K" x="-21.59" y="26.67"/>
-<element name="C1" library="rcl" package="C0402" value="4.7uF" x="-17.78" y="21.59"/>
-<element name="R3" library="rcl" package="R0201" value="100K" x="-24.13" y="21.59"/>
-<element name="R4" library="rcl" package="R0201" value="100K" x="-30.48" y="21.59"/>
-<element name="LED1" library="LITEON" package="SMT_LED_0805" value="LED_SMT_0805" x="-25.4" y="26.67"/>
-<element name="R1" library="rcl" package="R0201" value="470" x="-16.51" y="26.67"/>
+<element name="IC1" library="KomodoOpenLab" package="SOT23-5" value="MCP73832_SOT23-5" x="9.3472" y="7.2136" rot="MR180"/>
+<element name="R2" library="rcl" package="R0201" value="10K" x="9.3472" y="5.3594" rot="MR0"/>
+<element name="C1" library="rcl" package="C0402" value="4.7uF" x="11.7348" y="7.3152" rot="MR90"/>
+<element name="LED1" library="LITEON" package="SMT_LED_0805" value="LED_SMT_0805" x="13.3604" y="7.239" rot="MR90"/>
+<element name="R1" library="rcl" package="R0201" value="470" x="9.4488" y="9.6774" rot="MR180"/>
+<element name="USBCONN" library="usb_con-update" package="MOLEX-47364-0001" value="MOLEX-47346-0001" x="2.54" y="5.08" rot="MR180"/>
+<element name="FUSE" library="bourns-fuse" package="1206" value="FUSE-MF_SERIES" x="8.8646" y="3.7592" rot="MR180"/>
 </elements>
 <signals>
 <signal name="GND">
-<contactref element="J1" pad="P$5"/>
 <contactref element="C1" pad="2"/>
 <contactref element="IC1" pad="2"/>
-<contactref element="R4" pad="1"/>
-<wire x1="-16.51" y1="1.234" x2="-24.1" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="-30.735" y1="21.59" x2="-24.1" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="-17.13" y1="21.59" x2="-30.735" y2="21.59" width="0" layer="19" extent="1-1"/>
+<contactref element="USBCONN" pad="5"/>
+<wire x1="9.3472" y1="8.5196" x2="11.7348" y2="7.9652" width="0" layer="19" extent="16-16"/>
+<wire x1="5.34" y1="6.38" x2="9.3472" y2="8.5196" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="STAT">
 <contactref element="IC1" pad="1"/>
-<contactref element="R3" pad="2"/>
 <contactref element="R1" pad="1"/>
-<wire x1="-23.875" y1="21.59" x2="-17.46" y2="1.234" width="0" layer="19" extent="1-1"/>
-<wire x1="-16.765" y1="26.67" x2="-23.875" y2="21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="9.1938" y1="9.6774" x2="8.3972" y2="8.5196" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="VSS">
 <contactref element="R2" pad="1"/>
@@ -1476,29 +1500,29 @@ design rules under a new name.</description>
 <signal name="VPROG">
 <contactref element="IC1" pad="5"/>
 <contactref element="R2" pad="2"/>
-<wire x1="-21.335" y1="26.67" x2="-17.46" y2="3.846" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="VIN">
-<contactref element="IC1" pad="4"/>
-<contactref element="C1" pad="1"/>
-<contactref element="LED1" pad="A"/>
-<contactref element="J1" pad="P$1"/>
-<wire x1="-15.56" y1="3.846" x2="-26.7" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="-18.43" y1="21.59" x2="-15.56" y2="3.846" width="0" layer="19" extent="1-1"/>
-<wire x1="-26.4" y1="26.67" x2="-18.43" y2="21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="9.0922" y1="5.3594" x2="8.3972" y2="5.9076" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="BATT">
 <contactref element="IC1" pad="3"/>
 </signal>
-<signal name="CHARGE_STAT">
-<contactref element="R3" pad="1"/>
-<contactref element="R4" pad="2"/>
-<wire x1="-24.385" y1="21.59" x2="-30.225" y2="21.59" width="0" layer="19" extent="1-1"/>
-</signal>
 <signal name="N$3">
 <contactref element="LED1" pad="C"/>
 <contactref element="R1" pad="2"/>
-<wire x1="-24.3" y1="26.67" x2="-16.255" y2="26.67" width="0" layer="19" extent="1-1"/>
+<wire x1="9.7038" y1="9.6774" x2="13.3604" y2="8.339" width="0" layer="19" extent="16-16"/>
+</signal>
+<signal name="VUSB">
+<contactref element="IC1" pad="4"/>
+<contactref element="C1" pad="1"/>
+<contactref element="LED1" pad="A"/>
+<contactref element="FUSE" pad="2"/>
+<wire x1="11.7348" y1="6.6652" x2="13.3604" y2="6.239" width="0" layer="19" extent="16-16"/>
+<wire x1="10.2972" y1="5.9076" x2="11.7348" y2="6.6652" width="0" layer="19" extent="16-16"/>
+<wire x1="10.2146" y1="3.7592" x2="10.2972" y2="5.9076" width="0" layer="19" extent="16-16"/>
+</signal>
+<signal name="VUSB_5V">
+<contactref element="USBCONN" pad="1"/>
+<contactref element="FUSE" pad="1"/>
+<wire x1="7.5146" y1="3.7592" x2="5.34" y2="3.78" width="0" layer="19" extent="16-16"/>
 </signal>
 </signals>
 </board>
