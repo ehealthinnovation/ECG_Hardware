@@ -9293,6 +9293,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="GND24" library="supply1" deviceset="GND" device=""/>
 <part name="U$5" library="tagconnect" deviceset="TC2030" device="-MCP-NL"/>
 <part name="TP1" library="testpad" deviceset="TPS" device="TP08SQ"/>
+<part name="TP2" library="testpad" deviceset="TPS" device="TP06R" value="TPSTP06R"/>
 </parts>
 <sheets>
 <sheet>
@@ -9399,6 +9400,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <instance part="GND24" gate="1" x="106.68" y="152.4"/>
 <instance part="U$5" gate="G$1" x="63.5" y="134.62"/>
 <instance part="TP1" gate="G$1" x="96.52" y="119.38"/>
+<instance part="TP2" gate="G$1" x="119.38" y="43.18"/>
 </instances>
 <busses>
 </busses>
@@ -10286,10 +10288,13 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <segment>
 <pinref part="IC1" gate="IC" pin="ALARMB"/>
 <junction x="91.44" y="40.64"/>
-<wire x1="91.44" y1="40.64" x2="124.46" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="40.64" x2="119.38" y2="40.64" width="0.1524" layer="91"/>
 <label x="96.52" y="40.64" size="1.27" layer="95"/>
 <pinref part="R16" gate="G$1" pin="1"/>
 <junction x="124.46" y="40.64"/>
+<pinref part="TP2" gate="G$1" pin="PP"/>
+<wire x1="119.38" y1="40.64" x2="124.46" y2="40.64" width="0.1524" layer="91"/>
+<junction x="119.38" y="40.64"/>
 </segment>
 <segment>
 <pinref part="IC4" gate="G$1" pin="P0_0"/>
