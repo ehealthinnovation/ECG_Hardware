@@ -974,6 +974,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="LA" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="RA" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="RL" library="testpad" deviceset="TP" device="TP20R"/>
+<part name="U$1" library="harwin" deviceset="M80-4" device="SMT"/>
 </parts>
 <sheets>
 <sheet>
@@ -986,6 +987,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="LA" gate="G$1" x="10.16" y="45.72"/>
 <instance part="RA" gate="G$1" x="10.16" y="35.56" rot="R180"/>
 <instance part="RL" gate="G$1" x="38.1" y="35.56" rot="R180"/>
+<instance part="U$1" gate="CONN" x="83.82" y="63.5"/>
 </instances>
 <busses>
 </busses>
