@@ -79,8 +79,11 @@
   #include "oad_target.h"
 #endif
 
-#include "ecg.h"
+#include "ccdefines.h"
 
+#include "ECG.h"
+#include "TI_ADS1293.h"
+#include "TI_ADS1293_register_settings.h"
 /*********************************************************************
  * MACROS
  */
@@ -134,6 +137,17 @@
   #define ADV_IN_CONN_WAIT                    500 // delay 500 ms
 #endif
 
+
+/* SPI Mode = UASRT 0 Alt1*/
+//PERCFG.U0CFG = 0
+#define CS              P0_4 //SSN, SS, CSB
+#define SCK             P0_5 //CLK
+#define MISO            P0_2
+#define MOSI            P0_3
+
+#define CS_DISABLED     1
+#define CS_ENABLED      0
+
 /*********************************************************************
  * TYPEDEFS
  */
@@ -153,6 +167,10 @@
 /*********************************************************************
  * LOCAL VARIABLES
  */
+static uint8 reg;
+uint8 registers = 0xFF;
+uint8 test1 = 0xFF;
+
 static uint8 simpleBLEPeripheral_TaskID;   // Task ID for internal task/event processing
 
 static gaprole_States_t gapProfileState = GAPROLE_INIT;
@@ -227,6 +245,13 @@ static void simpleBLEPeripheral_ProcessOSALMsg( osal_event_hdr_t *pMsg );
 static void peripheralStateNotificationCB( gaprole_States_t newState );
 static void performPeriodicTask( void );
 static void simpleProfileChangeCB( uint8 paramID );
+
+static void SPIInitialize();
+void spiWriteByte(uint8 write);
+void spiReadByte(uint8 *read, uint8 write);
+static void ADS1293_Initialize();
+static uint8 TI_ADS1293_ReadReg(uint8 addr, uint8 num);
+static void TI_ADS1293_WriteReg(uint8 addr, uint8 value);
 
 #if defined( CC2540_MINIDK )
 static void simpleBLEPeripheral_HandleKeys( uint8 shift, uint8 keys );
@@ -431,6 +456,13 @@ void SimpleBLEPeripheral_Init( uint8 task_id )
 
 #endif // defined ( DC_DC_P0_7 )
 
+  
+   //Initialize the SPI bus
+  SPIInitialize();
+    
+  //Initialize the ADS1293
+  ADS1293_Initialize();
+  
   // Setup a delayed profile startup
   osal_set_event( simpleBLEPeripheral_TaskID, SBP_START_DEVICE_EVT );
 
@@ -810,6 +842,138 @@ char *bdAddr2Str( uint8 *pAddr )
   return str;
 }
 #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
+
+
+
+/*********************************************************************
+ * @fn      SPIInitialize
+ *
+ * @brief   Initialize the SPI port configurations
+ *
+ * @return  none
+ */
+static void SPIInitialize()
+{
+  //*** Setup USART 0 SPI at alternate location 1 ***
+  PERCFG |= 0x00;
+
+  // Peripheral function on SCK, MISO and MOSI (P0_5, P0_2, P0_3) = 101100
+  P0SEL |= 0x2C;
+
+  // Configure P0_0, P0_1, P0_3, P0_4, P0_5 as output (P0_2 is MISO) = 11111011
+  P0DIR |= 0xFB;
+
+  //Make sure CS pin is disabled
+  CS = CS_DISABLED;
+
+  //Place PWDN and RESET low
+  //P1 = 0;  (already set earlier in the init)
+
+  // SPI master mode
+  U0CSR = 0x00;
+
+  // SCK frequency = 3MHz, MSB
+  U0GCR |= 0xB0;
+  U0BAUD = 0x80;
+}
+
+/**************************************************************************//**
+* @fn       spiWriteByte(uint8 write)
+*
+* @brief    Write one byte to SPI interface
+*
+* @param    write   Value to write
+******************************************************************************/
+void spiWriteByte(uint8 write)
+{
+  U0CSR &= ~U0CSR_TX_BYTE;                           // Clear TX_BYTE
+  U0DBUF = write;
+
+  while (!(U0CSR & U0CSR_TX_BYTE));        // Wait for TX_BYTE to be set
+}
+
+
+/**************************************************************************//**
+* @fn       spiReadByte(uint8 *read, uint8 write)
+*
+* @brief    Read one byte from SPI interface
+*
+* @param    read    Read out value
+* @param    write   Value to write
+******************************************************************************/
+void spiReadByte(uint8 *read, uint8 write)
+{
+        U0CSR &= ~0x02;                 // Clear TX_BYTE
+        U0DBUF = write;                 // Write address to accelerometer
+        while (!(U0CSR & 0x02));        // Wait for TX_BYTE to be set
+        *read = U0DBUF;                 // Save returned value
+}
+
+
+/*********************************************************************
+ * @fn      TI_ADS1293_ReadReg
+ *
+ * @brief   Read Register
+ *
+ * @return  int8
+ */
+
+static uint8 TI_ADS1293_ReadReg(uint8 addr, uint8 num)
+{
+  CS = CS_ENABLED;
+  
+  spiWriteByte(ADS1293_READ_BIT | addr);
+  
+  spiWriteByte(0x00); //Read 1 byte // may not need this line
+  
+  spiReadByte((uint8 *)&reg, 0x00); // Read byte
+  
+  CS = CS_DISABLED;
+  
+  return(reg);
+}
+
+/*********************************************************************
+ * @fn      TI_ADS1293_WriteReg
+ *
+ * @brief   Write Register
+ *
+ * @return  none
+ */
+static void TI_ADS1293_WriteReg(uint8 addr, uint8 value)
+{
+  CS = CS_ENABLED;
+  
+  spiWriteByte(ADS1293_WRITE_BIT | addr); //Write address
+
+  spiWriteByte(0x00); //Write 1 byte
+  
+  spiWriteByte(value); //Value to write to register
+  
+  CS = CS_DISABLED;
+}
+
+
+/*********************************************************************
+ * @fn      ADS1293_Initialize()
+ *
+ * @brief   Initialize the ADS1293
+ *
+ * @return  none
+ */
+
+
+static void ADS1293_Initialize()
+{
+  registers = TI_ADS1293_ReadReg(TI_ADS1293_CONFIG_REG  , 1);
+ // int8 val = 0x00;
+ // TI_ADS1293_WriteReg(TI_ADS1293_AFE_PACE_CN_REG , val);
+ // test1 = TI_ADS1293_ReadReg(TI_ADS1293_AFE_PACE_CN_REG , 1);
+  
+}
+
+
+
 
 /*********************************************************************
 *********************************************************************/

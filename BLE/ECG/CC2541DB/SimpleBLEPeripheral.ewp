@@ -6360,6 +6360,9 @@
   <group>
     <name>APP</name>
     <file>
+      <name>$PROJ_DIR$\..\Source\ccdefines.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\Source\OSAL_SimpleBLEPeripheral.c</name>
     </file>
     <file>
@@ -6370,6 +6373,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\Source\SimpleBLEPeripheral_Main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\TI_ADS1293.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Source\TI_ADS1293_register_settings.h</name>
     </file>
   </group>
   <group>
