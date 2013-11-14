@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
-<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
-<layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
-<layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
-<layer number="6" name="Route6" color="1" fill="8" visible="no" active="no"/>
-<layer number="7" name="Route7" color="4" fill="8" visible="no" active="no"/>
-<layer number="8" name="Route8" color="1" fill="2" visible="no" active="no"/>
-<layer number="9" name="Route9" color="4" fill="2" visible="no" active="no"/>
-<layer number="10" name="Route10" color="1" fill="7" visible="no" active="no"/>
-<layer number="11" name="Route11" color="4" fill="7" visible="no" active="no"/>
-<layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
-<layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
-<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="no"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="no"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="no"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="no"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="no"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="no"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="no"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="no"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="no"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="no"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,16 +53,16 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
@@ -6155,6 +6155,163 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="harwin">
+<packages>
+<package name="M80-4-V">
+<pad name="1" x="-1" y="-1" drill="1"/>
+<pad name="2" x="1" y="-1" drill="1"/>
+<pad name="4" x="-1" y="1" drill="1"/>
+<pad name="3" x="1" y="1" drill="1"/>
+</package>
+<package name="M80-4_SMT">
+<circle x="-1.99" y="-3.53" radius="0.14141875" width="0.127" layer="21"/>
+<smd name="1" x="-1" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="2" x="1" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="3" x="1" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="4" x="-1" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<hole x="-3.25" y="2.38" drill="0.9"/>
+<hole x="-3.25" y="-2.38" drill="0.9"/>
+<hole x="3.25" y="2.38" drill="0.9"/>
+<hole x="3.25" y="-2.38" drill="0.9"/>
+</package>
+<package name="M80-6">
+<pad name="1" x="-2" y="-1" drill="1"/>
+<pad name="2" x="0" y="-1" drill="1"/>
+<pad name="3" x="2" y="-1" drill="1"/>
+<pad name="6" x="-2" y="1" drill="1"/>
+<pad name="5" x="0" y="1" drill="1"/>
+<pad name="4" x="2" y="1" drill="1"/>
+<wire x1="-4.75" y1="-1.9" x2="4.75" y2="-1.9" width="0.127" layer="21"/>
+<wire x1="-4.75" y1="-7.46" x2="4.75" y2="-7.46" width="0.127" layer="21"/>
+<wire x1="-4.75" y1="-1.9" x2="-4.75" y2="-7.46" width="0.127" layer="21"/>
+<wire x1="4.75" y1="-1.9" x2="4.75" y2="-7.46" width="0.127" layer="21"/>
+</package>
+<package name="M80-6-V">
+<pad name="1" x="-2" y="-1" drill="1"/>
+<pad name="2" x="0" y="-1" drill="1"/>
+<pad name="3" x="2" y="-1" drill="1"/>
+<pad name="6" x="-2" y="1" drill="1"/>
+<pad name="5" x="0" y="1" drill="1"/>
+<pad name="4" x="2" y="1" drill="1"/>
+</package>
+<package name="M80-6_SMT">
+<smd name="1" x="-2" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<circle x="-3.01" y="-3.52" radius="0.14141875" width="0.127" layer="21"/>
+<smd name="2" x="0" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="3" x="2" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="4" x="2" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="5" x="0" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<smd name="6" x="-2" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
+<hole x="-4.25" y="2.38" drill="0.9"/>
+<hole x="-4.25" y="-2.38" drill="0.9"/>
+<hole x="4.25" y="2.38" drill="0.9"/>
+<hole x="4.25" y="-2.38" drill="0.9"/>
+</package>
+</packages>
+<symbols>
+<symbol name="4POS_HEADER">
+<pin name="1" x="-10.16" y="2.54" length="middle"/>
+<pin name="2" x="-10.16" y="0" length="middle"/>
+<pin name="3" x="10.16" y="0" length="middle" rot="R180"/>
+<pin name="4" x="10.16" y="2.54" length="middle" rot="R180"/>
+<wire x1="-5.08" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
+<wire x1="5.08" y1="5.08" x2="5.08" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-2.54" x2="-5.08" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-2.54" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
+<text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+<symbol name="6POS_HEADER">
+<pin name="1" x="-10.16" y="2.54" length="middle"/>
+<pin name="2" x="-10.16" y="0" length="middle"/>
+<pin name="3" x="-10.16" y="-2.54" length="middle"/>
+<pin name="4" x="12.7" y="-2.54" length="middle" rot="R180"/>
+<pin name="5" x="12.7" y="0" length="middle" rot="R180"/>
+<pin name="6" x="12.7" y="2.54" length="middle" rot="R180"/>
+<wire x1="-5.08" y1="5.08" x2="7.62" y2="5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="5.08" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
+<text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="M80-4">
+<gates>
+<gate name="CONN" symbol="4POS_HEADER" x="0" y="0"/>
+</gates>
+<devices>
+<device name="V" package="M80-4-V">
+<connects>
+<connect gate="CONN" pin="1" pad="1"/>
+<connect gate="CONN" pin="2" pad="2"/>
+<connect gate="CONN" pin="3" pad="3"/>
+<connect gate="CONN" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMT" package="M80-4_SMT">
+<connects>
+<connect gate="CONN" pin="1" pad="1"/>
+<connect gate="CONN" pin="2" pad="2"/>
+<connect gate="CONN" pin="3" pad="3"/>
+<connect gate="CONN" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="M80-6">
+<gates>
+<gate name="CONN" symbol="6POS_HEADER" x="0" y="0"/>
+</gates>
+<devices>
+<device name="H" package="M80-6">
+<connects>
+<connect gate="CONN" pin="1" pad="1"/>
+<connect gate="CONN" pin="2" pad="2"/>
+<connect gate="CONN" pin="3" pad="3"/>
+<connect gate="CONN" pin="4" pad="4"/>
+<connect gate="CONN" pin="5" pad="5"/>
+<connect gate="CONN" pin="6" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="V" package="M80-6-V">
+<connects>
+<connect gate="CONN" pin="1" pad="1"/>
+<connect gate="CONN" pin="2" pad="2"/>
+<connect gate="CONN" pin="3" pad="3"/>
+<connect gate="CONN" pin="4" pad="4"/>
+<connect gate="CONN" pin="5" pad="5"/>
+<connect gate="CONN" pin="6" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="" package="M80-6_SMT">
+<connects>
+<connect gate="CONN" pin="1" pad="1"/>
+<connect gate="CONN" pin="2" pad="2"/>
+<connect gate="CONN" pin="3" pad="3"/>
+<connect gate="CONN" pin="4" pad="4"/>
+<connect gate="CONN" pin="5" pad="5"/>
+<connect gate="CONN" pin="6" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -6168,14 +6325,18 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="FRAME1" library="frames" deviceset="FRAME_A_L" device=""/>
 <part name="IC1" library="KomodoOpenLab" deviceset="MCP73832_SOT23-5" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
-<part name="R2" library="rcl" deviceset="R-US_" device="R0201" value="10K"/>
-<part name="GND3" library="supply1" deviceset="GND" device=""/>
-<part name="C1" library="rcl" deviceset="C-US" device="C0402" value="4.7uF"/>
+<part name="R2" library="rcl" deviceset="R-US_" device="R0805" value="10K"/>
+<part name="C1" library="rcl" deviceset="C-US" device="C0805" value="4.7uF"/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="LED1" library="LITEON" deviceset="LED_SMT_0805" device=""/>
-<part name="R1" library="rcl" deviceset="R-US_" device="R0201" value="470"/>
+<part name="R1" library="rcl" deviceset="R-US_" device="R0805" value="470"/>
 <part name="USBCONN" library="usb_con-update" deviceset="MOLEX-47346-0001" device=""/>
 <part name="FUSE" library="bourns-fuse" deviceset="FUSE-MF_SERIES" device=""/>
+<part name="C2" library="rcl" deviceset="C-US" device="C0805" value="4.7uF"/>
+<part name="GND1" library="supply1" deviceset="GND" device=""/>
+<part name="CONN2" library="harwin" deviceset="M80-6" device="V"/>
+<part name="CONN1" library="harwin" deviceset="M80-4" device="V"/>
+<part name="GND3" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6184,16 +6345,20 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="172.72" y="0"/>
-<instance part="IC1" gate="IC" x="220.98" y="73.66" rot="R180"/>
-<instance part="GND2" gate="1" x="180.34" y="66.04"/>
-<instance part="R2" gate="G$1" x="200.66" y="66.04" rot="R90"/>
-<instance part="GND3" gate="1" x="200.66" y="58.42"/>
-<instance part="C1" gate="G$1" x="180.34" y="73.66"/>
-<instance part="GND19" gate="1" x="246.38" y="71.12"/>
-<instance part="LED1" gate="LED" x="193.04" y="73.66" rot="MR0"/>
-<instance part="R1" gate="G$1" x="193.04" y="63.5" rot="R90"/>
-<instance part="USBCONN" gate="G$1" x="134.62" y="81.28" rot="R180"/>
-<instance part="FUSE" gate="FUSE" x="162.56" y="76.2"/>
+<instance part="IC1" gate="IC" x="167.64" y="121.92" rot="R180"/>
+<instance part="GND2" gate="1" x="127" y="114.3"/>
+<instance part="R2" gate="G$1" x="147.32" y="114.3" rot="R90"/>
+<instance part="C1" gate="G$1" x="127" y="121.92"/>
+<instance part="GND19" gate="1" x="193.04" y="119.38"/>
+<instance part="LED1" gate="LED" x="139.7" y="121.92" rot="MR0"/>
+<instance part="R1" gate="G$1" x="139.7" y="111.76" rot="R90"/>
+<instance part="USBCONN" gate="G$1" x="81.28" y="129.54" rot="R180"/>
+<instance part="FUSE" gate="FUSE" x="109.22" y="124.46"/>
+<instance part="C2" gate="G$1" x="198.12" y="121.92"/>
+<instance part="GND1" gate="1" x="198.12" y="114.3"/>
+<instance part="CONN2" gate="CONN" x="88.9" y="63.5"/>
+<instance part="CONN1" gate="CONN" x="88.9" y="86.36"/>
+<instance part="GND3" gate="1" x="147.32" y="106.68"/>
 </instances>
 <busses>
 </busses>
@@ -6202,92 +6367,110 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <segment>
 <pinref part="GND2" gate="1" pin="GND"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<junction x="180.34" y="68.58"/>
+<junction x="127" y="116.84"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="IC" pin="VSS"/>
-<junction x="233.68" y="73.66"/>
-<wire x1="233.68" y1="73.66" x2="246.38" y2="73.66" width="0.1524" layer="91"/>
+<junction x="180.34" y="121.92"/>
+<wire x1="180.34" y1="121.92" x2="193.04" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="GND19" gate="1" pin="GND"/>
-<junction x="246.38" y="73.66"/>
+<junction x="193.04" y="121.92"/>
 </segment>
 <segment>
-<wire x1="139.7" y1="86.36" x2="142.24" y2="86.36" width="0.1524" layer="91"/>
-<junction x="139.7" y="86.36"/>
+<wire x1="86.36" y1="134.62" x2="88.9" y2="134.62" width="0.1524" layer="91"/>
+<junction x="86.36" y="134.62"/>
 <pinref part="USBCONN" gate="G$1" pin="5"/>
-<label x="142.24" y="86.36" size="1.27" layer="95"/>
+<label x="88.9" y="134.62" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="2"/>
+<pinref part="GND1" gate="1" pin="GND"/>
+<junction x="198.12" y="116.84"/>
+</segment>
+<segment>
+<pinref part="CONN1" gate="CONN" pin="4"/>
+<wire x1="99.06" y1="88.9" x2="101.6" y2="88.9" width="0.1524" layer="91"/>
+<label x="101.6" y="88.9" size="1.27" layer="95"/>
+<junction x="99.06" y="88.9"/>
+</segment>
+<segment>
+<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<junction x="147.32" y="109.22"/>
 </segment>
 </net>
 <net name="STAT" class="0">
 <segment>
 <pinref part="IC1" gate="IC" pin="STAT"/>
-<junction x="233.68" y="71.12"/>
-<wire x1="233.68" y1="71.12" x2="238.76" y2="71.12" width="0.1524" layer="91"/>
-<label x="238.76" y="71.12" size="1.27" layer="95"/>
+<junction x="180.34" y="119.38"/>
+<wire x1="180.34" y1="119.38" x2="185.42" y2="119.38" width="0.1524" layer="91"/>
+<label x="185.42" y="119.38" size="1.27" layer="95"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
-<junction x="193.04" y="58.42"/>
-<wire x1="193.04" y1="58.42" x2="187.96" y2="58.42" width="0.1524" layer="91"/>
-<label x="187.96" y="58.42" size="1.27" layer="95" rot="R180"/>
-</segment>
-</net>
-<net name="VSS" class="0">
-<segment>
-<pinref part="R2" gate="G$1" pin="1"/>
-<pinref part="GND3" gate="1" pin="GND"/>
-<junction x="200.66" y="60.96"/>
+<junction x="139.7" y="106.68"/>
+<wire x1="139.7" y1="106.68" x2="134.62" y2="106.68" width="0.1524" layer="91"/>
+<label x="134.62" y="106.68" size="1.27" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="VPROG" class="0">
 <segment>
 <pinref part="IC1" gate="IC" pin="VPROG"/>
-<junction x="205.74" y="71.12"/>
-<wire x1="205.74" y1="71.12" x2="200.66" y2="71.12" width="0.1524" layer="91"/>
+<junction x="152.4" y="119.38"/>
+<wire x1="152.4" y1="119.38" x2="147.32" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<junction x="200.66" y="71.12"/>
-</segment>
-</net>
-<net name="BATT" class="0">
-<segment>
-<pinref part="IC1" gate="IC" pin="VBAT"/>
-<junction x="233.68" y="76.2"/>
-<wire x1="233.68" y1="76.2" x2="238.76" y2="76.2" width="0.1524" layer="91"/>
-<label x="238.76" y="76.2" size="1.27" layer="95"/>
+<junction x="147.32" y="119.38"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="LED1" gate="LED" pin="C"/>
 <pinref part="R1" gate="G$1" pin="2"/>
-<junction x="193.04" y="68.58"/>
+<junction x="139.7" y="116.84"/>
 </segment>
 </net>
 <net name="VUSB" class="0">
 <segment>
 <pinref part="IC1" gate="IC" pin="VDD"/>
-<junction x="205.74" y="76.2"/>
-<wire x1="205.74" y1="76.2" x2="193.04" y2="76.2" width="0.1524" layer="91"/>
-<junction x="180.34" y="76.2"/>
-<wire x1="193.04" y1="76.2" x2="180.34" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="76.2" x2="172.72" y2="76.2" width="0.1524" layer="91"/>
-<label x="172.72" y="76.2" size="1.27" layer="95"/>
+<junction x="152.4" y="124.46"/>
+<wire x1="152.4" y1="124.46" x2="139.7" y2="124.46" width="0.1524" layer="91"/>
+<junction x="127" y="124.46"/>
+<wire x1="139.7" y1="124.46" x2="127" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="127" y1="124.46" x2="119.38" y2="124.46" width="0.1524" layer="91"/>
+<label x="119.38" y="124.46" size="1.27" layer="95"/>
 <pinref part="C1" gate="G$1" pin="1"/>
-<junction x="180.34" y="76.2"/>
+<junction x="127" y="124.46"/>
 <pinref part="LED1" gate="LED" pin="A"/>
-<junction x="193.04" y="76.2"/>
+<junction x="139.7" y="124.46"/>
 <pinref part="FUSE" gate="FUSE" pin="2"/>
-<junction x="172.72" y="76.2"/>
+<junction x="119.38" y="124.46"/>
 </segment>
 </net>
 <net name="VUSB_5V" class="0">
 <segment>
-<wire x1="152.4" y1="76.2" x2="139.7" y2="76.2" width="0.1524" layer="91"/>
-<junction x="139.7" y="76.2"/>
-<junction x="152.4" y="76.2"/>
-<label x="142.24" y="76.2" size="1.27" layer="95"/>
+<wire x1="99.06" y1="124.46" x2="86.36" y2="124.46" width="0.1524" layer="91"/>
+<junction x="86.36" y="124.46"/>
+<junction x="99.06" y="124.46"/>
+<label x="88.9" y="124.46" size="1.27" layer="95"/>
 <pinref part="USBCONN" gate="G$1" pin="1"/>
 <pinref part="FUSE" gate="FUSE" pin="1"/>
+</segment>
+</net>
+<net name="BATT" class="0">
+<segment>
+<pinref part="IC1" gate="IC" pin="VBAT"/>
+<junction x="180.34" y="124.46"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<junction x="198.12" y="124.46"/>
+<wire x1="200.66" y1="124.46" x2="198.12" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="124.46" x2="198.12" y2="124.46" width="0.1524" layer="91"/>
+<label x="200.66" y="124.46" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="CONN1" gate="CONN" pin="3"/>
+<wire x1="99.06" y1="86.36" x2="101.6" y2="86.36" width="0.1524" layer="91"/>
+<junction x="99.06" y="86.36"/>
+<label x="101.6" y="86.36" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
