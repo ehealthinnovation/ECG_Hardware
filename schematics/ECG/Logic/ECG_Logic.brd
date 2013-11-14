@@ -138,6 +138,8 @@
 <text x="11.5824" y="7.9756" size="0.3048" layer="21">DRDY</text>
 <text x="5.5372" y="8.128" size="0.3048" layer="21">CS</text>
 <text x="11.3284" y="10.6934" size="0.3048" layer="21">CS</text>
+<text x="0.0762" y="27.9654" size="0.4064" layer="48">spring loaded header: switch pins 4 and 6 for VCC detection</text>
+<text x="0.0762" y="28.5242" size="0.4064" layer="21">verify switch logic</text>
 </plain>
 <libraries>
 <library name="texas_instruments">
