@@ -9301,6 +9301,8 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <text x="96.52" y="33.02" size="1.27" layer="97">4.096MHz crystal (20pF) - ECS-41-20-5PX-TR</text>
 <text x="182.88" y="40.64" size="1.27" layer="95">32MHz</text>
 <text x="236.22" y="40.64" size="1.27" layer="95">32.768KHz</text>
+<text x="2.54" y="228.6" size="1.778" layer="91">add 47uF cap to batt+</text>
+<text x="2.54" y="226.06" size="1.778" layer="91">add batt/gnd pads</text>
 </plain>
 <instances>
 <instance part="IC1" gate="IC" x="71.12" y="58.42"/>

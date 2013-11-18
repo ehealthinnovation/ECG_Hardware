@@ -968,26 +968,24 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </class>
 </classes>
 <parts>
-<part name="CONN1" library="harwin" deviceset="M80-4" device="V"/>
 <part name="CONN2" library="harwin" deviceset="M80-6" device="V"/>
 <part name="LL" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="LA" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="RA" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="RL" library="testpad" deviceset="TP" device="TP20R"/>
-<part name="U$1" library="harwin" deviceset="M80-4" device="SMT"/>
+<part name="CONN1" library="harwin" deviceset="M80-4" device="V"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="CONN1" gate="CONN" x="22.86" y="55.88"/>
 <instance part="CONN2" gate="CONN" x="22.86" y="40.64"/>
 <instance part="LL" gate="G$1" x="38.1" y="45.72"/>
 <instance part="LA" gate="G$1" x="10.16" y="45.72"/>
 <instance part="RA" gate="G$1" x="10.16" y="35.56" rot="R180"/>
 <instance part="RL" gate="G$1" x="38.1" y="35.56" rot="R180"/>
-<instance part="U$1" gate="CONN" x="83.82" y="63.5"/>
+<instance part="CONN1" gate="CONN" x="22.86" y="81.28"/>
 </instances>
 <busses>
 </busses>
