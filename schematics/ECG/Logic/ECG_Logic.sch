@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -6680,14 +6680,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </library>
 <library name="ecs">
 <packages>
-<package name="CSM-7">
-<smd name="2" x="4.7" y="0" dx="2" dy="5.5" layer="1" rot="R90"/>
-<smd name="1" x="-4.7" y="0" dx="2" dy="5.5" layer="1" rot="R90"/>
-<wire x1="-5.6" y1="2.4" x2="5.6" y2="2.4" width="0.127" layer="21"/>
-<wire x1="-5.6" y1="-2.4" x2="5.6" y2="-2.4" width="0.127" layer="21"/>
-<wire x1="-5.6" y1="2.4" x2="-5.6" y2="-2.4" width="0.127" layer="21"/>
-<wire x1="5.6" y1="-2.4" x2="5.6" y2="2.4" width="0.127" layer="21"/>
-</package>
 <package name="2-SMD">
 <smd name="1" x="-1.25" y="-0.05" dx="1.1" dy="1.9" layer="1"/>
 <smd name="2" x="1.25" y="-0.05" dx="1.1" dy="1.9" layer="1"/>
@@ -6722,22 +6714,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="XTAL-CSM7">
-<gates>
-<gate name="XTAL" symbol="XTAL" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="CSM-7">
-<connects>
-<connect gate="XTAL" pin="1" pad="1"/>
-<connect gate="XTAL" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="XTAL-2SMD">
 <gates>
 <gate name="XTAL" symbol="XTAL" x="-2.54" y="0"/>
@@ -9187,6 +9163,67 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </deviceset>
 </devicesets>
 </library>
+<library name="linear">
+<packages>
+<package name="TSOT23-6">
+<description>&lt;b&gt;Small Outline Transistor&lt;/b&gt; 6 lead</description>
+<wire x1="1.422" y1="-0.781" x2="-1.423" y2="-0.781" width="0.1524" layer="51"/>
+<wire x1="-1.423" y1="-0.781" x2="-1.423" y2="0.781" width="0.1524" layer="21"/>
+<wire x1="-1.423" y1="0.781" x2="1.422" y2="0.781" width="0.1524" layer="51"/>
+<wire x1="1.422" y1="0.781" x2="1.422" y2="-0.781" width="0.1524" layer="21"/>
+<circle x="-1.15" y="-0.5" radius="0.1" width="0" layer="21"/>
+<smd name="1" x="-0.95" y="-1.3" dx="0.62" dy="1.22" layer="1"/>
+<smd name="2" x="0" y="-1.3" dx="0.62" dy="1.22" layer="1"/>
+<smd name="3" x="0.95" y="-1.3" dx="0.62" dy="1.22" layer="1"/>
+<smd name="4" x="0.95" y="1.3" dx="0.62" dy="1.22" layer="1"/>
+<smd name="5" x="0" y="1.3" dx="0.62" dy="1.22" layer="1"/>
+<smd name="6" x="-0.95" y="1.3" dx="0.62" dy="1.22" layer="1"/>
+<rectangle x1="-1.2" y1="-1.6" x2="-0.7" y2="-0.8" layer="51"/>
+<rectangle x1="-0.25" y1="-1.6" x2="0.25" y2="-0.8" layer="51"/>
+<rectangle x1="0.7" y1="-1.6" x2="1.2" y2="-0.8" layer="51"/>
+<rectangle x1="0.7" y1="0.8" x2="1.2" y2="1.6" layer="51"/>
+<rectangle x1="-0.25" y1="0.8" x2="0.25" y2="1.6" layer="51"/>
+<rectangle x1="-1.2" y1="0.8" x2="-0.7" y2="1.6" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="LTC6907">
+<pin name="V+" x="-12.7" y="2.54" length="middle"/>
+<pin name="GND" x="-12.7" y="0" length="middle"/>
+<pin name="DIV" x="-12.7" y="-2.54" length="middle"/>
+<pin name="OUT" x="15.24" y="2.54" length="middle" rot="R180"/>
+<pin name="GRD" x="15.24" y="0" length="middle" rot="R180"/>
+<pin name="SET" x="15.24" y="-2.54" length="middle" rot="R180"/>
+<wire x1="-7.62" y1="5.08" x2="10.16" y2="5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="5.08" x2="10.16" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="5.08" width="0.254" layer="94"/>
+<text x="-7.62" y="5.08" size="1.27" layer="95">&gt;NAME</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="LTC6907">
+<gates>
+<gate name="IC" symbol="LTC6907" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TSOT23-6">
+<connects>
+<connect gate="IC" pin="DIV" pad="3"/>
+<connect gate="IC" pin="GND" pad="2"/>
+<connect gate="IC" pin="GRD" pad="5"/>
+<connect gate="IC" pin="OUT" pad="1"/>
+<connect gate="IC" pin="SET" pad="4"/>
+<connect gate="IC" pin="V+" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -9198,10 +9235,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </classes>
 <parts>
 <part name="IC1" library="texas_instruments" deviceset="ADS1293" device=""/>
-<part name="C2" library="rcl" deviceset="C-US" device="C0201" value="22pF"/>
-<part name="X3" library="ecs" deviceset="XTAL-CSM7" device=""/>
 <part name="CONN1" library="harwin" deviceset="10POS_1.27MM_SMD" device=""/>
-<part name="C1" library="rcl" deviceset="C-US" device="C0201" value="22pF"/>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0201" value="1nF"/>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0201" value="1uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
@@ -9294,11 +9328,15 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="PROG" library="tagconnect" deviceset="TC2030" device="-MCP-NL"/>
 <part name="TP1" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP2" library="testpad" deviceset="TPS" device="TP06R" value="TPSTP06R"/>
+<part name="IC9" library="linear" deviceset="LTC6907" device=""/>
+<part name="C1" library="rcl" deviceset="C-EU" device="C0201" value="0.1uF"/>
+<part name="GND25" library="supply1" deviceset="GND" device=""/>
+<part name="R13" library="rcl" deviceset="R-US_" device="R0603" value="50K"/>
+<part name="GND26" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="96.52" y="33.02" size="1.27" layer="97">4.096MHz crystal (20pF) - ECS-41-20-5PX-TR</text>
 <text x="182.88" y="40.64" size="1.27" layer="95">32MHz</text>
 <text x="236.22" y="40.64" size="1.27" layer="95">32.768KHz</text>
 <text x="2.54" y="228.6" size="1.778" layer="91">add 47uF cap to batt+</text>
@@ -9306,10 +9344,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </plain>
 <instances>
 <instance part="IC1" gate="IC" x="71.12" y="58.42"/>
-<instance part="C2" gate="G$1" x="121.92" y="22.86"/>
-<instance part="X3" gate="XTAL" x="114.3" y="25.4"/>
 <instance part="CONN1" gate="CONN" x="30.48" y="198.12"/>
-<instance part="C1" gate="G$1" x="106.68" y="22.86"/>
 <instance part="C3" gate="G$1" x="73.66" y="27.94"/>
 <instance part="C6" gate="G$1" x="48.26" y="17.78"/>
 <instance part="GND1" gate="1" x="48.26" y="10.16"/>
@@ -9403,6 +9438,11 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <instance part="PROG" gate="G$1" x="63.5" y="134.62"/>
 <instance part="TP1" gate="G$1" x="96.52" y="119.38"/>
 <instance part="TP2" gate="G$1" x="119.38" y="43.18"/>
+<instance part="IC9" gate="IC" x="147.32" y="114.3"/>
+<instance part="C1" gate="G$1" x="147.32" y="134.62"/>
+<instance part="GND25" gate="1" x="147.32" y="127"/>
+<instance part="R13" gate="G$1" x="170.18" y="111.76"/>
+<instance part="GND26" gate="1" x="175.26" y="109.22"/>
 </instances>
 <busses>
 </busses>
@@ -9638,6 +9678,28 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="50.8" y1="142.24" x2="48.26" y2="142.24" width="0.1524" layer="91"/>
 <junction x="50.8" y="142.24"/>
 <label x="40.64" y="142.24" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="GND25" gate="1" pin="GND"/>
+<pinref part="C1" gate="G$1" pin="2"/>
+<junction x="147.32" y="129.54"/>
+</segment>
+<segment>
+<pinref part="IC9" gate="IC" pin="GND"/>
+<wire x1="134.62" y1="114.3" x2="132.08" y2="114.3" width="0.1524" layer="91"/>
+<junction x="134.62" y="114.3"/>
+<label x="129.54" y="114.3" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC9" gate="IC" pin="DIV"/>
+<wire x1="134.62" y1="111.76" x2="132.08" y2="111.76" width="0.1524" layer="91"/>
+<junction x="134.62" y="111.76"/>
+<label x="129.54" y="111.76" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="R13" gate="G$1" pin="2"/>
+<pinref part="GND26" gate="1" pin="GND"/>
+<junction x="175.26" y="111.76"/>
 </segment>
 </net>
 <net name="IN1" class="0">
@@ -9908,10 +9970,10 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="208.28" y="190.5"/>
 </segment>
 <segment>
-<pinref part="PROG" gate="G$1" pin="4"/>
-<wire x1="50.8" y1="134.62" x2="48.26" y2="134.62" width="0.1524" layer="91"/>
-<junction x="50.8" y="134.62"/>
-<label x="40.64" y="134.62" size="1.27" layer="95"/>
+<pinref part="PROG" gate="G$1" pin="6"/>
+<wire x1="50.8" y1="129.54" x2="48.26" y2="129.54" width="0.1524" layer="91"/>
+<junction x="50.8" y="129.54"/>
+<label x="45.72" y="129.54" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="RESET_N" class="0">
@@ -10095,36 +10157,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="109.22" y="160.02"/>
 <pinref part="IC8" gate="IC" pin="4"/>
 <label x="101.6" y="160.02" size="1.27" layer="95"/>
-</segment>
-</net>
-<net name="XTAL2" class="0">
-<segment>
-<pinref part="IC1" gate="IC" pin="XTAL2"/>
-<wire x1="91.44" y1="63.5" x2="96.52" y2="63.5" width="0.1524" layer="91"/>
-<junction x="91.44" y="63.5"/>
-<label x="96.52" y="63.5" size="1.27" layer="95"/>
-</segment>
-<segment>
-<pinref part="X3" gate="XTAL" pin="2"/>
-<pinref part="C2" gate="G$1" pin="1"/>
-<junction x="121.92" y="25.4"/>
-<wire x1="121.92" y1="25.4" x2="124.46" y2="25.4" width="0.1524" layer="91"/>
-<label x="124.46" y="25.4" size="1.27" layer="95"/>
-</segment>
-</net>
-<net name="XTAL1" class="0">
-<segment>
-<pinref part="IC1" gate="IC" pin="XTAL1"/>
-<wire x1="91.44" y1="60.96" x2="96.52" y2="60.96" width="0.1524" layer="91"/>
-<junction x="91.44" y="60.96"/>
-<label x="96.52" y="60.96" size="1.27" layer="95"/>
-</segment>
-<segment>
-<pinref part="X3" gate="XTAL" pin="1"/>
-<pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="106.68" y1="25.4" x2="104.14" y2="25.4" width="0.1524" layer="91"/>
-<junction x="106.68" y="25.4"/>
-<label x="99.06" y="25.4" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="IN3" class="0">
@@ -10462,6 +10494,12 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="104.14" y="55.88"/>
 <label x="96.52" y="55.88" size="1.27" layer="95"/>
 </segment>
+<segment>
+<pinref part="IC9" gate="IC" pin="OUT"/>
+<wire x1="162.56" y1="116.84" x2="165.1" y2="116.84" width="0.1524" layer="91"/>
+<junction x="162.56" y="116.84"/>
+<label x="165.1" y="116.84" size="1.27" layer="95"/>
+</segment>
 </net>
 <net name="ECG_VCC_SW" class="0">
 <segment>
@@ -10524,18 +10562,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="116.84" y1="63.5" x2="119.38" y2="63.5" width="0.1524" layer="91"/>
 <junction x="116.84" y="63.5"/>
 <label x="119.38" y="63.5" size="1.27" layer="95"/>
-</segment>
-<segment>
-<wire x1="104.14" y1="17.78" x2="106.68" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="C1" gate="G$1" pin="2"/>
-<junction x="106.68" y="17.78"/>
-<label x="96.52" y="17.78" size="1.27" layer="95"/>
-</segment>
-<segment>
-<wire x1="124.46" y1="17.78" x2="121.92" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="2"/>
-<junction x="121.92" y="17.78"/>
-<label x="124.46" y="17.78" size="1.27" layer="95"/>
 </segment>
 <segment>
 <pinref part="R10" gate="G$1" pin="1"/>
@@ -10614,6 +10640,37 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="IC8" gate="IC" pin="1"/>
 <pinref part="RF" gate="RF" pin="1"/>
 <junction x="147.32" y="154.94"/>
+</segment>
+</net>
+<net name="N$14" class="0">
+<segment>
+<pinref part="IC9" gate="IC" pin="SET"/>
+<wire x1="162.56" y1="111.76" x2="165.1" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="R13" gate="G$1" pin="1"/>
+<junction x="165.1" y="111.76"/>
+<junction x="162.56" y="111.76"/>
+</segment>
+</net>
+<net name="V+" class="0">
+<segment>
+<pinref part="C1" gate="G$1" pin="1"/>
+<wire x1="147.32" y1="137.16" x2="144.78" y2="137.16" width="0.1524" layer="91"/>
+<junction x="147.32" y="137.16"/>
+<label x="142.24" y="137.16" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC9" gate="IC" pin="V+"/>
+<wire x1="134.62" y1="116.84" x2="132.08" y2="116.84" width="0.1524" layer="91"/>
+<junction x="134.62" y="116.84"/>
+<label x="129.54" y="116.84" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="GRD" class="0">
+<segment>
+<pinref part="IC9" gate="IC" pin="GRD"/>
+<junction x="162.56" y="114.3"/>
+<wire x1="162.56" y1="114.3" x2="165.1" y2="114.3" width="0.1524" layer="91"/>
+<label x="165.1" y="114.3" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
