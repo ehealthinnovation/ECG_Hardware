@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -111,23 +111,6 @@
 <libraries>
 <library name="harwin">
 <packages>
-<package name="M80-4-V">
-<pad name="1" x="-1" y="-1" drill="1"/>
-<pad name="2" x="1" y="-1" drill="1"/>
-<pad name="4" x="-1" y="1" drill="1"/>
-<pad name="3" x="1" y="1" drill="1"/>
-</package>
-<package name="M80-4_SMT">
-<circle x="-1.99" y="-3.53" radius="0.14141875" width="0.127" layer="21"/>
-<smd name="1" x="-1" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="2" x="1" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="3" x="1" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="4" x="-1" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<hole x="-3.25" y="2.38" drill="0.9"/>
-<hole x="-3.25" y="-2.38" drill="0.9"/>
-<hole x="3.25" y="2.38" drill="0.9"/>
-<hole x="3.25" y="-2.38" drill="0.9"/>
-</package>
 <package name="M80-6">
 <pad name="1" x="-2" y="-1" drill="1"/>
 <pad name="2" x="0" y="-1" drill="1"/>
@@ -163,17 +146,6 @@
 </package>
 </packages>
 <symbols>
-<symbol name="4POS_HEADER">
-<pin name="1" x="-10.16" y="2.54" length="middle"/>
-<pin name="2" x="-10.16" y="0" length="middle"/>
-<pin name="3" x="10.16" y="0" length="middle" rot="R180"/>
-<pin name="4" x="10.16" y="2.54" length="middle" rot="R180"/>
-<wire x1="-5.08" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="5.08" x2="5.08" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="5.08" y1="-2.54" x2="-5.08" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="-2.54" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
-<text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
-</symbol>
 <symbol name="6POS_HEADER">
 <pin name="1" x="-10.16" y="2.54" length="middle"/>
 <pin name="2" x="-10.16" y="0" length="middle"/>
@@ -189,35 +161,6 @@
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="M80-4">
-<gates>
-<gate name="CONN" symbol="4POS_HEADER" x="0" y="0"/>
-</gates>
-<devices>
-<device name="V" package="M80-4-V">
-<connects>
-<connect gate="CONN" pin="1" pad="1"/>
-<connect gate="CONN" pin="2" pad="2"/>
-<connect gate="CONN" pin="3" pad="3"/>
-<connect gate="CONN" pin="4" pad="4"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SMT" package="M80-4_SMT">
-<connects>
-<connect gate="CONN" pin="1" pad="1"/>
-<connect gate="CONN" pin="2" pad="2"/>
-<connect gate="CONN" pin="3" pad="3"/>
-<connect gate="CONN" pin="4" pad="4"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="M80-6">
 <gates>
 <gate name="CONN" symbol="6POS_HEADER" x="0" y="0"/>
@@ -958,6 +901,50 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </deviceset>
 </devicesets>
 </library>
+<library name="pins">
+<packages>
+<package name="PISTON_RA_TH">
+<pad name="1" x="0" y="0" drill="0.8"/>
+<wire x1="0" y1="0" x2="3.27" y2="0" width="0.127" layer="21"/>
+<pad name="SUPPORT" x="3.76" y="0" drill="1.45"/>
+<wire x1="10.64" y1="0.8" x2="10.64" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="9.24" y1="1" x2="9.24" y2="0.8" width="0.127" layer="21"/>
+<wire x1="9.24" y1="0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="9.24" y1="-0.8" x2="9.24" y2="-1" width="0.127" layer="21"/>
+<wire x1="3.27" y1="1.27" x2="3.27" y2="0" width="0.127" layer="21"/>
+<wire x1="3.27" y1="0" x2="3.27" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="3.27" y1="1.27" x2="7.46" y2="1.27" width="0.127" layer="21"/>
+<wire x1="3.27" y1="-1.27" x2="7.46" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="7.47" y1="1.27" x2="7.47" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="7.5" y1="1" x2="9.24" y2="1" width="0.127" layer="21"/>
+<wire x1="7.5" y1="-1" x2="9.24" y2="-1" width="0.127" layer="21"/>
+<wire x1="10.64" y1="0.8" x2="9.24" y2="0.8" width="0.127" layer="21"/>
+<wire x1="10.64" y1="-0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="PIN">
+<pin name="1" x="-5.08" y="0" length="middle"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="PISTON_RA_TH">
+<gates>
+<gate name="PIN" symbol="PIN" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="PISTON_RA_TH">
+<connects>
+<connect gate="PIN" pin="1" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -973,7 +960,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="LA" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="RA" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="RL" library="testpad" deviceset="TP" device="TP20R"/>
-<part name="CONN1" library="harwin" deviceset="M80-4" device="V"/>
+<part name="U$1" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="U$2" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="U$3" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="U$4" library="pins" deviceset="PISTON_RA_TH" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -985,7 +975,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="LA" gate="G$1" x="10.16" y="45.72"/>
 <instance part="RA" gate="G$1" x="10.16" y="35.56" rot="R180"/>
 <instance part="RL" gate="G$1" x="38.1" y="35.56" rot="R180"/>
-<instance part="CONN1" gate="CONN" x="22.86" y="81.28"/>
+<instance part="U$1" gate="PIN" x="17.78" y="66.04"/>
+<instance part="U$2" gate="PIN" x="17.78" y="68.58"/>
+<instance part="U$3" gate="PIN" x="17.78" y="63.5"/>
+<instance part="U$4" gate="PIN" x="17.78" y="60.96"/>
 </instances>
 <busses>
 </busses>
