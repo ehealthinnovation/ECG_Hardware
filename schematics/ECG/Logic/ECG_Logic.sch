@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="6.4">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -9215,7 +9215,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="IC9" library="linear" deviceset="LTC6907" device=""/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0201" value="0.1uF"/>
 <part name="GND25" library="supply1" deviceset="GND" device=""/>
-<part name="R13" library="rcl" deviceset="R-US_" device="R0603" value="50K"/>
+<part name="R13" library="rcl" deviceset="R-US_" device="R1206" value="500K"/>
 <part name="GND26" library="supply1" deviceset="GND" device=""/>
 <part name="U$1" library="pins" deviceset="TARGET_RA" device=""/>
 <part name="U$2" library="pins" deviceset="TARGET_RA" device=""/>
@@ -9223,6 +9223,8 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="U$4" library="pins" deviceset="TARGET_RA" device=""/>
 <part name="U$5" library="pins" deviceset="TARGET_RA" device=""/>
 <part name="U$6" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="IC10" library="fairchild" deviceset="FSA4157" device=""/>
+<part name="GND17" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9336,6 +9338,8 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <instance part="U$4" gate="PIN" x="187.96" y="205.74"/>
 <instance part="U$5" gate="PIN" x="187.96" y="195.58"/>
 <instance part="U$6" gate="PIN" x="187.96" y="193.04"/>
+<instance part="IC10" gate="FSA4157" x="68.58" y="162.56"/>
+<instance part="GND17" gate="1" x="55.88" y="157.48"/>
 </instances>
 <busses>
 </busses>
@@ -9594,6 +9598,14 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="182.88" y1="195.58" x2="180.34" y2="195.58" width="0.1524" layer="91"/>
 <junction x="182.88" y="195.58"/>
 <label x="175.26" y="195.58" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC10" gate="FSA4157" pin="GND"/>
+<pinref part="IC10" gate="FSA4157" pin="B0"/>
+<wire x1="55.88" y1="162.56" x2="55.88" y2="160.02" width="0.1524" layer="91"/>
+<pinref part="GND17" gate="1" pin="GND"/>
+<junction x="55.88" y="160.02"/>
+<junction x="55.88" y="162.56"/>
 </segment>
 </net>
 <net name="IN1" class="0">
@@ -9868,6 +9880,18 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="50.8" y1="129.54" x2="48.26" y2="129.54" width="0.1524" layer="91"/>
 <junction x="50.8" y="129.54"/>
 <label x="45.72" y="129.54" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC10" gate="FSA4157" pin="VCC"/>
+<junction x="81.28" y="162.56"/>
+<wire x1="81.28" y1="162.56" x2="83.82" y2="162.56" width="0.1524" layer="91"/>
+<label x="83.82" y="162.56" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC10" gate="FSA4157" pin="B1"/>
+<junction x="55.88" y="165.1"/>
+<wire x1="55.88" y1="165.1" x2="53.34" y2="165.1" width="0.1524" layer="91"/>
+<label x="50.8" y="165.1" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="RESET_N" class="0">
@@ -10335,14 +10359,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="R14" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="ADS1293_RESET" class="0">
-<segment>
-<pinref part="IC4" gate="G$1" pin="P1_3"/>
-<wire x1="243.84" y1="109.22" x2="248.92" y2="109.22" width="0.1524" layer="91"/>
-<junction x="243.84" y="109.22"/>
-<label x="248.92" y="109.22" size="1.27" layer="95"/>
-</segment>
-</net>
 <net name="ACCEL_VCC" class="0">
 <segment>
 <pinref part="C9" gate="G$1" pin="1"/>
@@ -10553,29 +10569,59 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <label x="165.1" y="114.3" size="1.27" layer="95"/>
 </segment>
 </net>
-<net name="ADS1923_OSC_VCC" class="0">
+<net name="OSC_SW_VCC" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="SCL"/>
 <wire x1="205.74" y1="78.74" x2="203.2" y2="78.74" width="0.1524" layer="91"/>
 <junction x="205.74" y="78.74"/>
-<label x="187.96" y="78.74" size="1.27" layer="95"/>
+<label x="190.5" y="78.74" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC10" gate="FSA4157" pin="S"/>
+<junction x="81.28" y="165.1"/>
+<wire x1="81.28" y1="165.1" x2="83.82" y2="165.1" width="0.1524" layer="91"/>
+<label x="83.82" y="165.1" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="OSC_VCC" class="0">
+<segment>
+<pinref part="C1" gate="G$1" pin="1"/>
+<wire x1="147.32" y1="137.16" x2="144.78" y2="137.16" width="0.1524" layer="91"/>
+<junction x="147.32" y="137.16"/>
+<label x="137.16" y="137.16" size="1.27" layer="95"/>
 </segment>
 <segment>
 <pinref part="IC9" gate="IC" pin="V+"/>
 <wire x1="134.62" y1="116.84" x2="132.08" y2="116.84" width="0.1524" layer="91"/>
 <junction x="134.62" y="116.84"/>
-<label x="116.84" y="116.84" size="1.27" layer="95"/>
+<label x="124.46" y="116.84" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="147.32" y1="137.16" x2="144.78" y2="137.16" width="0.1524" layer="91"/>
-<junction x="147.32" y="137.16"/>
-<label x="129.54" y="137.16" size="1.27" layer="95"/>
+<pinref part="IC10" gate="FSA4157" pin="A"/>
+<junction x="81.28" y="160.02"/>
+<wire x1="81.28" y1="160.02" x2="83.82" y2="160.02" width="0.1524" layer="91"/>
+<label x="83.82" y="160.02" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,205.74,114.3,IC4,AVDD,VCC,,,"/>
+<approved hash="104,1,205.74,111.76,IC4,AVDD,VCC,,,"/>
+<approved hash="104,1,205.74,109.22,IC4,AVDD,VCC,,,"/>
+<approved hash="104,1,205.74,106.68,IC4,AVDD,VCC,,,"/>
+<approved hash="104,1,205.74,104.14,IC4,AVDD,VCC,,,"/>
+<approved hash="104,1,205.74,101.6,IC4,AVDD,VCC,,,"/>
+<approved hash="104,1,205.74,121.92,IC4,DVDD,VCC,,,"/>
+<approved hash="104,1,205.74,119.38,IC4,DVDD,VCC,,,"/>
+<approved hash="104,1,205.74,73.66,IC4,I2C_GND,GND,,,"/>
+<approved hash="204,1,205.74,81.28,IC4,N/C,,,,"/>
+<approved hash="104,1,50.8,139.7,PROG,2,P2_2/DC,,,"/>
+<approved hash="104,1,50.8,137.16,PROG,3,RESET_N,,,"/>
+<approved hash="106,1,162.56,114.3,GRD,,,,,"/>
+<approved hash="115,1,139.596,107.846,FRAME1,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>
