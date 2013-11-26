@@ -109,97 +109,41 @@
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
-<library name="harwin">
+<library name="pins">
 <packages>
-<package name="M80-6">
-<pad name="1" x="-2" y="-1" drill="1"/>
-<pad name="2" x="0" y="-1" drill="1"/>
-<pad name="3" x="2" y="-1" drill="1"/>
-<pad name="6" x="-2" y="1" drill="1"/>
-<pad name="5" x="0" y="1" drill="1"/>
-<pad name="4" x="2" y="1" drill="1"/>
-<wire x1="-4.75" y1="-1.9" x2="4.75" y2="-1.9" width="0.127" layer="21"/>
-<wire x1="-4.75" y1="-7.46" x2="4.75" y2="-7.46" width="0.127" layer="21"/>
-<wire x1="-4.75" y1="-1.9" x2="-4.75" y2="-7.46" width="0.127" layer="21"/>
-<wire x1="4.75" y1="-1.9" x2="4.75" y2="-7.46" width="0.127" layer="21"/>
-</package>
-<package name="M80-6-V">
-<pad name="1" x="-2" y="-1" drill="1"/>
-<pad name="2" x="0" y="-1" drill="1"/>
-<pad name="3" x="2" y="-1" drill="1"/>
-<pad name="6" x="-2" y="1" drill="1"/>
-<pad name="5" x="0" y="1" drill="1"/>
-<pad name="4" x="2" y="1" drill="1"/>
-</package>
-<package name="M80-6_SMT">
-<smd name="1" x="-2" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<circle x="-3.01" y="-3.52" radius="0.14141875" width="0.127" layer="21"/>
-<smd name="2" x="0" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="3" x="2" y="-2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="4" x="2" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="5" x="0" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<smd name="6" x="-2" y="2.4" dx="3.2" dy="1" layer="1" rot="R90"/>
-<hole x="-4.25" y="2.38" drill="0.9"/>
-<hole x="-4.25" y="-2.38" drill="0.9"/>
-<hole x="4.25" y="2.38" drill="0.9"/>
-<hole x="4.25" y="-2.38" drill="0.9"/>
+<package name="PISTON_RA_TH">
+<pad name="1" x="0" y="0" drill="0.8"/>
+<wire x1="0" y1="0" x2="3.27" y2="0" width="0.127" layer="21"/>
+<pad name="SUPPORT" x="3.76" y="0" drill="1.45"/>
+<wire x1="10.64" y1="0.8" x2="10.64" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="9.24" y1="1" x2="9.24" y2="0.8" width="0.127" layer="21"/>
+<wire x1="9.24" y1="0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="9.24" y1="-0.8" x2="9.24" y2="-1" width="0.127" layer="21"/>
+<wire x1="3.27" y1="1.27" x2="3.27" y2="0" width="0.127" layer="21"/>
+<wire x1="3.27" y1="0" x2="3.27" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="3.27" y1="1.27" x2="7.46" y2="1.27" width="0.127" layer="21"/>
+<wire x1="3.27" y1="-1.27" x2="7.46" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="7.47" y1="1.27" x2="7.47" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="7.5" y1="1" x2="9.24" y2="1" width="0.127" layer="21"/>
+<wire x1="7.5" y1="-1" x2="9.24" y2="-1" width="0.127" layer="21"/>
+<wire x1="10.64" y1="0.8" x2="9.24" y2="0.8" width="0.127" layer="21"/>
+<wire x1="10.64" y1="-0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
-<symbol name="6POS_HEADER">
-<pin name="1" x="-10.16" y="2.54" length="middle"/>
-<pin name="2" x="-10.16" y="0" length="middle"/>
-<pin name="3" x="-10.16" y="-2.54" length="middle"/>
-<pin name="4" x="12.7" y="-2.54" length="middle" rot="R180"/>
-<pin name="5" x="12.7" y="0" length="middle" rot="R180"/>
-<pin name="6" x="12.7" y="2.54" length="middle" rot="R180"/>
-<wire x1="-5.08" y1="5.08" x2="7.62" y2="5.08" width="0.254" layer="94"/>
-<wire x1="7.62" y1="5.08" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-5.08" x2="-5.08" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
-<text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+<symbol name="PIN">
+<pin name="1" x="-5.08" y="0" length="middle"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="M80-6">
+<deviceset name="PISTON_RA_TH">
 <gates>
-<gate name="CONN" symbol="6POS_HEADER" x="0" y="0"/>
+<gate name="PIN" symbol="PIN" x="0" y="0"/>
 </gates>
 <devices>
-<device name="H" package="M80-6">
+<device name="" package="PISTON_RA_TH">
 <connects>
-<connect gate="CONN" pin="1" pad="1"/>
-<connect gate="CONN" pin="2" pad="2"/>
-<connect gate="CONN" pin="3" pad="3"/>
-<connect gate="CONN" pin="4" pad="4"/>
-<connect gate="CONN" pin="5" pad="5"/>
-<connect gate="CONN" pin="6" pad="6"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="V" package="M80-6-V">
-<connects>
-<connect gate="CONN" pin="1" pad="1"/>
-<connect gate="CONN" pin="2" pad="2"/>
-<connect gate="CONN" pin="3" pad="3"/>
-<connect gate="CONN" pin="4" pad="4"/>
-<connect gate="CONN" pin="5" pad="5"/>
-<connect gate="CONN" pin="6" pad="6"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="" package="M80-6_SMT">
-<connects>
-<connect gate="CONN" pin="1" pad="1"/>
-<connect gate="CONN" pin="2" pad="2"/>
-<connect gate="CONN" pin="3" pad="3"/>
-<connect gate="CONN" pin="4" pad="4"/>
-<connect gate="CONN" pin="5" pad="5"/>
-<connect gate="CONN" pin="6" pad="6"/>
+<connect gate="PIN" pin="1" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -500,21 +444,22 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </package>
 </packages>
 <symbols>
-<symbol name="TP">
-<wire x1="-0.762" y1="-0.762" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="0.762" y2="-0.762" width="0.254" layer="94"/>
-<wire x1="0.762" y1="-0.762" x2="0" y2="-1.524" width="0.254" layer="94"/>
-<wire x1="0" y1="-1.524" x2="-0.762" y2="-0.762" width="0.254" layer="94"/>
-<text x="-1.27" y="1.27" size="1.778" layer="95">&gt;NAME</text>
-<text x="1.27" y="-1.27" size="1.778" layer="97">&gt;TP_SIGNAL_NAME</text>
-<pin name="TP" x="0" y="-2.54" visible="off" length="short" direction="in" rot="R90"/>
+<symbol name="PPAD">
+<wire x1="0" y1="-2.54" x2="1.27" y2="-1.27" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="-1.27" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="-1.27" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="-1.27" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<circle x="0" y="-1.27" radius="0.635" width="0.1524" layer="94"/>
+<text x="-2.54" y="-4.445" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.54" y="-1.27" size="1.778" layer="97">&gt;TP_SIGNAL_NAME</text>
+<pin name="TP" x="0" y="2.54" visible="off" length="short" direction="in" rot="R270"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="TP" prefix="TP">
+<deviceset name="TPSQ" prefix="TP">
 <description>&lt;b&gt;Test pad&lt;/b&gt;</description>
 <gates>
-<gate name="G$1" symbol="TP" x="0" y="0"/>
+<gate name="G$1" symbol="PPAD" x="0" y="0"/>
 </gates>
 <devices>
 <device name="B1,27" package="B1,27">
@@ -901,50 +846,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </deviceset>
 </devicesets>
 </library>
-<library name="pins">
-<packages>
-<package name="PISTON_RA_TH">
-<pad name="1" x="0" y="0" drill="0.8"/>
-<wire x1="0" y1="0" x2="3.27" y2="0" width="0.127" layer="21"/>
-<pad name="SUPPORT" x="3.76" y="0" drill="1.45"/>
-<wire x1="10.64" y1="0.8" x2="10.64" y2="-0.8" width="0.127" layer="21"/>
-<wire x1="9.24" y1="1" x2="9.24" y2="0.8" width="0.127" layer="21"/>
-<wire x1="9.24" y1="0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
-<wire x1="9.24" y1="-0.8" x2="9.24" y2="-1" width="0.127" layer="21"/>
-<wire x1="3.27" y1="1.27" x2="3.27" y2="0" width="0.127" layer="21"/>
-<wire x1="3.27" y1="0" x2="3.27" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="3.27" y1="1.27" x2="7.46" y2="1.27" width="0.127" layer="21"/>
-<wire x1="3.27" y1="-1.27" x2="7.46" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="7.47" y1="1.27" x2="7.47" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="7.5" y1="1" x2="9.24" y2="1" width="0.127" layer="21"/>
-<wire x1="7.5" y1="-1" x2="9.24" y2="-1" width="0.127" layer="21"/>
-<wire x1="10.64" y1="0.8" x2="9.24" y2="0.8" width="0.127" layer="21"/>
-<wire x1="10.64" y1="-0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="PIN">
-<pin name="1" x="-5.08" y="0" length="middle"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="PISTON_RA_TH">
-<gates>
-<gate name="PIN" symbol="PIN" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="PISTON_RA_TH">
-<connects>
-<connect gate="PIN" pin="1" pad="1"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -955,76 +856,88 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </class>
 </classes>
 <parts>
-<part name="CONN2" library="harwin" deviceset="M80-6" device="V"/>
-<part name="LL" library="testpad" deviceset="TP" device="TP20R"/>
-<part name="LA" library="testpad" deviceset="TP" device="TP20R"/>
-<part name="RA" library="testpad" deviceset="TP" device="TP20R"/>
-<part name="RL" library="testpad" deviceset="TP" device="TP20R"/>
 <part name="U$1" library="pins" deviceset="PISTON_RA_TH" device=""/>
 <part name="U$2" library="pins" deviceset="PISTON_RA_TH" device=""/>
 <part name="U$3" library="pins" deviceset="PISTON_RA_TH" device=""/>
 <part name="U$4" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="LL" library="testpad" deviceset="TPSQ" device="PAD1-20"/>
+<part name="RL" library="testpad" deviceset="TPSQ" device="PAD1-20"/>
+<part name="LA" library="testpad" deviceset="TPSQ" device="PAD1-20"/>
+<part name="RA" library="testpad" deviceset="TPSQ" device="PAD1-20"/>
+<part name="U$5" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="U$6" library="pins" deviceset="PISTON_RA_TH" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="CONN2" gate="CONN" x="22.86" y="40.64"/>
-<instance part="LL" gate="G$1" x="38.1" y="45.72"/>
-<instance part="LA" gate="G$1" x="10.16" y="45.72"/>
-<instance part="RA" gate="G$1" x="10.16" y="35.56" rot="R180"/>
-<instance part="RL" gate="G$1" x="38.1" y="35.56" rot="R180"/>
 <instance part="U$1" gate="PIN" x="17.78" y="66.04"/>
 <instance part="U$2" gate="PIN" x="17.78" y="68.58"/>
 <instance part="U$3" gate="PIN" x="17.78" y="63.5"/>
 <instance part="U$4" gate="PIN" x="17.78" y="60.96"/>
+<instance part="LL" gate="G$1" x="2.54" y="68.58" rot="R270"/>
+<instance part="RL" gate="G$1" x="2.54" y="66.04" rot="R270"/>
+<instance part="LA" gate="G$1" x="2.54" y="63.5" rot="R270"/>
+<instance part="RA" gate="G$1" x="2.54" y="60.96" rot="R270"/>
+<instance part="U$5" gate="PIN" x="17.78" y="76.2"/>
+<instance part="U$6" gate="PIN" x="17.78" y="53.34"/>
 </instances>
 <busses>
 </busses>
 <nets>
-<net name="LA" class="0">
+<net name="N$1" class="0">
 <segment>
-<pinref part="CONN2" gate="CONN" pin="1"/>
-<junction x="12.7" y="43.18"/>
-<label x="5.08" y="43.18" size="1.27" layer="95"/>
-<pinref part="LA" gate="G$1" pin="TP"/>
-<wire x1="12.7" y1="43.18" x2="10.16" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="43.18" x2="7.62" y2="43.18" width="0.1524" layer="91"/>
-<junction x="10.16" y="43.18"/>
-</segment>
-</net>
-<net name="RL" class="0">
-<segment>
-<label x="40.64" y="38.1" size="1.27" layer="95"/>
-<pinref part="RL" gate="G$1" pin="TP"/>
-<wire x1="38.1" y1="38.1" x2="40.64" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="CONN2" gate="CONN" pin="4"/>
-<wire x1="38.1" y1="38.1" x2="35.56" y2="38.1" width="0.1524" layer="91"/>
-<junction x="38.1" y="38.1"/>
-<junction x="35.56" y="38.1"/>
-</segment>
-</net>
-<net name="LL" class="0">
-<segment>
-<pinref part="CONN2" gate="CONN" pin="6"/>
-<wire x1="35.56" y1="43.18" x2="38.1" y2="43.18" width="0.1524" layer="91"/>
-<junction x="35.56" y="43.18"/>
-<label x="40.64" y="43.18" size="1.27" layer="95"/>
+<pinref part="U$2" gate="PIN" pin="1"/>
 <pinref part="LL" gate="G$1" pin="TP"/>
-<wire x1="38.1" y1="43.18" x2="40.64" y2="43.18" width="0.1524" layer="91"/>
-<junction x="38.1" y="43.18"/>
+<wire x1="12.7" y1="68.58" x2="5.08" y2="68.58" width="0.1524" layer="91"/>
+<junction x="5.08" y="68.58"/>
+<junction x="12.7" y="68.58"/>
+<label x="7.62" y="68.58" size="1.27" layer="95"/>
 </segment>
 </net>
-<net name="RA" class="0">
+<net name="N$2" class="0">
 <segment>
-<wire x1="10.16" y1="38.1" x2="7.62" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="PIN" pin="1"/>
+<pinref part="RL" gate="G$1" pin="TP"/>
+<wire x1="12.7" y1="66.04" x2="5.08" y2="66.04" width="0.1524" layer="91"/>
+<junction x="5.08" y="66.04"/>
+<junction x="12.7" y="66.04"/>
+<label x="7.62" y="66.04" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="U$3" gate="PIN" pin="1"/>
+<pinref part="LA" gate="G$1" pin="TP"/>
+<wire x1="12.7" y1="63.5" x2="5.08" y2="63.5" width="0.1524" layer="91"/>
+<junction x="5.08" y="63.5"/>
+<junction x="12.7" y="63.5"/>
+<label x="7.62" y="63.5" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="U$4" gate="PIN" pin="1"/>
 <pinref part="RA" gate="G$1" pin="TP"/>
-<label x="5.08" y="38.1" size="1.27" layer="95"/>
-<pinref part="CONN2" gate="CONN" pin="3"/>
-<wire x1="10.16" y1="38.1" x2="12.7" y2="38.1" width="0.1524" layer="91"/>
-<junction x="10.16" y="38.1"/>
-<junction x="12.7" y="38.1"/>
+<wire x1="12.7" y1="60.96" x2="5.08" y2="60.96" width="0.1524" layer="91"/>
+<junction x="5.08" y="60.96"/>
+<junction x="12.7" y="60.96"/>
+<label x="7.62" y="60.96" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="BATT" class="0">
+<segment>
+<pinref part="U$5" gate="PIN" pin="1"/>
+<wire x1="12.7" y1="76.2" x2="10.16" y2="76.2" width="0.1524" layer="91"/>
+<junction x="12.7" y="76.2"/>
+<label x="7.62" y="76.2" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="PIN" pin="1"/>
+<wire x1="12.7" y1="53.34" x2="10.16" y2="53.34" width="0.1524" layer="91"/>
+<junction x="12.7" y="53.34"/>
+<label x="7.62" y="53.34" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
