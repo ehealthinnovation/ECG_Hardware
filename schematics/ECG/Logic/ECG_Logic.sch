@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -10573,16 +10573,16 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </net>
 <net name="OSC_SW_VCC" class="0">
 <segment>
-<pinref part="IC4" gate="G$1" pin="SCL"/>
-<wire x1="205.74" y1="78.74" x2="203.2" y2="78.74" width="0.1524" layer="91"/>
-<junction x="205.74" y="78.74"/>
-<label x="190.5" y="78.74" size="1.27" layer="95"/>
-</segment>
-<segment>
 <pinref part="IC10" gate="FSA4157" pin="S"/>
 <junction x="81.28" y="165.1"/>
 <wire x1="81.28" y1="165.1" x2="83.82" y2="165.1" width="0.1524" layer="91"/>
 <label x="83.82" y="165.1" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC4" gate="G$1" pin="SDA"/>
+<wire x1="205.74" y1="76.2" x2="203.2" y2="76.2" width="0.1524" layer="91"/>
+<junction x="205.74" y="76.2"/>
+<label x="190.5" y="76.2" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="OSC_VCC" class="0">
@@ -10611,6 +10611,12 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="182.88" y1="187.96" x2="180.34" y2="187.96" width="0.1524" layer="91"/>
 <junction x="182.88" y="187.96"/>
 <label x="165.1" y="187.96" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC4" gate="G$1" pin="SCL"/>
+<wire x1="205.74" y1="78.74" x2="203.2" y2="78.74" width="0.1524" layer="91"/>
+<junction x="205.74" y="78.74"/>
+<label x="190.5" y="78.74" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
