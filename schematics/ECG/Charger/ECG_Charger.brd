@@ -121,9 +121,9 @@
 <board>
 <plain>
 <wire x1="0" y1="0" x2="11.6332" y2="0" width="0" layer="20"/>
-<wire x1="11.6332" y1="0" x2="11.6332" y2="26.67" width="0" layer="20"/>
-<wire x1="11.6332" y1="26.67" x2="0" y2="26.67" width="0" layer="20"/>
-<wire x1="0" y1="26.67" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="11.6332" y1="0" x2="11.6332" y2="27.686" width="0" layer="20"/>
+<wire x1="11.6332" y1="27.686" x2="0" y2="27.686" width="0" layer="20"/>
+<wire x1="0" y1="27.686" x2="0" y2="0" width="0" layer="20"/>
 </plain>
 <libraries>
 <library name="KomodoOpenLab">
@@ -1520,8 +1520,8 @@ design rules under a new name.</description>
 <contactref element="R2" pad="1"/>
 <contactref element="U$2" pad="1"/>
 <polygon width="0.1778" layer="16">
-<vertex x="0.127" y="26.543"/>
-<vertex x="11.6332" y="26.543"/>
+<vertex x="0.127" y="27.686"/>
+<vertex x="11.6332" y="27.686"/>
 <vertex x="11.6332" y="0.127"/>
 <vertex x="0.127" y="0.127"/>
 </polygon>

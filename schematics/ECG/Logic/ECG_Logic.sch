@@ -9175,13 +9175,13 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="PROG" library="tagconnect" deviceset="TC2030" device="-MCP-NL"/>
 <part name="TP1" library="testpad" deviceset="TPS" device="TP08SQ"/>
 <part name="TP2" library="testpad" deviceset="TPS" device="TP06R" value="TPSTP06R"/>
-<part name="U$1" library="pins" deviceset="TARGET_RA" device=""/>
-<part name="U$2" library="pins" deviceset="TARGET_RA" device=""/>
-<part name="U$3" library="pins" deviceset="TARGET_RA" device=""/>
-<part name="U$4" library="pins" deviceset="TARGET_RA" device=""/>
-<part name="U$5" library="pins" deviceset="TARGET_RA" device=""/>
-<part name="U$6" library="pins" deviceset="TARGET_RA" device=""/>
-<part name="U$7" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P1" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P2" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P3" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P4" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P5" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P6" library="pins" deviceset="TARGET_RA" device=""/>
+<part name="P7" library="pins" deviceset="TARGET_RA" device=""/>
 <part name="X3" library="ecs" deviceset="ECS-40-20-4VX" device=""/>
 <part name="C1" library="rcl" deviceset="C-US" device="C0201" value="20pF"/>
 <part name="C2" library="rcl" deviceset="C-US" device="C0201" value="20pF"/>
@@ -9287,13 +9287,13 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <instance part="PROG" gate="G$1" x="63.5" y="134.62"/>
 <instance part="TP1" gate="G$1" x="96.52" y="119.38"/>
 <instance part="TP2" gate="G$1" x="119.38" y="43.18"/>
-<instance part="U$1" gate="PIN" x="187.96" y="200.66"/>
-<instance part="U$2" gate="PIN" x="187.96" y="198.12"/>
-<instance part="U$3" gate="PIN" x="187.96" y="203.2"/>
-<instance part="U$4" gate="PIN" x="187.96" y="205.74"/>
-<instance part="U$5" gate="PIN" x="187.96" y="195.58"/>
-<instance part="U$6" gate="PIN" x="187.96" y="193.04"/>
-<instance part="U$7" gate="PIN" x="187.96" y="187.96"/>
+<instance part="P1" gate="PIN" x="187.96" y="200.66"/>
+<instance part="P2" gate="PIN" x="187.96" y="198.12"/>
+<instance part="P3" gate="PIN" x="187.96" y="203.2"/>
+<instance part="P4" gate="PIN" x="187.96" y="205.74"/>
+<instance part="P5" gate="PIN" x="187.96" y="195.58"/>
+<instance part="P6" gate="PIN" x="187.96" y="193.04"/>
+<instance part="P7" gate="PIN" x="187.96" y="187.96"/>
 <instance part="X3" gate="XTAL" x="134.62" y="15.24"/>
 <instance part="C1" gate="G$1" x="127" y="12.7"/>
 <instance part="C2" gate="G$1" x="142.24" y="12.7"/>
@@ -9529,7 +9529,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <label x="40.64" y="142.24" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$5" gate="PIN" pin="1"/>
+<pinref part="P5" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="195.58" x2="180.34" y2="195.58" width="0.1524" layer="91"/>
 <junction x="182.88" y="195.58"/>
 <label x="175.26" y="195.58" size="1.27" layer="95"/>
@@ -9572,7 +9572,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="TVS4" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="U$3" gate="PIN" pin="1"/>
+<pinref part="P3" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="203.2" x2="180.34" y2="203.2" width="0.1524" layer="91"/>
 <junction x="182.88" y="203.2"/>
 <label x="175.26" y="203.2" size="1.27" layer="95"/>
@@ -9587,7 +9587,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="TVS2" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="U$1" gate="PIN" pin="1"/>
+<pinref part="P1" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="200.66" x2="180.34" y2="200.66" width="0.1524" layer="91"/>
 <junction x="182.88" y="200.66"/>
 <label x="175.26" y="200.66" size="1.27" layer="95"/>
@@ -9602,7 +9602,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="TVS1" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="U$4" gate="PIN" pin="1"/>
+<pinref part="P4" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="205.74" x2="180.34" y2="205.74" width="0.1524" layer="91"/>
 <junction x="182.88" y="205.74"/>
 <label x="175.26" y="205.74" size="1.27" layer="95"/>
@@ -10179,7 +10179,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <pinref part="TVS3" gate="Z" pin="C"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="PIN" pin="1"/>
+<pinref part="P2" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="198.12" x2="180.34" y2="198.12" width="0.1524" layer="91"/>
 <junction x="182.88" y="198.12"/>
 <label x="175.26" y="198.12" size="1.27" layer="95"/>
@@ -10247,7 +10247,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <label x="139.7" y="180.34" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$6" gate="PIN" pin="1"/>
+<pinref part="P6" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="193.04" x2="180.34" y2="193.04" width="0.1524" layer="91"/>
 <junction x="182.88" y="193.04"/>
 <label x="175.26" y="193.04" size="1.27" layer="95"/>
@@ -10483,7 +10483,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </net>
 <net name="BOARD_DETECT" class="0">
 <segment>
-<pinref part="U$7" gate="PIN" pin="1"/>
+<pinref part="P7" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="187.96" x2="180.34" y2="187.96" width="0.1524" layer="91"/>
 <junction x="182.88" y="187.96"/>
 <label x="165.1" y="187.96" size="1.27" layer="95"/>

@@ -2348,13 +2348,13 @@ design rules under a new name.</description>
 <element name="TP2" library="testpad" package="TP06R" value="TPSTP06R" x="14.4526" y="11.938">
 <attribute name="TP_SIGNAL_NAME" value="" x="14.4526" y="11.938" size="1.778" layer="27" display="off"/>
 </element>
-<element name="U$1" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="13.462"/>
-<element name="U$2" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="10.922"/>
-<element name="U$3" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="8.382"/>
-<element name="U$4" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="16.002"/>
-<element name="U$5" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="4.445"/>
-<element name="U$6" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="1.905"/>
-<element name="U$7" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="25.781"/>
+<element name="P1" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="13.462"/>
+<element name="P2" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="10.922"/>
+<element name="P3" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="8.382"/>
+<element name="P4" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="16.002"/>
+<element name="P5" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="4.445"/>
+<element name="P6" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="1.905"/>
+<element name="P7" library="pins" package="TARGET_RA" value="TARGET_RA" x="23.9268" y="25.781"/>
 <element name="X3" library="ecs" package="ECS-40-20-4VX" value="ECS-40-20-4VX" x="14.1224" y="2.5654"/>
 <element name="C1" library="rcl" package="C0201" value="20pF" x="12.4968" y="6.2103" rot="R90"/>
 <element name="C2" library="rcl" package="C0201" value="20pF" x="18.0975" y="5.8293" rot="R90"/>
@@ -2529,7 +2529,7 @@ design rules under a new name.</description>
 <wire x1="8.4836" y1="15.8028" x2="8.9886" y2="15.8028" width="0.1778" layer="1"/>
 <wire x1="8.9886" y1="15.8028" x2="9.0678" y2="15.7236" width="0.1778" layer="1"/>
 <wire x1="8.4836" y1="15.8028" x2="8.0558" y2="15.8028" width="0.1778" layer="1"/>
-<contactref element="U$5" pad="1"/>
+<contactref element="P5" pad="1"/>
 <via x="27.94" y="14.7066" extent="1-16" drill="0.254"/>
 <via x="2.7178" y="13.5382" extent="1-16" drill="0.9"/>
 <wire x1="8.6106" y1="22.5298" x2="7.9248" y2="22.5298" width="0.1778" layer="1"/>
@@ -2568,7 +2568,7 @@ design rules under a new name.</description>
 <signal name="RA">
 <contactref element="R1" pad="2"/>
 <contactref element="TVS4" pad="2"/>
-<contactref element="U$3" pad="1"/>
+<contactref element="P3" pad="1"/>
 <wire x1="21.494" y1="8.4126" x2="23.8962" y2="8.4126" width="0.1778" layer="1"/>
 <wire x1="23.8962" y1="8.4126" x2="23.9268" y2="8.382" width="0.1778" layer="1"/>
 <wire x1="25.0008" y1="7.0866" x2="25.0008" y2="7.308" width="0.1778" layer="1"/>
@@ -2577,7 +2577,7 @@ design rules under a new name.</description>
 <signal name="LL">
 <contactref element="R2" pad="2"/>
 <contactref element="TVS2" pad="2"/>
-<contactref element="U$1" pad="1"/>
+<contactref element="P1" pad="1"/>
 <wire x1="21.5068" y1="9.7282" x2="21.494" y2="9.741" width="0.1778" layer="1"/>
 <wire x1="21.6916" y1="9.7282" x2="22.7838" y2="10.8204" width="0.1778" layer="1"/>
 <wire x1="21.5068" y1="9.7282" x2="21.6916" y2="9.7282" width="0.1778" layer="1"/>
@@ -2592,7 +2592,7 @@ design rules under a new name.</description>
 <signal name="RL">
 <contactref element="R4" pad="2"/>
 <contactref element="TVS1" pad="2"/>
-<contactref element="U$4" pad="1"/>
+<contactref element="P4" pad="1"/>
 <wire x1="22.4028" y1="11.4156" x2="21.4686" y2="10.4814" width="0.1778" layer="1"/>
 <wire x1="25.0008" y1="14.7066" x2="25.0008" y2="14.928" width="0.1778" layer="1"/>
 <wire x1="22.4028" y1="11.4156" x2="22.4028" y2="14.1986" width="0.1778" layer="1"/>
@@ -3156,7 +3156,7 @@ design rules under a new name.</description>
 <signal name="LA">
 <contactref element="R12" pad="2"/>
 <contactref element="TVS3" pad="2"/>
-<contactref element="U$2" pad="1"/>
+<contactref element="P2" pad="1"/>
 <wire x1="21.494" y1="9.1022" x2="22.4118" y2="9.1022" width="0.1778" layer="1"/>
 <wire x1="22.4118" y1="9.1022" x2="22.9616" y2="9.652" width="0.1778" layer="1"/>
 <wire x1="22.9616" y1="9.652" x2="23.3426" y2="9.652" width="0.1778" layer="1"/>
@@ -3224,7 +3224,7 @@ design rules under a new name.</description>
 <wire x1="4.0426" y1="17.7096" x2="4.1726" y2="17.8396" width="0.1778" layer="1"/>
 <wire x1="4.0426" y1="17.0434" x2="4.0426" y2="16.2346" width="0.1778" layer="1"/>
 <via x="1.3716" y="14.9352" extent="1-16" drill="0.254"/>
-<contactref element="U$6" pad="1"/>
+<contactref element="P6" pad="1"/>
 <wire x1="1.3716" y1="14.9352" x2="1.3716" y2="13.1572" width="0.1778" layer="16"/>
 <wire x1="1.3716" y1="13.1572" x2="2.1082" y2="12.4206" width="0.1778" layer="16"/>
 <wire x1="2.1082" y1="12.4206" x2="2.1082" y2="10.0076" width="0.1778" layer="16"/>
@@ -3457,7 +3457,7 @@ design rules under a new name.</description>
 <contactref element="IC4" pad="3"/>
 </signal>
 <signal name="BOARD_DETECT">
-<contactref element="U$7" pad="1"/>
+<contactref element="P7" pad="1"/>
 <contactref element="IC4" pad="2"/>
 <wire x1="9.7498" y1="20.7814" x2="9.1906" y2="20.7814" width="0.1778" layer="1"/>
 <wire x1="9.1906" y1="20.7814" x2="8.6614" y2="21.3106" width="0.1778" layer="1"/>
