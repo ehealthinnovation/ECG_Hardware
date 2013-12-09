@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="6.4">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -10232,21 +10232,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </net>
 <net name="BATT" class="0">
 <segment>
-<pinref part="IC5" gate="FSA4157" pin="B1"/>
-<junction x="76.2" y="205.74"/>
-<wire x1="76.2" y1="205.74" x2="71.12" y2="205.74" width="0.1524" layer="91"/>
-<label x="68.58" y="205.74" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC3" gate="IC" pin="VIN"/>
-<junction x="152.4" y="180.34"/>
-<wire x1="152.4" y1="180.34" x2="147.32" y2="180.34" width="0.1524" layer="91"/>
-<pinref part="C4" gate="G$1" pin="1"/>
-<wire x1="147.32" y1="180.34" x2="144.78" y2="180.34" width="0.1524" layer="91"/>
-<junction x="147.32" y="180.34"/>
-<label x="139.7" y="180.34" size="1.27" layer="95"/>
-</segment>
-<segment>
 <pinref part="P6" gate="PIN" pin="1"/>
 <wire x1="182.88" y1="193.04" x2="180.34" y2="193.04" width="0.1524" layer="91"/>
 <junction x="182.88" y="193.04"/>
@@ -10481,20 +10466,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <label x="190.5" y="76.2" size="1.27" layer="95"/>
 </segment>
 </net>
-<net name="BOARD_DETECT" class="0">
-<segment>
-<pinref part="P7" gate="PIN" pin="1"/>
-<wire x1="182.88" y1="187.96" x2="180.34" y2="187.96" width="0.1524" layer="91"/>
-<junction x="182.88" y="187.96"/>
-<label x="165.1" y="187.96" size="1.27" layer="95"/>
-</segment>
-<segment>
-<pinref part="IC4" gate="G$1" pin="SCL"/>
-<wire x1="205.74" y1="78.74" x2="203.2" y2="78.74" width="0.1524" layer="91"/>
-<junction x="205.74" y="78.74"/>
-<label x="190.5" y="78.74" size="1.27" layer="95"/>
-</segment>
-</net>
 <net name="XTAL1" class="0">
 <segment>
 <pinref part="IC1" gate="IC" pin="XTAL1"/>
@@ -10523,6 +10494,29 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="142.24" y="15.24"/>
 <wire x1="142.24" y1="15.24" x2="144.78" y2="15.24" width="0.1524" layer="91"/>
 <label x="144.78" y="15.24" size="1.27" layer="95"/>
+</segment>
+</net>
+<net name="BATT_DETECT" class="0">
+<segment>
+<pinref part="IC3" gate="IC" pin="VIN"/>
+<junction x="152.4" y="180.34"/>
+<wire x1="152.4" y1="180.34" x2="147.32" y2="180.34" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="1"/>
+<wire x1="147.32" y1="180.34" x2="144.78" y2="180.34" width="0.1524" layer="91"/>
+<junction x="147.32" y="180.34"/>
+<label x="134.62" y="180.34" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC5" gate="FSA4157" pin="B1"/>
+<junction x="76.2" y="205.74"/>
+<wire x1="76.2" y1="205.74" x2="71.12" y2="205.74" width="0.1524" layer="91"/>
+<label x="60.96" y="205.74" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="P7" gate="PIN" pin="1"/>
+<wire x1="182.88" y1="187.96" x2="180.34" y2="187.96" width="0.1524" layer="91"/>
+<junction x="182.88" y="187.96"/>
+<label x="167.64" y="187.96" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
