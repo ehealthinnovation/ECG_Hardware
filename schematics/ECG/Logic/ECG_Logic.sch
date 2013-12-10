@@ -9185,7 +9185,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="X3" library="ecs" deviceset="ECS-40-20-4VX" device=""/>
 <part name="C1" library="rcl" deviceset="C-US" device="C0201" value="20pF"/>
 <part name="C2" library="rcl" deviceset="C-US" device="C0201" value="20pF"/>
-<part name="C27" library="rcl" deviceset="C-US" device="C0805"/>
+<part name="C27" library="rcl" deviceset="C-US" device="C0805" value="47uF"/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
@@ -9193,8 +9193,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <plain>
 <text x="182.88" y="40.64" size="1.27" layer="95">32MHz</text>
 <text x="236.22" y="40.64" size="1.27" layer="95">32.768KHz</text>
-<text x="2.54" y="228.6" size="1.778" layer="91">add 47uF cap to batt+</text>
-<text x="2.54" y="226.06" size="1.778" layer="91">add batt/gnd pads</text>
 </plain>
 <instances>
 <instance part="IC1" gate="IC" x="71.12" y="58.42"/>
