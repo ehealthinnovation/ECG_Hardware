@@ -1520,10 +1520,10 @@ design rules under a new name.</description>
 <contactref element="R2" pad="1"/>
 <contactref element="U$2" pad="1"/>
 <polygon width="0.1778" layer="16">
-<vertex x="0.127" y="27.686"/>
+<vertex x="0" y="27.686"/>
 <vertex x="11.6332" y="27.686"/>
 <vertex x="11.6332" y="0.127"/>
-<vertex x="0.127" y="0.127"/>
+<vertex x="0" y="0"/>
 </polygon>
 <via x="9.6774" y="9.0424" extent="1-16" drill="0.381"/>
 <via x="4.953" y="19.431" extent="1-16" drill="0.381"/>
