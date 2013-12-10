@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -9185,6 +9185,8 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <part name="X3" library="ecs" deviceset="ECS-40-20-4VX" device=""/>
 <part name="C1" library="rcl" deviceset="C-US" device="C0201" value="20pF"/>
 <part name="C2" library="rcl" deviceset="C-US" device="C0201" value="20pF"/>
+<part name="C27" library="rcl" deviceset="C-US" device="C0805"/>
+<part name="GND17" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9297,6 +9299,8 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <instance part="X3" gate="XTAL" x="134.62" y="15.24"/>
 <instance part="C1" gate="G$1" x="127" y="12.7"/>
 <instance part="C2" gate="G$1" x="142.24" y="12.7"/>
+<instance part="C27" gate="G$1" x="182.88" y="185.42"/>
+<instance part="GND17" gate="1" x="182.88" y="177.8" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -9533,6 +9537,11 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="182.88" y1="195.58" x2="180.34" y2="195.58" width="0.1524" layer="91"/>
 <junction x="182.88" y="195.58"/>
 <label x="175.26" y="195.58" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="C27" gate="G$1" pin="2"/>
+<pinref part="GND17" gate="1" pin="GND"/>
+<junction x="182.88" y="180.34"/>
 </segment>
 </net>
 <net name="IN1" class="0">
@@ -10517,6 +10526,7 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <wire x1="182.88" y1="187.96" x2="180.34" y2="187.96" width="0.1524" layer="91"/>
 <junction x="182.88" y="187.96"/>
 <label x="167.64" y="187.96" size="1.27" layer="95"/>
+<pinref part="C27" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>
