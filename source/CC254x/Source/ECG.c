@@ -252,7 +252,7 @@ void ADS1293_ReadDataStream();
 
 static char *bdAddr2Str ( uint8 *pAddr );
 
-void turnOnLED(uint8 led);
+void turnOnLED(uint8 led, uint16 duration);
 
 
 /*********************************************************************
@@ -723,7 +723,7 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
         #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
       }
       
-      turnOnLED(GREEN_LED);
+      turnOnLED(GREEN_LED, 2000);
       
       osal_start_timerEx( simpleBLEPeripheral_TaskID, SBP_LED_EVT, SBP_LED_EVT_PERIOD );
       break;
@@ -1074,7 +1074,7 @@ void ADS1293_ReadDataStream()
 }
 
 
-void turnOnLED(uint8 led)
+void turnOnLED(uint8 led, uint16 duration)
 {
   activeLED = led;
   
