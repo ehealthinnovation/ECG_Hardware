@@ -5920,6 +5920,23 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <text x="-1.778" y="-1.778" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
 <text x="3.048" y="-1.778" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
 </package>
+<package name="USB_MICROB_FEMALE_RA_SMT">
+<circle x="-1.3" y="4.04" radius="0.22360625" width="0.4064" layer="21"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="-2.41" width="0.127" layer="21"/>
+<wire x1="5.08" y1="-2.41" x2="-5.08" y2="-2.41" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="2.54" x2="-3.81" y2="2.54" width="0.127" layer="21"/>
+<wire x1="3.81" y1="2.54" x2="5.08" y2="2.54" width="0.127" layer="21"/>
+<wire x1="-5.1" y1="2.54" x2="-5.1" y2="-2.41" width="0.127" layer="21"/>
+<smd name="P$1" x="-1.3" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
+<smd name="P$2" x="-0.65" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
+<smd name="P$3" x="0" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
+<smd name="P$4" x="0.65" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
+<smd name="P$5" x="1.3" y="2.54" dx="1.4" dy="0.4" layer="1" rot="R90"/>
+<pad name="P$6" x="-2.45" y="2.54" drill="0.8"/>
+<pad name="P$7" x="2.45" y="2.54" drill="0.8"/>
+<pad name="P$8" x="-3.6" y="-0.36" drill="1.4"/>
+<pad name="P$9" x="3.6" y="-0.36" drill="1.4"/>
+</package>
 </packages>
 <symbols>
 <symbol name="MCP73832">
@@ -5933,6 +5950,17 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="10.16" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
 <wire x1="-7.62" y1="-5.08" x2="-7.62" y2="5.08" width="0.254" layer="94"/>
 <text x="-7.62" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+<symbol name="USBMICROBRA">
+<wire x1="0" y1="-2.54" x2="0" y2="12.7" width="0.254" layer="94"/>
+<wire x1="0" y1="12.7" x2="7.62" y2="12.7" width="0.254" layer="94"/>
+<wire x1="7.62" y1="12.7" x2="7.62" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<pin name="D+" x="-5.08" y="5.08" visible="pin" length="middle"/>
+<pin name="D-" x="-5.08" y="7.62" visible="pin" length="middle"/>
+<pin name="GND" x="-5.08" y="0" visible="pin" length="middle"/>
+<pin name="ID" x="-5.08" y="2.54" visible="pin" length="middle"/>
+<pin name="VCC" x="-5.08" y="10.16" visible="pin" length="middle"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -5951,6 +5979,28 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </connects>
 <technologies>
 <technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="USB_MICROC" prefix="J">
+<gates>
+<gate name="G$1" symbol="USBMICROBRA" x="-2.54" y="0"/>
+</gates>
+<devices>
+<device name="" package="USB_MICROB_FEMALE_RA_SMT">
+<connects>
+<connect gate="G$1" pin="D+" pad="P$3"/>
+<connect gate="G$1" pin="D-" pad="P$2"/>
+<connect gate="G$1" pin="GND" pad="P$5"/>
+<connect gate="G$1" pin="ID" pad="P$4"/>
+<connect gate="G$1" pin="VCC" pad="P$1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DIGIKEY" value="WM1399CT-ND" constant="no"/>
+<attribute name="PN" value="ZX62D-B-5PA8" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -6008,96 +6058,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <connects>
 <connect gate="LED" pin="A" pad="A"/>
 <connect gate="LED" pin="C" pad="C"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="usb_con-update">
-<packages>
-<package name="MOLEX-47364-0001">
-<wire x1="-1.45" y1="-4.15" x2="-1.45" y2="4.15" width="0" layer="20"/>
-<wire x1="3.55" y1="3.8" x2="3.55" y2="-3.75" width="0.4064" layer="51"/>
-<wire x1="3.55" y1="-3.75" x2="-1.35" y2="-3.75" width="0.4064" layer="51"/>
-<wire x1="-1.35" y1="-3.75" x2="-2.15" y2="-4.5" width="0.4064" layer="51"/>
-<wire x1="3.55" y1="3.8" x2="-1.4" y2="3.8" width="0.4064" layer="51"/>
-<wire x1="-1.4" y1="3.8" x2="-2.15" y2="4.45" width="0.4064" layer="51"/>
-<wire x1="-2.15" y1="4.45" x2="-2.15" y2="-4.5" width="0.4064" layer="51"/>
-<wire x1="-2.15" y1="-4.5" x2="-2.15" y2="-4.55" width="0.4064" layer="51"/>
-<smd name="3" x="2.8" y="0" dx="0.45" dy="1.7" layer="1" rot="R90"/>
-<smd name="2" x="2.8" y="0.65" dx="0.45" dy="1.7" layer="1" rot="R90"/>
-<smd name="4" x="2.8" y="-0.65" dx="0.45" dy="1.7" layer="1" rot="R90"/>
-<smd name="5" x="2.8" y="-1.3" dx="0.45" dy="1.7" layer="1" rot="R90"/>
-<smd name="1" x="2.8" y="1.3" dx="0.45" dy="1.7" layer="1" rot="R90"/>
-<smd name="GND2" x="2.3" y="2.5" dx="2.1" dy="1.475" layer="1"/>
-<smd name="GND3" x="2.3" y="-2.5" dx="2.1" dy="1.475" layer="1"/>
-<smd name="GND1" x="0" y="2.95" dx="2.375" dy="1.9" layer="1" rot="R90"/>
-<smd name="GND4" x="0" y="-2.95" dx="2.375" dy="1.9" layer="1" rot="R90"/>
-<rectangle x1="-1.05" y1="0.2" x2="1.05" y2="1.35" layer="29"/>
-<rectangle x1="-1.05" y1="-1.35" x2="1.05" y2="-0.2" layer="29"/>
-<rectangle x1="1.2" y1="-1.6" x2="1.85" y2="1.6" layer="41"/>
-</package>
-</packages>
-<symbols>
-<symbol name="MINI-USB">
-<wire x1="-2.54" y1="6.35" x2="-2.54" y2="-6.35" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="-6.35" x2="-1.27" y2="-7.62" width="0.254" layer="94" curve="90"/>
-<wire x1="-1.27" y1="-7.62" x2="0" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="0" y1="-7.62" x2="1.016" y2="-8.128" width="0.254" layer="94" curve="-53.130102"/>
-<wire x1="1.016" y1="-8.128" x2="2.54" y2="-8.89" width="0.254" layer="94" curve="53.130102"/>
-<wire x1="2.54" y1="-8.89" x2="5.08" y2="-8.89" width="0.254" layer="94"/>
-<wire x1="5.08" y1="-8.89" x2="6.35" y2="-7.62" width="0.254" layer="94" curve="90"/>
-<wire x1="6.35" y1="-7.62" x2="6.35" y2="7.62" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="6.35" x2="-1.27" y2="7.62" width="0.254" layer="94" curve="-90"/>
-<wire x1="-1.27" y1="7.62" x2="0" y2="7.62" width="0.254" layer="94"/>
-<wire x1="0" y1="7.62" x2="1.016" y2="8.128" width="0.254" layer="94" curve="53.130102"/>
-<wire x1="1.016" y1="8.128" x2="2.54" y2="8.89" width="0.254" layer="94" curve="-53.130102"/>
-<wire x1="2.54" y1="8.89" x2="5.08" y2="8.89" width="0.254" layer="94"/>
-<wire x1="5.08" y1="8.89" x2="6.35" y2="7.62" width="0.254" layer="94" curve="-90"/>
-<wire x1="0" y1="5.08" x2="0" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="0" y1="-5.08" x2="1.27" y2="-6.35" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-6.35" x2="3.81" y2="-6.35" width="0.254" layer="94"/>
-<wire x1="3.81" y1="-6.35" x2="3.81" y2="6.35" width="0.254" layer="94"/>
-<wire x1="3.81" y1="6.35" x2="1.27" y2="6.35" width="0.254" layer="94"/>
-<wire x1="1.27" y1="6.35" x2="0" y2="5.08" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="10.16" x2="7.62" y2="10.16" width="0.254" layer="94" style="shortdash"/>
-<wire x1="7.62" y1="10.16" x2="7.62" y2="-10.16" width="0.254" layer="94" style="shortdash"/>
-<wire x1="7.62" y1="-10.16" x2="-2.54" y2="-10.16" width="0.254" layer="94" style="shortdash"/>
-<text x="-2.54" y="11.43" size="1.778" layer="95" font="vector">&gt;NAME</text>
-<text x="10.16" y="-7.62" size="1.778" layer="96" font="vector" rot="R90">&gt;VALUE</text>
-<pin name="1" x="-5.08" y="5.08" visible="pin" direction="in"/>
-<pin name="2" x="-5.08" y="2.54" visible="pin" direction="in"/>
-<pin name="3" x="-5.08" y="0" visible="pin" direction="in"/>
-<pin name="4" x="-5.08" y="-2.54" visible="pin" direction="in"/>
-<pin name="5" x="-5.08" y="-5.08" visible="pin" direction="in"/>
-<pin name="GND1" x="-1.27" y="-12.7" visible="off" length="short" rot="R90"/>
-<pin name="GND2" x="1.27" y="-12.7" visible="off" length="short" rot="R90"/>
-<pin name="GND3" x="3.81" y="-12.7" visible="off" length="short" rot="R90"/>
-<pin name="GND4" x="6.35" y="-12.7" visible="off" length="short" rot="R90"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="MOLEX-47346-0001" prefix="USB">
-<description>MICRO USB B, BOTTOM MOUNT</description>
-<gates>
-<gate name="G$1" symbol="MINI-USB" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="MOLEX-47364-0001">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
-<connect gate="G$1" pin="GND1" pad="GND1"/>
-<connect gate="G$1" pin="GND2" pad="GND2"/>
-<connect gate="G$1" pin="GND3" pad="GND3"/>
-<connect gate="G$1" pin="GND4" pad="GND4"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -6217,13 +6177,13 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="LED1" library="LITEON" deviceset="LED_SMT_0805" device=""/>
 <part name="R1" library="rcl" deviceset="R-US_" device="R0805" value="470"/>
-<part name="USBCONN" library="usb_con-update" deviceset="MOLEX-47346-0001" device=""/>
 <part name="FUSE" library="bourns-fuse" deviceset="FUSE-MF_SERIES" device=""/>
 <part name="C2" library="rcl" deviceset="C-US" device="C0805" value="4.7uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="U$1" library="pins" deviceset="PISTON_RA_TH" device=""/>
 <part name="U$2" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="J1" library="KomodoOpenLab" deviceset="USB_MICROC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6239,13 +6199,13 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="GND19" gate="1" x="193.04" y="119.38"/>
 <instance part="LED1" gate="LED" x="139.7" y="121.92" rot="MR0"/>
 <instance part="R1" gate="G$1" x="139.7" y="111.76" rot="R90"/>
-<instance part="USBCONN" gate="G$1" x="81.28" y="129.54" rot="R180"/>
 <instance part="FUSE" gate="FUSE" x="109.22" y="124.46"/>
 <instance part="C2" gate="G$1" x="198.12" y="121.92"/>
 <instance part="GND1" gate="1" x="198.12" y="114.3"/>
 <instance part="GND3" gate="1" x="147.32" y="106.68"/>
-<instance part="U$1" gate="PIN" x="88.9" y="96.52"/>
-<instance part="U$2" gate="PIN" x="88.9" y="99.06"/>
+<instance part="U$1" gate="PIN" x="88.9" y="144.78"/>
+<instance part="U$2" gate="PIN" x="88.9" y="147.32"/>
+<instance part="J1" gate="G$1" x="81.28" y="134.62" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -6265,9 +6225,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </segment>
 <segment>
 <wire x1="86.36" y1="134.62" x2="88.9" y2="134.62" width="0.1524" layer="91"/>
-<junction x="86.36" y="134.62"/>
-<pinref part="USBCONN" gate="G$1" pin="5"/>
 <label x="88.9" y="134.62" size="1.27" layer="95"/>
+<pinref part="J1" gate="G$1" pin="GND"/>
+<junction x="86.36" y="134.62"/>
 </segment>
 <segment>
 <pinref part="C2" gate="G$1" pin="2"/>
@@ -6281,9 +6241,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </segment>
 <segment>
 <pinref part="U$2" gate="PIN" pin="1"/>
-<wire x1="83.82" y1="99.06" x2="81.28" y2="99.06" width="0.1524" layer="91"/>
-<junction x="83.82" y="99.06"/>
-<label x="78.74" y="99.06" size="1.27" layer="95"/>
+<wire x1="83.82" y1="147.32" x2="81.28" y2="147.32" width="0.1524" layer="91"/>
+<junction x="83.82" y="147.32"/>
+<label x="78.74" y="147.32" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="STAT" class="0">
@@ -6336,11 +6296,11 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <net name="VUSB_5V" class="0">
 <segment>
 <wire x1="99.06" y1="124.46" x2="86.36" y2="124.46" width="0.1524" layer="91"/>
-<junction x="86.36" y="124.46"/>
 <junction x="99.06" y="124.46"/>
 <label x="88.9" y="124.46" size="1.27" layer="95"/>
-<pinref part="USBCONN" gate="G$1" pin="1"/>
 <pinref part="FUSE" gate="FUSE" pin="1"/>
+<pinref part="J1" gate="G$1" pin="VCC"/>
+<junction x="86.36" y="124.46"/>
 </segment>
 </net>
 <net name="BATT" class="0">
@@ -6355,9 +6315,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </segment>
 <segment>
 <pinref part="U$1" gate="PIN" pin="1"/>
-<wire x1="83.82" y1="96.52" x2="81.28" y2="96.52" width="0.1524" layer="91"/>
-<junction x="83.82" y="96.52"/>
-<label x="78.74" y="96.52" size="1.27" layer="95"/>
+<wire x1="83.82" y1="144.78" x2="81.28" y2="144.78" width="0.1524" layer="91"/>
+<junction x="83.82" y="144.78"/>
+<label x="78.74" y="144.78" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
