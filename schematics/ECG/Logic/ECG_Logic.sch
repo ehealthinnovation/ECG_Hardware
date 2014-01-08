@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -8557,9 +8557,9 @@ reflow soldering</description>
 <wire x1="0" y1="0" x2="0" y2="2.54" width="0.254" layer="94"/>
 <wire x1="5.08" y1="0" x2="5.08" y2="2.54" width="0.254" layer="94"/>
 <wire x1="5.08" y1="2.54" x2="0" y2="2.54" width="0.254" layer="94"/>
-<text x="5.08" y="-5.08" size="1.778" layer="94">R</text>
-<text x="-5.08" y="-5.08" size="1.778" layer="94">G</text>
-<text x="0" y="-5.08" size="1.778" layer="94">B</text>
+<text x="5.08" y="-5.08" size="1.778" layer="94">B</text>
+<text x="-5.08" y="-5.08" size="1.778" layer="94">R</text>
+<text x="0" y="-5.08" size="1.778" layer="94">G</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -10393,20 +10393,6 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <label x="147.32" y="7.62" size="1.27" layer="95"/>
 </segment>
 </net>
-<net name="BLUE_LED" class="0">
-<segment>
-<pinref part="IC4" gate="G$1" pin="P2_0"/>
-<wire x1="243.84" y1="124.46" x2="248.92" y2="124.46" width="0.1524" layer="91"/>
-<junction x="243.84" y="124.46"/>
-<label x="248.92" y="124.46" size="1.27" layer="95"/>
-</segment>
-<segment>
-<pinref part="R8" gate="G$1" pin="2"/>
-<wire x1="228.6" y1="185.42" x2="231.14" y2="185.42" width="0.1524" layer="91"/>
-<junction x="228.6" y="185.42"/>
-<label x="231.14" y="185.42" size="1.27" layer="95"/>
-</segment>
-</net>
 <net name="GREEN_LED" class="0">
 <segment>
 <pinref part="IC4" gate="G$1" pin="P1_6"/>
@@ -10444,16 +10430,16 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 </net>
 <net name="RED_LED" class="0">
 <segment>
-<pinref part="R9" gate="G$1" pin="2"/>
-<wire x1="228.6" y1="195.58" x2="231.14" y2="195.58" width="0.1524" layer="91"/>
-<junction x="228.6" y="195.58"/>
-<label x="231.14" y="195.58" size="1.27" layer="95"/>
+<pinref part="IC4" gate="G$1" pin="P2_0"/>
+<wire x1="243.84" y1="124.46" x2="248.92" y2="124.46" width="0.1524" layer="91"/>
+<junction x="243.84" y="124.46"/>
+<label x="248.92" y="124.46" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC4" gate="G$1" pin="P1_7"/>
-<wire x1="243.84" y1="119.38" x2="248.92" y2="119.38" width="0.1524" layer="91"/>
-<junction x="243.84" y="119.38"/>
-<label x="248.92" y="119.38" size="1.27" layer="95"/>
+<pinref part="R8" gate="G$1" pin="2"/>
+<wire x1="228.6" y1="185.42" x2="231.14" y2="185.42" width="0.1524" layer="91"/>
+<junction x="228.6" y="185.42"/>
+<label x="231.14" y="185.42" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -10517,6 +10503,20 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <junction x="182.88" y="187.96"/>
 <label x="167.64" y="187.96" size="1.27" layer="95"/>
 <pinref part="C27" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="BLUE_LED" class="0">
+<segment>
+<pinref part="IC4" gate="G$1" pin="P1_7"/>
+<wire x1="243.84" y1="119.38" x2="248.92" y2="119.38" width="0.1524" layer="91"/>
+<junction x="243.84" y="119.38"/>
+<label x="248.92" y="119.38" size="1.27" layer="95"/>
+</segment>
+<segment>
+<pinref part="R9" gate="G$1" pin="2"/>
+<wire x1="228.6" y1="195.58" x2="231.14" y2="195.58" width="0.1524" layer="91"/>
+<junction x="228.6" y="195.58"/>
+<label x="231.14" y="195.58" size="1.27" layer="95"/>
 </segment>
 </net>
 </nets>
