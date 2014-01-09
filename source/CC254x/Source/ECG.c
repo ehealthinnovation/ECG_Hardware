@@ -129,6 +129,7 @@
 #define GREED_LED_PIN   P1_6
 #define BLUE_LED_PIN    P1_7
 
+#define ADS1293_VCC     P1_5
 
 /*********************************************************************
  * TYPEDEFS
@@ -161,18 +162,19 @@ static gaprole_States_t gapProfileState = GAPROLE_INIT;
 static uint8 scanRspData[] =
 {
   // complete name
-  0x04,   // length of this data
+  0x05,   // length of this data
   GAP_ADTYPE_LOCAL_NAME_COMPLETE,
   0x45,   // 'E'
   0x43,   // 'C'
   0x47,   // 'G'
+  0x37,   // '7'
   
   // connection interval range
   0x05,   // length of this data
   GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE,
-  LO_UINT16( DEFAULT_DESIRED_MIN_CONN_INTERVAL ),   // 100ms
+  LO_UINT16( DEFAULT_DESIRED_MIN_CONN_INTERVAL ),   
   HI_UINT16( DEFAULT_DESIRED_MIN_CONN_INTERVAL ),
-  LO_UINT16( DEFAULT_DESIRED_MAX_CONN_INTERVAL ),   // 1s
+  LO_UINT16( DEFAULT_DESIRED_MAX_CONN_INTERVAL ),   
   HI_UINT16( DEFAULT_DESIRED_MAX_CONN_INTERVAL ),
 
   // Tx power level
@@ -384,12 +386,14 @@ void ECG_Init( uint8 task_id )
                 // all others (P0.2-P0.7) as output
   P1DIR = 0xFF; // All port 1 pins (P1.0-P1.7) as output
   P2DIR = 0x1F; // All port 1 pins (P2.0-P2.4) as output
+  
+  P0 |= 0x03;   // All pins on port 0 to low, except for P0.0 and P0.1
+  P1 |= 0xC0;   // All pins on port 1 to low, except P1_6, and P1_7
+  P2 |= 0x01;   // All pins on port 2 to low, except P2_0
 
-  P0 = 0x03;   // All pins on port 0 to low, except for P0.0 and P0.1
-  P1 = 0xC0;   // All pins on port 1 to low, except P1_6, and P1_7
-  P2 = 0x01;   // All pins on port 2 to low, except P2_0
-
- 
+  //Testing
+  ADS1293_VCC = 0;
+  
   // Register callback with SimpleGATTprofile
   VOID ECGProfile_RegisterAppCBs( &ECG_ECGProfileCBs );
 
@@ -811,12 +815,16 @@ static void ADS1293_Control(uint8 value)
   switch(value)
   {
     case ADS1293_POWERDOWN:
+      ADS1293_VCC = 0;
+      
       TI_ADS1293_WriteReg(TI_ADS1293_CONFIG_REG,TI_ADS1293_CONFIG_REG_VALUE);
       
       // Should not require this line
       GAPRole_TerminateConnection();
       break;
     case ADS1293_START_CONVERSION:
+      ADS1293_VCC = 1;
+      
       ADS1293_Initialize();
         
       EnableDRDYInterrupt();
