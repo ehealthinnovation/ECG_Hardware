@@ -9041,14 +9041,14 @@ Two variants - one "with legs" (for hads-free fit on PCB) and another "without l
 <library name="pins">
 <packages>
 <package name="TARGET_RA">
-<pad name="1" x="0" y="0" drill="1"/>
-<wire x1="5.59" y1="1.27" x2="2.79" y2="1.27" width="0.127" layer="21"/>
-<wire x1="5.59" y1="-1.27" x2="2.79" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="5.59" y1="1.27" x2="5.59" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="2.79" y1="1.27" x2="2.79" y2="0" width="0.127" layer="21"/>
-<wire x1="2.79" y1="0" x2="2.79" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="2.79" y2="0" width="0.127" layer="21"/>
-<rectangle x1="1.92" y1="-0.3" x2="2.79" y2="0.3" layer="21"/>
+<pad name="1" x="-2.83" y="0" drill="1"/>
+<wire x1="2.76" y1="1.27" x2="-0.04" y2="1.27" width="0.127" layer="21"/>
+<wire x1="2.76" y1="-1.27" x2="-0.04" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.76" y1="1.27" x2="2.76" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="-0.04" y1="1.27" x2="-0.04" y2="0" width="0.127" layer="21"/>
+<wire x1="-0.04" y1="0" x2="-0.04" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="-2.83" y1="0" x2="-0.04" y2="0" width="0.127" layer="21"/>
+<rectangle x1="-0.91" y1="-0.3" x2="-0.04" y2="0.3" layer="21"/>
 </package>
 </packages>
 <symbols>
