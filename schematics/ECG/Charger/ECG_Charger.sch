@@ -6118,22 +6118,22 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <library name="pins">
 <packages>
 <package name="PISTON_RA_TH">
-<pad name="1" x="0" y="0" drill="0.8"/>
-<wire x1="0" y1="0" x2="3.27" y2="0" width="0.127" layer="21"/>
-<pad name="SUPPORT" x="3.76" y="0" drill="1.45"/>
-<wire x1="10.64" y1="0.8" x2="10.64" y2="-0.8" width="0.127" layer="21"/>
-<wire x1="9.24" y1="1" x2="9.24" y2="0.8" width="0.127" layer="21"/>
-<wire x1="9.24" y1="0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
-<wire x1="9.24" y1="-0.8" x2="9.24" y2="-1" width="0.127" layer="21"/>
-<wire x1="3.27" y1="1.27" x2="3.27" y2="0" width="0.127" layer="21"/>
-<wire x1="3.27" y1="0" x2="3.27" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="3.27" y1="1.27" x2="7.46" y2="1.27" width="0.127" layer="21"/>
-<wire x1="3.27" y1="-1.27" x2="7.46" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="7.47" y1="1.27" x2="7.47" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="7.5" y1="1" x2="9.24" y2="1" width="0.127" layer="21"/>
-<wire x1="7.5" y1="-1" x2="9.24" y2="-1" width="0.127" layer="21"/>
-<wire x1="10.64" y1="0.8" x2="9.24" y2="0.8" width="0.127" layer="21"/>
-<wire x1="10.64" y1="-0.8" x2="9.24" y2="-0.8" width="0.127" layer="21"/>
+<pad name="1" x="-5.334" y="0" drill="0.8"/>
+<wire x1="-5.334" y1="0" x2="-2.064" y2="0" width="0.127" layer="21"/>
+<pad name="SUPPORT" x="-1.574" y="0" drill="1.45"/>
+<wire x1="5.306" y1="0.8" x2="5.306" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="3.906" y1="1" x2="3.906" y2="0.8" width="0.127" layer="21"/>
+<wire x1="3.906" y1="0.8" x2="3.906" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="3.906" y1="-0.8" x2="3.906" y2="-1" width="0.127" layer="21"/>
+<wire x1="-2.064" y1="1.27" x2="-2.064" y2="0" width="0.127" layer="21"/>
+<wire x1="-2.064" y1="0" x2="-2.064" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="-2.064" y1="1.27" x2="2.126" y2="1.27" width="0.127" layer="21"/>
+<wire x1="-2.064" y1="-1.27" x2="2.126" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.136" y1="1.27" x2="2.136" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.166" y1="1" x2="3.906" y2="1" width="0.127" layer="21"/>
+<wire x1="2.166" y1="-1" x2="3.906" y2="-1" width="0.127" layer="21"/>
+<wire x1="5.306" y1="0.8" x2="3.906" y2="0.8" width="0.127" layer="21"/>
+<wire x1="5.306" y1="-0.8" x2="3.906" y2="-0.8" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
