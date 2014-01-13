@@ -30,7 +30,7 @@ extern "C"
 // Simple BLE Peripheral Task Events
 #define ECG_START_DEVICE_EVT                              0x0001
 #define ECG_ERROR_LED_EVT                                 0x0002
-#define ECG_OK_LED_EVT                                    0x0004
+#define ECG_POWERON_LED_EVT                               0x0004
 #define ECG_ADVERTISING_LED_EVT                           0x0008
   
 /*********************************************************************

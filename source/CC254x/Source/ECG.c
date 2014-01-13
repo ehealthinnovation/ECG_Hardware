@@ -155,12 +155,8 @@
 
 #define CH_DATA_SIZE 3 // 3 bytes
 
-#define RED_LED      0
-#define GREEN_LED    1
-#define BLUE_LED     2
-
 #define RED_LED_PIN     P2_0
-#define GREED_LED_PIN   P1_6
+#define GREEN_LED_PIN   P1_6
 #define BLUE_LED_PIN    P1_7
 
 #define ADS1293_VCC     P1_5
@@ -187,8 +183,7 @@
 uint8 registers[20];
 uint8 ecg_data[18]; 
 uint8 byteCounter = 0;
-
-uint8 activeLED = GREEN_LED;
+uint8 adv_enabled;
 
 static uint8 simpleBLEPeripheral_TaskID;   // Task ID for internal task/event processing
 
@@ -208,9 +203,9 @@ static uint8 scanRspData[] =
   // connection interval range
   0x05,   // length of this data
   GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE,
-  LO_UINT16( DEFAULT_DESIRED_MIN_CONN_INTERVAL ),   // 100ms
+  LO_UINT16( DEFAULT_DESIRED_MIN_CONN_INTERVAL ),
   HI_UINT16( DEFAULT_DESIRED_MIN_CONN_INTERVAL ),
-  LO_UINT16( DEFAULT_DESIRED_MAX_CONN_INTERVAL ),   // 1s
+  LO_UINT16( DEFAULT_DESIRED_MAX_CONN_INTERVAL ),
   HI_UINT16( DEFAULT_DESIRED_MAX_CONN_INTERVAL ),
 
   // Tx power level
@@ -343,7 +338,7 @@ void ECG_Init( uint8 task_id )
   // Setup the GAP Peripheral Role Profile
   {
     // For other hardware platforms, device starts advertising upon initialization
-    uint8 initial_advertising_enable = TRUE;
+    uint8 initial_advertising_enable = FALSE;
    
     // By setting this to zero, the device will go into the waiting state after
     // being discoverable for 30.72 second, and will not being advertising again
@@ -550,9 +545,23 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     // Start Bond Manager
     VOID GAPBondMgr_Register( &simpleBLEPeripheral_BondMgrCBs );
 
+    GREEN_LED_PIN ^= 1;
+    osal_start_timerEx( simpleBLEPeripheral_TaskID, ECG_POWERON_LED_EVT, ECG_LED_SLOW_ON_PERIOD );
+    
     return ( events ^ ECG_START_DEVICE_EVT );
   }
   
+  if ( events & ECG_POWERON_LED_EVT )
+  {
+    GREEN_LED_PIN = 1;
+    osal_stop_timerEx( simpleBLEPeripheral_TaskID, ECG_POWERON_LED_EVT );
+
+    adv_enabled = TRUE;
+    GAPRole_SetParameter( GAPROLE_ADVERT_ENABLED, sizeof( uint8 ), &adv_enabled );
+    
+    return ( events ^ ECG_POWERON_LED_EVT );
+  }
+
   if ( events & ECG_ADVERTISING_LED_EVT )
   {
     BLUE_LED_PIN ^= 1;
@@ -560,6 +569,8 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
 
     return ( events ^ ECG_ADVERTISING_LED_EVT );
   }
+
+
 #if defined ( PLUS_BROADCASTER )
   if ( events & SBP_ADV_IN_CONNECTION_EVT )
   {
@@ -732,7 +743,7 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
         osal_stop_timerEx( simpleBLEPeripheral_TaskID, ECG_ADVERTISING_LED_EVT );
       
         // For testing purposes only, will draw too much power
-        BLUE_LED_PIN = 1;
+        BLUE_LED_PIN = 0;
         
         // Turn on ADS1293
         ADS1293_VCC = 1;
