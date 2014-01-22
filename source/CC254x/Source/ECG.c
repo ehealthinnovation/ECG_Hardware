@@ -85,6 +85,8 @@
 #include "TI_ADS1293.h"
 #include "TI_ADS1293_register_settings.h"
 
+#include "lis3dh.h"
+
 
 /*********************************************************************
  * MACROS
@@ -142,8 +144,10 @@
 /* SPI Mode = UASRT 0 Alt1*/
 #define MISO            P0_2
 #define MOSI            P0_3
-#define CS              P0_4 //SSN, SS, CSB
+#define ADS1293_CS      P0_4 //CS
 #define SCK             P0_5 //CLK
+
+#define LIS3DH_CS       P1_0
 
 #define CS_DISABLED     1
 #define CS_ENABLED      0
@@ -184,6 +188,9 @@ uint8 registers[20];
 uint8 ecg_data[18]; 
 uint8 byteCounter = 0;
 uint8 adv_enabled;
+
+lis3dhData_t data;
+uint8 buffer = 0x00;
 
 static uint8 simpleBLEPeripheral_TaskID;   // Task ID for internal task/event processing
 
@@ -258,6 +265,7 @@ void ADS1293_ReadDataStream();
 
 static char *bdAddr2Str ( uint8 *pAddr );
 
+uint8 LIS3DH_Initialize();
 
 /*********************************************************************
  * PROFILE CALLBACKS
@@ -497,7 +505,8 @@ void ECG_Init( uint8 task_id )
     
   //Initialize the ADS1293
   //ADS1293_Initialize();
-  
+   LIS3DH_Initialize();
+   
   // Setup a delayed profile startup
   osal_set_event( simpleBLEPeripheral_TaskID, ECG_START_DEVICE_EVT );
 
@@ -889,8 +898,9 @@ static void SPIInitialize()
   P0SEL = (P0SEL & ~BIT4) | BIT5 | BIT3 | BIT2;
   P0DIR |= BIT4;
 
-  //Make sure CS pin is disabled
-  CS = CS_DISABLED;
+  //Make sure CS pins are disabled
+  ADS1293_CS = CS_DISABLED;
+  LIS3DH_CS = CS_DISABLED;
 
   // SPI master mode
   U0CSR = 0x00;
@@ -1049,13 +1059,13 @@ uint8 TI_ADS1293_ReadReg(uint8 addr, uint8 *pVal)
     
   inst = ADS1293_READ_BIT | addr;
   
-  CS = CS_ENABLED;
+  ADS1293_CS = CS_ENABLED;
     
   spiWriteByte(inst);
 
   spiReadByte(pVal, 0x00);
   
-  CS = CS_DISABLED;   
+  ADS1293_CS = CS_DISABLED;   
   
   return(0);
 }
@@ -1068,13 +1078,13 @@ void TI_ADS1293_WriteReg(uint8 addr, uint8 value)
   
   inst = ADS1293_WRITE_BIT & addr;
   
-  CS = CS_ENABLED;
+  ADS1293_CS = CS_ENABLED;
   
   spiWriteByte(inst);
   
   spiWriteByte(value);
   
-  CS = CS_DISABLED;
+  ADS1293_CS = CS_DISABLED;
 }
 
 
@@ -1085,7 +1095,7 @@ void ADS1293_ReadDataStream()
   
   inst = ADS1293_READ_BIT | TI_ADS1293_DATA_LOOP_REG;
   
-  CS = CS_ENABLED;
+  ADS1293_CS = CS_ENABLED;
   
   spiWriteByte(inst);
 
@@ -1095,5 +1105,123 @@ void ADS1293_ReadDataStream()
     byteCounter++;
   }
   
-  CS = CS_DISABLED;   
+  ADS1293_CS = CS_DISABLED;   
+}
+
+
+uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
+{
+  uint8 inst;
+    
+  inst = LIS3DH_READ_BIT | addr;
+  
+  LIS3DH_CS = CS_ENABLED;
+    
+  spiWriteByte(inst);
+
+  spiReadByte(pVal, 0x00);
+  
+  LIS3DH_CS = CS_DISABLED;   
+  
+  return(0);
+}
+
+
+void LIS3DH_WriteReg(uint8 addr, uint8 value)
+{
+  uint8 inst;
+  
+  inst = LIS3DH_WRITE_BIT & addr;
+  
+  LIS3DH_CS = CS_ENABLED;
+  
+  spiWriteByte(inst);
+  
+  spiWriteByte(value);
+  
+  LIS3DH_CS = CS_DISABLED;
+}
+
+
+/**************************************************************************/
+/*!
+    @brief  Reads three signed 16 bit values over I2C
+*/
+/**************************************************************************/
+void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
+{
+  uint8 inst;
+  uint8 I2CSlaveBuffer[6];
+  
+  inst = LIS3DH_READ_BIT | addr;
+  
+  LIS3DH_CS = CS_ENABLED;
+    
+  spiWriteByte(inst);
+
+  for(uint8 i=0;i<6;i++)
+  {
+    spiReadByte(&I2CSlaveBuffer[i], 0x00);
+  }
+  
+  *x = (uint16)(I2CSlaveBuffer[1] << 8 | I2CSlaveBuffer[0]);
+  *y = (uint16)(I2CSlaveBuffer[3] << 8 | I2CSlaveBuffer[2]);
+  *z = (uint16)(I2CSlaveBuffer[5] << 8 | I2CSlaveBuffer[4]);
+    
+  LIS3DH_CS = CS_DISABLED;   
+  
+}
+
+/**************************************************************************/
+/*!
+    @brief  Polls the device for a new X/Y/Z reading
+*/
+/**************************************************************************/
+uint8 LIS3DH_Poll(lis3dhData_t* data)
+{
+  //uint8 buffer = 0x00;
+  
+  /* Check the status register until a new X/Y/Z sample is ready */
+  do
+  {
+    LIS3DH_ReadReg(LIS3DH_REGISTER_STATUS_REG_AUX, &buffer);
+    //ASSERT(timeout++ <= LIS3DH_POLL_TIMEOUT, ERROR_OPERATIONTIMEDOUT);
+  } while (!(buffer & LIS3DH_STATUS_REG_ZYXDA));
+
+  /* For now, always read data even if it hasn't changed */
+  LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
+  
+  return(0);
+}
+
+
+uint8 LIS3DH_Initialize()
+{  
+  
+  
+  P1_4 = 1;
+  
+  LIS3DH_ReadReg(LIS3DH_REGISTER_WHO_AM_I, &registers[0]);
+  
+  /* Normal mode, 50Hz */
+  LIS3DH_WriteReg(LIS3DH_REGISTER_CTRL_REG1,
+    LIS3DH_CTRL_REG1_DATARATE_50HZ |    
+    LIS3DH_CTRL_REG1_XYZEN);
+    
+  /* Enable block update and set range to +/-2G */
+  LIS3DH_WriteReg(LIS3DH_REGISTER_CTRL_REG4,
+    LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  /* Enable block update */
+    LIS3DH_CTRL_REG4_SCALE_2G);        /* +/-2G measurement range */
+  
+  
+  
+  do { 
+    LIS3DH_Poll(&data);
+  
+    //dummy statement so we can hit the breakpoint
+    P1_4 = 1;
+  } while(1);
+  
+  
+  return(0);
 }

@@ -6370,6 +6370,12 @@
         <name>$PROJ_DIR$\..\Source\TI_ADS1293_register_settings.h</name>
       </file>
     </group>
+    <group>
+      <name>LIS3DH</name>
+      <file>
+        <name>$PROJ_DIR$\..\Source\lis3dh.h</name>
+      </file>
+    </group>
     <file>
       <name>$PROJ_DIR$\..\Source\ccdefines.h</name>
     </file>

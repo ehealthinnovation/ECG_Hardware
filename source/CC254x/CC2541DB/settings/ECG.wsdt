@@ -24,7 +24,7 @@
     <Windows>
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-651-13692</Identity>
@@ -32,11 +32,11 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>ECG</ExpandedNode><ExpandedNode>ECG/APP</ExpandedNode><ExpandedNode>ECG/PROFILES</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>ECG</ExpandedNode><ExpandedNode>ECG/APP</ExpandedNode><ExpandedNode>ECG/APP/ADS1293</ExpandedNode><ExpandedNode>ECG/APP/LIS3DH</ExpandedNode><ExpandedNode>ECG/APP/SPI</ExpandedNode><ExpandedNode>ECG/APP/SPI/spi.c</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
         <Tabs>
           <Tab>
             <Identity>TabID-129-13702</Identity>
@@ -44,22 +44,22 @@
             <Factory>Build</Factory>
             <Session/>
           </Tab>
-        <Tab><Identity>TabID-14963-30828</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab><Tab><Identity>TabID-10049-199</Identity><TabName>Breakpoints</TabName><Factory>Breakpoints</Factory></Tab><Tab><Identity>TabID-3756-8974</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
+        <Tab><Identity>TabID-3756-8974</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-21380-29709</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.c</Filename><XPos>0</XPos><YPos>546</YPos><SelStart>17087</SelStart><SelEnd>17087</SelEnd></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\lis3dh.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>446</SelStart><SelEnd>446</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.c</Filename><XPos>0</XPos><YPos>1195</YPos><SelStart>35610</SelStart><SelEnd>35610</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG_Main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1195</SelStart><SelEnd>1195</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-025e0fa8><key>iaridepm.enu1</key></Toolbar-025e0fa8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>678</Bottom><Right>676</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200401</sizeHorzCY><sizeVertCX>353125</sizeVertCX><sizeVertCY>681363</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>275</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>277</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>277555</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>200401</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00f71df0><key>iaridepm.enu1</key></Toolbar-00f71df0></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>707</Bottom><Right>676</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>208</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200385</sizeHorzCY><sizeVertCX>353125</sizeVertCX><sizeVertCY>683044</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>286</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>288</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>277457</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>200385</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 
