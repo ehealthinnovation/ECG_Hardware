@@ -192,6 +192,10 @@ uint8 adv_enabled;
 lis3dhData_t data;
 uint8 buffer = 0x00;
 
+uint8 inst;
+uint8 val;
+uint8 I2CSlaveBuffer[6];
+
 static uint8 simpleBLEPeripheral_TaskID;   // Task ID for internal task/event processing
 
 static gaprole_States_t gapProfileState = GAPROLE_INIT;
@@ -1111,8 +1115,10 @@ void ADS1293_ReadDataStream()
 
 uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 {
-  uint8 inst;
-    
+  //uint8 inst;
+  
+  //val = value;  
+  
   inst = LIS3DH_READ_BIT | addr;
   
   LIS3DH_CS = CS_ENABLED;
@@ -1129,7 +1135,8 @@ uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 
 void LIS3DH_WriteReg(uint8 addr, uint8 value)
 {
-  uint8 inst;
+  //uint8 inst;
+  val = value;
   
   inst = LIS3DH_WRITE_BIT & addr;
   
@@ -1150,10 +1157,10 @@ void LIS3DH_WriteReg(uint8 addr, uint8 value)
 /**************************************************************************/
 void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
 {
-  uint8 inst;
-  uint8 I2CSlaveBuffer[6];
+  //uint8 inst;
   
-  inst = LIS3DH_READ_BIT | addr;
+  
+  inst = LIS3DH_READ_BIT | LIS3DS_MULTIPLE_RW_BIT | addr;
   
   LIS3DH_CS = CS_ENABLED;
     
@@ -1182,12 +1189,13 @@ uint8 LIS3DH_Poll(lis3dhData_t* data)
   //uint8 buffer = 0x00;
   
   /* Check the status register until a new X/Y/Z sample is ready */
-  do
-  {
-    LIS3DH_ReadReg(LIS3DH_REGISTER_STATUS_REG_AUX, &buffer);
+  //do
+  //{
+    LIS3DH_ReadReg(LIS3DH_REGISTER_STATUS_REG2, &buffer);
     //ASSERT(timeout++ <= LIS3DH_POLL_TIMEOUT, ERROR_OPERATIONTIMEDOUT);
-  } while (!(buffer & LIS3DH_STATUS_REG_ZYXDA));
-
+  //} while (!(buffer & LIS3DH_STATUS_REG_ZYXDA));
+  //} while(1);
+  
   /* For now, always read data even if it hasn't changed */
   LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
   
@@ -1197,7 +1205,7 @@ uint8 LIS3DH_Poll(lis3dhData_t* data)
 
 uint8 LIS3DH_Initialize()
 {  
-  
+  registers[0] = 0x00;
   
   P1_4 = 1;
   
@@ -1219,7 +1227,7 @@ uint8 LIS3DH_Initialize()
     LIS3DH_Poll(&data);
   
     //dummy statement so we can hit the breakpoint
-    P1_4 = 1;
+    //P1_4 = 1;
   } while(1);
   
   

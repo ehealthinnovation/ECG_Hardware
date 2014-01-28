@@ -74,7 +74,8 @@ typedef struct
 #define LIS3DH_CTRL_REG4_SCALE_16G           0x30   // CTRL_REG4: xx11 xxxx;
 
 // Useful definitions
-#define LIS3DH_READ_BIT                              (0x80)
-#define LIS3DH_WRITE_BIT                             (0x7F)
+#define LIS3DH_READ_BIT                              0x80
+#define LIS3DH_WRITE_BIT                             0x7F
 
+#define LIS3DS_MULTIPLE_RW_BIT                       0x40
 #endif
