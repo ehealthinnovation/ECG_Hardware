@@ -82,6 +82,7 @@
 #include "ccdefines.h"
 
 #include "ECGProfile.h"
+#include "AccelProfile.h"
 #include "TI_ADS1293.h"
 #include "TI_ADS1293_register_settings.h"
 
@@ -157,6 +158,10 @@
 #define ADS1293_IDLE 0x02
 #define ADS1293_POWERDOWN 0x04
 
+//LIS3DH control values
+#define LIS3DH_POWERDOWN 0x00
+#define LIS3DH_STREAM 0x01
+
 #define CH_DATA_SIZE 3 // 3 bytes
 
 #define RED_LED_PIN     P2_0
@@ -192,8 +197,6 @@ uint8 adv_enabled;
 lis3dhData_t data;
 uint8 buffer = 0x00;
 
-uint8 inst;
-uint8 val;
 uint8 I2CSlaveBuffer[6];
 
 static uint8 simpleBLEPeripheral_TaskID;   // Task ID for internal task/event processing
@@ -1019,8 +1022,6 @@ static void ADS1293_Control(uint8 value)
     case ADS1293_IDLE:
       break;
   }
-  
-  
 }
 
 
@@ -1115,9 +1116,7 @@ void ADS1293_ReadDataStream()
 
 uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 {
-  //uint8 inst;
-  
-  //val = value;  
+  uint8 inst;
   
   inst = LIS3DH_READ_BIT | addr;
   
@@ -1135,8 +1134,7 @@ uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 
 void LIS3DH_WriteReg(uint8 addr, uint8 value)
 {
-  //uint8 inst;
-  val = value;
+  uint8 inst;
   
   inst = LIS3DH_WRITE_BIT & addr;
   
@@ -1157,8 +1155,7 @@ void LIS3DH_WriteReg(uint8 addr, uint8 value)
 /**************************************************************************/
 void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
 {
-  //uint8 inst;
-  
+  uint8 inst;
   
   inst = LIS3DH_READ_BIT | LIS3DS_MULTIPLE_RW_BIT | addr;
   
@@ -1186,18 +1183,17 @@ void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
 /**************************************************************************/
 uint8 LIS3DH_Poll(lis3dhData_t* data)
 {
-  //uint8 buffer = 0x00;
-  
   /* Check the status register until a new X/Y/Z sample is ready */
   //do
   //{
     LIS3DH_ReadReg(LIS3DH_REGISTER_STATUS_REG2, &buffer);
-    //ASSERT(timeout++ <= LIS3DH_POLL_TIMEOUT, ERROR_OPERATIONTIMEDOUT);
   //} while (!(buffer & LIS3DH_STATUS_REG_ZYXDA));
-  //} while(1);
   
   /* For now, always read data even if it hasn't changed */
   LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
+  
+  // Send all bytes as-is for testing  
+  AccelProfile_SetParameter( ACCELPROFILE_ACCELDATA, 6, &I2CSlaveBuffer);
   
   return(0);
 }
@@ -1221,15 +1217,9 @@ uint8 LIS3DH_Initialize()
     LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  /* Enable block update */
     LIS3DH_CTRL_REG4_SCALE_2G);        /* +/-2G measurement range */
   
-  
-  
   do { 
     LIS3DH_Poll(&data);
-  
-    //dummy statement so we can hit the breakpoint
-    //P1_4 = 1;
   } while(1);
-  
   
   return(0);
 }
