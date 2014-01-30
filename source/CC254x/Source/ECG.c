@@ -212,7 +212,7 @@ static uint8 scanRspData[] =
   0x45,   // 'E'
   0x43,   // 'C'
   0x47,   // 'G'
-  0x32,   // '2'
+  0x38,   // '8'
   
   // connection interval range
   0x05,   // length of this data
@@ -512,7 +512,7 @@ void ECG_Init( uint8 task_id )
     
   //Initialize the ADS1293
   //ADS1293_Initialize();
-   LIS3DH_Initialize();
+  //LIS3DH_Initialize();
    
   // Setup a delayed profile startup
   osal_set_event( simpleBLEPeripheral_TaskID, ECG_START_DEVICE_EVT );
@@ -759,7 +759,9 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
         osal_stop_timerEx( simpleBLEPeripheral_TaskID, ECG_ADVERTISING_LED_EVT );
       
         // For testing purposes only, will draw too much power
-        BLUE_LED_PIN = 0;
+        //BLUE_LED_PIN = 0;
+
+        BLUE_LED_PIN = 1; //turn off blue led
         
         // Turn on ADS1293
         ADS1293_VCC = 1;
@@ -1217,9 +1219,9 @@ uint8 LIS3DH_Initialize()
     LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  /* Enable block update */
     LIS3DH_CTRL_REG4_SCALE_2G);        /* +/-2G measurement range */
   
-  do { 
-    LIS3DH_Poll(&data);
-  } while(1);
+  //do { 
+  //  LIS3DH_Poll(&data);
+  //} while(1);
   
   return(0);
 }
