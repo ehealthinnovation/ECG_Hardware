@@ -106,7 +106,7 @@
 #define ECG_LED_NUMBER_OF_BLINKS              3
 
 // What is the advertising interval when device is discoverable (units of 625us, 160=1000ms)
-#define DEFAULT_ADVERTISING_INTERVAL          160
+#define DEFAULT_ADVERTISING_INTERVAL          80
 
 // General discoverable mode advertises indefinitely
 #define DEFAULT_DISCOVERABLE_MODE             GAP_ADTYPE_FLAGS_GENERAL
