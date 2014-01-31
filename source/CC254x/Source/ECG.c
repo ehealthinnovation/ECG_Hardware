@@ -500,6 +500,9 @@ void ECG_Init( uint8 task_id )
   // is halted
   HCI_EXT_ClkDivOnHaltCmd( HCI_EXT_ENABLE_CLK_DIVIDE_ON_HALT );
 
+  HCI_EXT_SetRxGainCmd(HCI_EXT_RX_GAIN_HIGH);
+  HCI_EXT_SetTxPowerCmd( HCI_EXT_TX_POWER_4_DBM );
+  
 #if defined ( DC_DC_P0_7 )
 
   // Enable stack to toggle bypass control on TPS62730 (DC/DC converter)
