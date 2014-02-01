@@ -97,6 +97,10 @@
  * CONSTANTS
  */
 
+//min: 15, max: 17, slave latency: 4
+
+#define ACCEL_POLL_EVT_PERIOD             20
+
 // How long an LED stays on, defined in milliseconds
 #define ECG_LED_FAST_ON_PERIOD            500
 
@@ -169,6 +173,7 @@
 #define BLUE_LED_PIN    P1_7
 
 #define ADS1293_VCC     P1_5
+#define ACCEL_VCC       P1_4
 
 /*********************************************************************
  * TYPEDEFS
@@ -241,10 +246,12 @@ static uint8 advertData[] =
 
   // service UUID, to notify central devices what services are included
   // in this peripheral
-  0x03,   // length of this data
+  0x05,   // length of this data
   GAP_ADTYPE_16BIT_MORE,      // some of the UUID's, but not all
   LO_UINT16( ECGPROFILE_SERV_UUID ),
   HI_UINT16( ECGPROFILE_SERV_UUID ),
+  LO_UINT16( ACCELPROFILE_SERV_UUID ),
+  HI_UINT16( ACCELPROFILE_SERV_UUID ),
 };
 
 // GAP GATT Attributes
@@ -255,7 +262,8 @@ static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "ECG";
  */
 static void simpleBLEPeripheral_ProcessOSALMsg( osal_event_hdr_t *pMsg );
 static void peripheralStateNotificationCB( gaprole_States_t newState );
-static void simpleProfileChangeCB( uint8 paramID );
+static void ECGProfileChangeCB( uint8 paramID );
+static void accelProfileChangeCB( uint8 paramID );
 
 static void SPIInitialize();
 static void ADS1293_Initialize();
@@ -273,6 +281,8 @@ void ADS1293_ReadDataStream();
 static char *bdAddr2Str ( uint8 *pAddr );
 
 uint8 LIS3DH_Initialize();
+uint8 LIS3DH_Poll(lis3dhData_t* data);
+
 
 /*********************************************************************
  * PROFILE CALLBACKS
@@ -295,8 +305,14 @@ static gapBondCBs_t simpleBLEPeripheral_BondMgrCBs =
 // Simple GATT Profile Callbacks
 static ECGProfileCBs_t simpleBLEPeripheral_ECGProfileCBs =
 {
-  simpleProfileChangeCB    // Charactersitic value change callback
+  ECGProfileChangeCB
 };
+
+static AccelProfileCBs_t simpleBLEPeripheral_AccelProfileCBs =
+{
+  accelProfileChangeCB
+};
+
 
 /*********************************************************************
  * INTERRUPTS
@@ -418,26 +434,12 @@ void ECG_Init( uint8 task_id )
   GGS_AddService( GATT_ALL_SERVICES );            // GAP
   GATTServApp_AddService( GATT_ALL_SERVICES );    // GATT attributes
   DevInfo_AddService();                           // Device Information Service
-  ECGProfile_AddService( GATT_ALL_SERVICES );  // Simple GATT Profile
+  ECGProfile_AddService( GATT_ALL_SERVICES );     // ECG Profile
+  AccelProfile_AddService( GATT_ALL_SERVICES );   // Accelerometer Profile
+
 #if defined FEATURE_OAD
   VOID OADTarget_AddService();                    // OAD Profile
 #endif
-
-  // Setup the SimpleProfile Characteristic Values
-  /*
-  {
-    uint8 charValue1 = 1;
-    uint8 charValue2 = 2;
-    uint8 charValue3 = 3;
-    uint8 charValue4 = 4;
-    uint8 charValue5[SIMPLEPROFILE_CHAR5_LEN] = { 1, 2, 3, 4, 5 };
-    SimpleProfile_SetParameter( SIMPLEPROFILE_CHAR1, sizeof ( uint8 ), &charValue1 );
-    SimpleProfile_SetParameter( SIMPLEPROFILE_CHAR2, sizeof ( uint8 ), &charValue2 );
-    SimpleProfile_SetParameter( SIMPLEPROFILE_CHAR3, sizeof ( uint8 ), &charValue3 );
-    SimpleProfile_SetParameter( SIMPLEPROFILE_CHAR4, sizeof ( uint8 ), &charValue4 );
-    SimpleProfile_SetParameter( SIMPLEPROFILE_CHAR5, SIMPLEPROFILE_CHAR5_LEN, charValue5 );
-  }
-  */
 
 //#if defined( CC2540_MINIDK )
 
@@ -492,8 +494,9 @@ void ECG_Init( uint8 task_id )
 
 #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
 
-  // Register callback with SimpleGATTprofile
+  // Register callbacks with profiles
   VOID ECGProfile_RegisterAppCBs( &simpleBLEPeripheral_ECGProfileCBs );
+  VOID AccelProfile_RegisterAppCBs( &simpleBLEPeripheral_AccelProfileCBs );
 
   // Enable clock divide on halt
   // This reduces active current while radio is active and CC254x MCU
@@ -589,6 +592,19 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     return ( events ^ ECG_ADVERTISING_LED_EVT );
   }
 
+  if ( events & ACCEL_POLL_EVT )
+  {
+    //LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
+    LIS3DH_Poll(&data);
+    
+    // Send all bytes as-is for testing  
+    AccelProfile_SetParameter( ACCELPROFILE_ACCELDATA, 6, &I2CSlaveBuffer);
+    
+    osal_start_timerEx( simpleBLEPeripheral_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
+    
+    return ( events ^ ACCEL_POLL_EVT );
+  }
+  
 
 #if defined ( PLUS_BROADCASTER )
   if ( events & SBP_ADV_IN_CONNECTION_EVT )
@@ -817,15 +833,15 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
 
 
 /*********************************************************************
- * @fn      simpleProfileChangeCB
+ * @fn      ECGProfileChangeCB
  *
- * @brief   Callback from SimpleBLEProfile indicating a value change
+ * @brief   Callback from ECG profile indicating a value change
  *
  * @param   paramID - parameter ID of the value that was changed.
  *
  * @return  none
  */
-static void simpleProfileChangeCB( uint8 paramID )
+static void ECGProfileChangeCB( uint8 paramID )
 {
   uint8 ECGControlValue;
 
@@ -842,6 +858,50 @@ static void simpleProfileChangeCB( uint8 paramID )
       break;
   }
 }
+
+
+/*********************************************************************
+ * @fn      accelProfileChangeCB
+ *
+ * @brief   Callback from Accelerometer profile indicating a value change
+ *
+ * @param   paramID - parameter ID of the value that was changed.
+ *
+ * @return  none
+ */
+static void accelProfileChangeCB( uint8 paramID ) 
+{
+  //note: only supporting a default 3-axis configuration for now
+  uint8 AccelControlValue;
+  
+  switch( paramID )
+  {
+    case ACCELPROFILE_CONTROL:
+      AccelProfile_GetParameter( ACCELPROFILE_CONTROL, &AccelControlValue);
+      
+        // move this to it's own method      
+        switch(AccelControlValue)
+        {
+            case 0:
+              // shut off accelerometer poll timer
+              osal_stop_timerEx( simpleBLEPeripheral_TaskID, ACCEL_POLL_EVT);
+              
+              // kill the power
+              ACCEL_VCC = 0;  
+              break;
+            case 1:
+              //initialize the accelerometer
+              LIS3DH_Initialize();
+              break;
+        }
+      break;
+      
+    default:
+      // should not reach here!
+      break;
+  }
+}
+
 
 /*********************************************************************
  * @fn      bdAddr2Str
@@ -1198,7 +1258,7 @@ uint8 LIS3DH_Poll(lis3dhData_t* data)
   LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
   
   // Send all bytes as-is for testing  
-  AccelProfile_SetParameter( ACCELPROFILE_ACCELDATA, 6, &I2CSlaveBuffer);
+  //AccelProfile_SetParameter( ACCELPROFILE_ACCELDATA, 6, &I2CSlaveBuffer);
   
   return(0);
 }
@@ -1208,7 +1268,8 @@ uint8 LIS3DH_Initialize()
 {  
   registers[0] = 0x00;
   
-  P1_4 = 1;
+  //P1_4 = 1;
+  ACCEL_VCC = 1;
   
   LIS3DH_ReadReg(LIS3DH_REGISTER_WHO_AM_I, &registers[0]);
   
@@ -1222,9 +1283,16 @@ uint8 LIS3DH_Initialize()
     LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  /* Enable block update */
     LIS3DH_CTRL_REG4_SCALE_2G);        /* +/-2G measurement range */
   
+  //BLE connection safe? probably not. 
+  // interrupts
+  // only poll when we get an ECG interrupt
+  // use a timer for testing
   //do { 
   //  LIS3DH_Poll(&data);
   //} while(1);
   
+  //test
+  osal_start_timerEx( simpleBLEPeripheral_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
+   
   return(0);
 }

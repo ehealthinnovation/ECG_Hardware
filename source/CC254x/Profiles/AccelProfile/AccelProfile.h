@@ -55,17 +55,17 @@ extern "C"
   
 // Profile Parameters
 #define ACCELPROFILE_CONTROL                  0  // RW uint8 < Device State. Default is 0.
-#define ACCELPROFILE_ACCELDATA                  1  // RO uint8
+#define ACCELPROFILE_ACCELDATA                1  // RO uint8
   
 // ACCEL Keys Profile Services bit fields
-#define ACCELPROFILE_SERVICE                 0x00000001
+#define ACCELPROFILE_SERVICE                  0x00000001
   
 // ACCEL Profile Service UUID
-#define ACCELPROFILE_SERV_UUID               0xFFF0
+#define ACCELPROFILE_SERV_UUID                0xFFF0
   
 // Key Pressed UUID
-#define ACCELPROFILE_CONTROL_UUID            0xFFF1
-#define ACCELPROFILE_ACCELDATA_UUID            0xFFF2
+#define ACCELPROFILE_CONTROL_UUID             0xFFF1
+#define ACCELPROFILE_ACCELDATA_UUID           0xFFF2
   
 // Length of Characteristic 1 in bytes (2 bytes per axis, 3 axis)
 #define ACCELPROFILE_ACCELDATA_LEN           6
