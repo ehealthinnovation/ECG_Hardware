@@ -116,16 +116,16 @@
 #define DEFAULT_DISCOVERABLE_MODE             GAP_ADTYPE_FLAGS_GENERAL
 
 // Minimum connection interval (units of 1.25ms, 80=100ms) if automatic parameter update request is enabled
-#define DEFAULT_DESIRED_MIN_CONN_INTERVAL     8
+#define DEFAULT_DESIRED_MIN_CONN_INTERVAL     15
 
 // Maximum connection interval (units of 1.25ms, 800=1000ms) if automatic parameter update request is enabled
-#define DEFAULT_DESIRED_MAX_CONN_INTERVAL     10
+#define DEFAULT_DESIRED_MAX_CONN_INTERVAL     17
 
 // Slave latency to use if automatic parameter update request is enabled
-#define DEFAULT_DESIRED_SLAVE_LATENCY         0
+#define DEFAULT_DESIRED_SLAVE_LATENCY         4
 
 // Supervision timeout value (units of 10ms, 1000=10s) if automatic parameter update request is enabled
-#define DEFAULT_DESIRED_CONN_TIMEOUT          1000
+#define DEFAULT_DESIRED_CONN_TIMEOUT          3200
 
 // Whether to enable automatic parameter update request when a connection is formed
 #define DEFAULT_ENABLE_UPDATE_REQUEST         FALSE
@@ -247,7 +247,7 @@ static uint8 advertData[] =
   // service UUID, to notify central devices what services are included
   // in this peripheral
   0x05,   // length of this data
-  GAP_ADTYPE_16BIT_MORE,      // some of the UUID's, but not all
+  GAP_ADTYPE_16BIT_MORE,
   LO_UINT16( ECGPROFILE_SERV_UUID ),
   HI_UINT16( ECGPROFILE_SERV_UUID ),
   LO_UINT16( ACCELPROFILE_SERV_UUID ),
