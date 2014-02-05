@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2567613841</fileChecksum>
+  <fileChecksum>3679734898</fileChecksum>
   <configuration>
     <name>CC2541</name>
     <outputs>
@@ -193,6 +193,8 @@
       <file>$PROJ_DIR$\CC2541\Obj\battservice.r51</file>
       <file>$PROJ_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\HIDDev\hid_uuid.h</file>
       <file>$PROJ_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\HIDDev\hiddev.h</file>
+      <file>$PROJ_DIR$\..\Profiles\Batt\battservice.h</file>
+      <file>$PROJ_DIR$\..\Profiles\Batt\battservice.c</file>
     </outputs>
     <file>
       <name>$PROJ_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\target\CC2540EB\hal_crc.c</name>
@@ -333,11 +335,11 @@
       <inputs>
         <tool>
           <name>ICC8051</name>
-          <file> 136 140 8 65 82 179 3 154 26 41 76 47 84 60 108 172 51 32 25 37 5 31 22 180 161 181 162 177 36 148 127 79 14 134 147 173 178 34 24 144 146 18 33 19</file>
+          <file> 136 140 8 65 82 179 3 154 26 41 76 47 84 60 108 172 51 32 25 37 5 31 22 180 161 181 162 177 36 148 127 79 187 134 147 173 178 34 24 144 146 18 33 19</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 8 65 82 179 3 154 26 41 76 47 84 60 108 172 51 32 25 37 5 31 22 180 161 181 162 177 36 148 127 79 14 134 147 173 178 34 24 144 146 18 33 19</file>
+          <file> 8 65 82 179 3 154 26 41 76 47 84 60 108 172 51 32 25 37 5 31 22 180 161 181 162 177 36 148 127 79 187 134 147 173 178 34 24 144 146 18 33 19</file>
         </tool>
       </inputs>
     </file>
@@ -1002,6 +1004,29 @@
         <tool>
           <name>BICOMP</name>
           <file> 154 37 5 172 26 51 182 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Profiles\Batt\battservice.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 184</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 183</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 136 140 179 3 154 26 41 76 82 47 84 25 37 5 172 51 164 161 181 180 169 127 185 186 187</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 179 3 154 26 41 76 82 47 84 25 37 5 172 51 164 161 181 180 169 127 185 186 187</file>
         </tool>
       </inputs>
     </file>
