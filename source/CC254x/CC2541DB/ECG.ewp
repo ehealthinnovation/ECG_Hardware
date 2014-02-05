@@ -1520,8 +1520,9 @@
           <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\common\cc2540</state>
           <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\common\npi\npi_np</state>
           <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\Roles</state>
-          <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\SimpleProfile</state>
           <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\DevInfo</state>
+          <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\Batt</state>
+          <state>C:\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\HIDDev</state>
           <state>$PROJ_DIR$\..\Profiles\DevInfo</state>
           <state>$PROJ_DIR$\..\Profiles\ECGProfile</state>
           <state>$PROJ_DIR$\..\Profiles\AccelProfile</state>
@@ -6607,6 +6608,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\Profiles\AccelProfile\AccelProfile.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\Batt\battservice.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Projects\ble\Profiles\Batt\battservice.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\Profiles\DevInfo\devinfoservice.c</name>

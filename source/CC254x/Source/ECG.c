@@ -68,6 +68,7 @@
 #include "gattservapp.h"
 #include "devinfoservice.h"
 
+#include "battservice.h"
 #include "peripheral.h"
 
 #include "gapbondmgr.h"
@@ -436,7 +437,8 @@ void ECG_Init( uint8 task_id )
   DevInfo_AddService();                           // Device Information Service
   ECGProfile_AddService( GATT_ALL_SERVICES );     // ECG Profile
   AccelProfile_AddService( GATT_ALL_SERVICES );   // Accelerometer Profile
-
+  Batt_AddService();                              // Battery Profile
+  
 #if defined FEATURE_OAD
   VOID OADTarget_AddService();                    // OAD Profile
 #endif
