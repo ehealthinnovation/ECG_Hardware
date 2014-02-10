@@ -980,11 +980,13 @@ static void SPIInitialize()
   U0CSR = 0x00;
 
   // SCK frequency = 4MHz, MSB
-  //U0GCR |= 0x70;
-  //U0BAUD = 0xFF;
-  
+  //U0GCR = 0x20;
+  //U0GCR |= 0x11;
+  //U0BAUD = 0x0;    
+
+// SCK frequency = 2MHz, MSB
   U0GCR = 0x20;
-  U0GCR |= 0x11;
+  U0GCR |= 0x10;
   U0BAUD = 0x0;    
 }
 
