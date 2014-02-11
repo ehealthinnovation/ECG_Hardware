@@ -556,77 +556,12 @@ static void ecg_ProcessOSALMsg( osal_event_hdr_t *pMsg )
 {
   switch ( pMsg->event )
   {
-  #if defined( CC2540_MINIDK )
-    case KEY_CHANGE:
-      simpleBLEPeripheral_HandleKeys( ((keyChange_t *)pMsg)->state, ((keyChange_t *)pMsg)->keys );
+    default:
+      // do nothing
       break;
-  #endif // #if defined( CC2540_MINIDK )
-
-  default:
-    // do nothing
-    break;
   }
 }
 
-#if defined( CC2540_MINIDK )
-/*********************************************************************
- * @fn      simpleBLEPeripheral_HandleKeys
- *
- * @brief   Handles all key events for this device.
- *
- * @param   shift - true if in shift/alt.
- * @param   keys - bit field for key events. Valid entries:
- *                 HAL_KEY_SW_2
- *                 HAL_KEY_SW_1
- *
- * @return  none
- */
-static void simpleBLEPeripheral_HandleKeys( uint8 shift, uint8 keys )
-{
-  uint8 SK_Keys = 0;
-
-  VOID shift;  // Intentionally unreferenced parameter
-
-  if ( keys & HAL_KEY_SW_1 )
-  {
-    SK_Keys |= SK_KEY_LEFT;
-  }
-
-  if ( keys & HAL_KEY_SW_2 )
-  {
-
-    SK_Keys |= SK_KEY_RIGHT;
-
-    // if device is not in a connection, pressing the right key should toggle
-    // advertising on and off
-    if( gapProfileState != GAPROLE_CONNECTED )
-    {
-      uint8 current_adv_enabled_status;
-      uint8 new_adv_enabled_status;
-
-      //Find the current GAP advertisement status
-      GAPRole_GetParameter( GAPROLE_ADVERT_ENABLED, &current_adv_enabled_status );
-
-      if( current_adv_enabled_status == FALSE )
-      {
-        new_adv_enabled_status = TRUE;
-      }
-      else
-      {
-        new_adv_enabled_status = FALSE;
-      }
-
-      //change the GAP advertisement status to opposite of current status
-      GAPRole_SetParameter( GAPROLE_ADVERT_ENABLED, sizeof( uint8 ), &new_adv_enabled_status );
-    }
-
-  }
-
-  // Set the value of the keys state to the Simple Keys Profile;
-  // This will send out a notification of the keys state if enabled
-  SK_SetParameter( SK_KEY_ATTR, sizeof ( uint8 ), &SK_Keys );
-}
-#endif // #if defined( CC2540_MINIDK )
 
 /*********************************************************************
  * @fn      peripheralStateNotificationCB
@@ -1192,8 +1127,7 @@ void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
   *y = (uint16)(I2CSlaveBuffer[3] << 8 | I2CSlaveBuffer[2]);
   *z = (uint16)(I2CSlaveBuffer[5] << 8 | I2CSlaveBuffer[4]);
     
-  LIS3DH_CS = CS_DISABLED;   
-  
+  LIS3DH_CS = CS_DISABLED;    
 }
 
 
