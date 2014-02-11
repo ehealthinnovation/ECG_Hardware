@@ -978,16 +978,24 @@ static void SPIInitialize()
 
   // SPI master mode
   U0CSR = 0x00;
-
-  // SCK frequency = 4MHz, MSB
-  //U0GCR = 0x20;
-  //U0GCR |= 0x11;
-  //U0BAUD = 0x0;    
-
-// SCK frequency = 2MHz, MSB
   U0GCR = 0x20;
-  U0GCR |= 0x10;
   U0BAUD = 0x0;    
+  
+  // SCK frequency = 4MHz, MSB
+  //U0GCR |= 0x11;
+  
+  // SCK frequency = 2MHz, MSB
+  //U0GCR |= 0x10;
+  
+  // SCK frequency = 500Hz, MSB
+  U0GCR |= 0x0E;
+  
+  /*
+  0,17 = 4,000,000 (GCR = 0x31)
+  0,16 = 2,000,000 (GCR = 0x30)
+  0,15 = 1,000,000 (GCR = 0x2F)
+  0,14 = 500,000   (GCR = 0x2E)
+  */
 }
 
 
