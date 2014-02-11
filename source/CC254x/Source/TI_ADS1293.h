@@ -3,18 +3,7 @@
 //  All the ADS1293 registers are defined as well as some common masks
 //  for these registers.
 //
-//  MSP430/ADS1293 Interface Code Library v1.0
-//
-//   Vishy Natarajan
-//   Texas Instruments Inc.
-//   April 2013
-//   Built with IAR Embedded Workbench Version:  5.5x
-//------------------------------------------------------------------------------
-// Change Log:
-//------------------------------------------------------------------------------
-// Version:  1.00
-// Comments: Initial Release Version
-//------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 #ifndef HEADER_FILE_TI_ADS1293_H
 
 #define HEADER_FILE_TI_ADS1293_H
@@ -101,6 +90,5 @@
 // Useful definitions
 #define ADS1293_READ_BIT                              (0x80)
 #define ADS1293_WRITE_BIT                             (0x7F)
-
 
 #endif                                                        // HEADER_FILE_TI_ADS1293_H

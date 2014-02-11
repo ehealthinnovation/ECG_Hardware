@@ -1,40 +1,6 @@
 /**************************************************************************************************
   Filename:       Accelprofile.c
-  Revised:        $Date: 2013-05-06 13:33:47 -0700 (Mon, 06 May 2013) $
-  Revision:       $Revision: 34153 $
-
-  Description:    This file contains the Simple GATT profile sample GATT service 
-                  profile for use with the BLE sample application.
-
-  Copyright 2010 - 2013 Texas Instruments Incorporated. All rights reserved.
-
-  IMPORTANT: Your use of this Software is limited to those specific rights
-  granted under the terms of a software license agreement between the user
-  who downloaded the software, his/her employer (which must be your employer)
-  and Texas Instruments Incorporated (the "License").  You may not use this
-  Software unless you agree to abide by the terms of the License. The License
-  limits your use, and you acknowledge, that the Software may not be modified,
-  copied or distributed unless embedded on a Texas Instruments microcontroller
-  or used solely and exclusively in conjunction with a Texas Instruments radio
-  frequency transceiver, which is integrated into your product.  Other than for
-  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
-  works of, modify, distribute, perform, display or sell this Software and/or
-  its documentation for any purpose.
-
-  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
-  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE, 
-  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
-  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
-  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
-  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
-  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
-  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
-  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
-  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
-
-  Should you have any questions regarding your right to use this Software,
-  contact Texas Instruments Incorporated at www.TI.com. 
+  Revision:       1
 **************************************************************************************************/
 
 /*********************************************************************
@@ -68,7 +34,7 @@
 /*********************************************************************
  * GLOBAL VARIABLES
  */
-// Simple GATT Profile Service UUID: 0xFFF0
+// Profile Service UUID: 0xFFF0
 CONST uint8 AccelProfileServUUID[ATT_BT_UUID_SIZE] =
 { 
   LO_UINT16(ACCELPROFILE_SERV_UUID), HI_UINT16(ACCELPROFILE_SERV_UUID)
@@ -127,7 +93,7 @@ static uint8 AccelProfileACCELDATA[ACCELPROFILE_ACCELDATA_LEN] = { 0 };
 // Accel Profile ACCELDATA User Description
 static uint8 AccelProfileACCELDATAUserDesp[10] = "ACCELDATA\0";
 
-// Accel Profile Characteristic 4 Configuration Each client has its own
+// Accel Profile Characteristic Configuration Each client has its own
 // instantiation of the Client Characteristic Configuration. Reads of the
 // Client Characteristic Configuration only shows the configuration for
 // that client and writes only affect the configuration of that client.
@@ -145,7 +111,7 @@ static gattAttribute_t AccelProfileAttrTbl[SERVAPP_NUM_ATTR_SUPPORTED] =
     { ATT_BT_UUID_SIZE, primaryServiceUUID }, /* type */
     GATT_PERMIT_READ,                         /* permissions */
     0,                                        /* handle */
-    (uint8 *)&AccelProfileService            /* pValue */
+    (uint8 *)&AccelProfileService             /* pValue */
   },
 
     // CONTROL Declaration
@@ -220,8 +186,8 @@ static void AccelProfile_HandleConnStatusCB( uint16 connHandle, uint8 changeType
 // Accel Profile Service Callbacks
 CONST gattServiceCBs_t AccelProfileCBs =
 {
-  AccelProfile_ReadAttrCB,  // Read callback function pointer
-  AccelProfile_WriteAttrCB, // Write callback function pointer
+  AccelProfile_ReadAttrCB,   // Read callback function pointer
+  AccelProfile_WriteAttrCB,  // Write callback function pointer
   NULL                       // Authorization callback function pointer
 };
 
@@ -290,7 +256,7 @@ bStatus_t AccelProfile_RegisterAppCBs( AccelProfileCBs_t *appCallbacks )
 /*********************************************************************
  * @fn      AccelProfile_SetParameter
  *
- * @brief   Set a Simple Profile parameter.
+ * @brief   Set a profile parameter.
  *
  * @param   param - Profile parameter ID
  * @param   len - length of data to right
@@ -344,7 +310,7 @@ bStatus_t AccelProfile_SetParameter( uint8 param, uint8 len, void *value )
 /*********************************************************************
  * @fn      AccelProfile_GetParameter
  *
- * @brief   Get a Accel Profile parameter.
+ * @brief   Get a profile parameter.
  *
  * @param   param - Profile parameter ID
  * @param   value - pointer to data to put.  This is dependent on
@@ -511,7 +477,7 @@ static bStatus_t AccelProfile_WriteAttrCB( uint16 connHandle, gattAttribute_t *p
         break;
         
       default:
-        // Should never get here! (characteristics 2 (ACCELDATA) and 4 does not have write permissions)
+        // Should never get here!
         status = ATT_ERR_ATTR_NOT_FOUND;
         break;
     }
@@ -532,9 +498,9 @@ static bStatus_t AccelProfile_WriteAttrCB( uint16 connHandle, gattAttribute_t *p
 }
 
 /*********************************************************************
- * @fn          simpleProfile_HandleConnStatusCB
+ * @fn          AccelProfile_HandleConnStatusCB
  *
- * @brief       Simple Profile link status change handler function.
+ * @brief       profile link status change handler function.
  *
  * @param       connHandle - connection handle
  * @param       changeType - type of change

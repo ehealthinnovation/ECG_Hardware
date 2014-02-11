@@ -1,40 +1,6 @@
 /**************************************************************************************************
   Filename:       ECG.c
-  Revised:        $Date: 2010-08-06 08:56:11 -0700 (Fri, 06 Aug 2010) $
-  Revision:       $Revision: 23333 $
-
-  Description:    This file contains the Simple BLE Peripheral sample application
-                  for use with the CC2540 Bluetooth Low Energy Protocol Stack.
-
-  Copyright 2010 - 2013 Texas Instruments Incorporated. All rights reserved.
-
-  IMPORTANT: Your use of this Software is limited to those specific rights
-  granted under the terms of a software license agreement between the user
-  who downloaded the software, his/her employer (which must be your employer)
-  and Texas Instruments Incorporated (the "License").  You may not use this
-  Software unless you agree to abide by the terms of the License. The License
-  limits your use, and you acknowledge, that the Software may not be modified,
-  copied or distributed unless embedded on a Texas Instruments microcontroller
-  or used solely and exclusively in conjunction with a Texas Instruments radio
-  frequency transceiver, which is integrated into your product.  Other than for
-  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
-  works of, modify, distribute, perform, display or sell this Software and/or
-  its documentation for any purpose.
-
-  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
-  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
-  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
-  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
-  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
-  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
-  INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
-  OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
-  OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
-  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
-
-  Should you have any questions regarding your right to use this Software,
-  contact Texas Instruments Incorporated at www.TI.com.
+  Revision:       1
 **************************************************************************************************/
 
 //CC2541EM, CC2543EM, CC2545EM: 
@@ -98,13 +64,13 @@
  * CONSTANTS
  */
 
-//min: 15, max: 17, slave latency: 4
-
+// How often the accelerometer is polled (interrupts not supported at the moment)
 #define ACCEL_POLL_EVT_PERIOD             20
 
 // How long an LED stays on, defined in milliseconds
 #define ECG_LED_FAST_ON_PERIOD            500
 
+// How long an LED stays on, defined in milliseconds
 #define ECG_LED_SLOW_ON_PERIOD            2000
 
 // Number of times an LED will blink in response to an event
@@ -167,7 +133,7 @@
 #define LIS3DH_POWERDOWN 0x00
 #define LIS3DH_STREAM 0x01
 
-#define CH_DATA_SIZE 3 // 3 bytes
+//#define CH_DATA_SIZE 3 // 3 bytes
 
 #define RED_LED_PIN     P2_0
 #define GREEN_LED_PIN   P1_6
@@ -200,12 +166,11 @@ uint8 ecg_data[18];
 uint8 byteCounter = 0;
 uint8 adv_enabled;
 
-lis3dhData_t data;
-uint8 buffer = 0x00;
+lis3dhData_t data;       //rename
+uint8 buffer = 0x00;     //rename
+uint8 I2CSlaveBuffer[6]; //rename
 
-uint8 I2CSlaveBuffer[6];
-
-static uint8 simpleBLEPeripheral_TaskID;   // Task ID for internal task/event processing
+static uint8 ecg_TaskID;   // Task ID for internal task/event processing
 
 static gaprole_States_t gapProfileState = GAPROLE_INIT;
 
@@ -261,7 +226,7 @@ static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "ECG";
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
-static void simpleBLEPeripheral_ProcessOSALMsg( osal_event_hdr_t *pMsg );
+static void ecg_ProcessOSALMsg( osal_event_hdr_t *pMsg );
 static void peripheralStateNotificationCB( gaprole_States_t newState );
 static void ECGProfileChangeCB( uint8 paramID );
 static void accelProfileChangeCB( uint8 paramID );
@@ -290,26 +255,26 @@ uint8 LIS3DH_Poll(lis3dhData_t* data);
  */
 
 // GAP Role Callbacks
-static gapRolesCBs_t simpleBLEPeripheral_PeripheralCBs =
+static gapRolesCBs_t ecg_PeripheralCBs =
 {
   peripheralStateNotificationCB,  // Profile State Change Callbacks
   NULL                            // When a valid RSSI is read from controller (not used by application)
 };
 
 // GAP Bond Manager Callbacks
-static gapBondCBs_t simpleBLEPeripheral_BondMgrCBs =
+static gapBondCBs_t ecg_BondMgrCBs =
 {
   NULL,                     // Passcode callback (not used by application)
   NULL                      // Pairing / Bonding state Callback (not used by application)
 };
 
 // Simple GATT Profile Callbacks
-static ECGProfileCBs_t simpleBLEPeripheral_ECGProfileCBs =
+static ECGProfileCBs_t ecg_ECGProfileCBs =
 {
   ECGProfileChangeCB
 };
 
-static AccelProfileCBs_t simpleBLEPeripheral_AccelProfileCBs =
+static AccelProfileCBs_t ecg_AccelProfileCBs =
 {
   accelProfileChangeCB
 };
@@ -362,7 +327,7 @@ __interrupt void p0_ISR(void)
  */
 void ECG_Init( uint8 task_id )
 {
-  simpleBLEPeripheral_TaskID = task_id;
+  ecg_TaskID = task_id;
 
   // Setup the GAP
   VOID GAP_SetParamValue( TGAP_CONN_PAUSE_PERIPHERAL, DEFAULT_CONN_PAUSE_PERIPHERAL );
@@ -443,20 +408,6 @@ void ECG_Init( uint8 task_id )
   VOID OADTarget_AddService();                    // OAD Profile
 #endif
 
-//#if defined( CC2540_MINIDK )
-
-  //SK_AddService( GATT_ALL_SERVICES ); // Simple Keys Profile
-
-  // Register for all key events - This app will handle all key events
-  //RegisterForKeys( simpleBLEPeripheral_TaskID );
-
-  // makes sure LEDs are off
-  //HalLedSet( (HAL_LED_1 | HAL_LED_2), HAL_LED_MODE_OFF );
-
-  // For keyfob board set GPIO pins into a power-optimized state
-  // Note that there is still some leakage current from the buzzer,
-  // accelerometer, LEDs, and buttons on the PCB.
-
   P0SEL = 0; // Configure Port 0 as GPIO
   P1SEL = 0; // Configure Port 1 as GPIO
   P2SEL = 0; // Configure Port 2 as GPIO
@@ -470,35 +421,9 @@ void ECG_Init( uint8 task_id )
   P1 |= 0xC0;   // All pins on port 1 to low, except P1_6, and P1_7
   P2 |= 0x01;   // All pins on port 2 to low, except P2_0
 
-  //Testing
-  //ADS1293_VCC = 1;
-  
-  //TESTING LED FUNCTIONALITY
-  //P2INP = 0x80; //BLUE LED
-  //P1_7 = 1;
-  //P1 = 0x7F;
-
-  
-  
-//#endif // #if defined( CC2540_MINIDK )
-
-#if (defined HAL_LCD) && (HAL_LCD == TRUE)
-
-#if defined FEATURE_OAD
-  #if defined (HAL_IMAGE_A)
-    HalLcdWriteStringValue( "BLE Peri-A", OAD_VER_NUM( _imgHdr.ver ), 16, HAL_LCD_LINE_1 );
-  #else
-    HalLcdWriteStringValue( "BLE Peri-B", OAD_VER_NUM( _imgHdr.ver ), 16, HAL_LCD_LINE_1 );
-  #endif // HAL_IMAGE_A
-#else
-  HalLcdWriteString( "BLE Peripheral", HAL_LCD_LINE_1 );
-#endif // FEATURE_OAD
-
-#endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
-
   // Register callbacks with profiles
-  VOID ECGProfile_RegisterAppCBs( &simpleBLEPeripheral_ECGProfileCBs );
-  VOID AccelProfile_RegisterAppCBs( &simpleBLEPeripheral_AccelProfileCBs );
+  VOID ECGProfile_RegisterAppCBs( &ecg_ECGProfileCBs );
+  VOID AccelProfile_RegisterAppCBs( &ecg_AccelProfileCBs );
 
   // Enable clock divide on halt
   // This reduces active current while radio is active and CC254x MCU
@@ -518,19 +443,15 @@ void ECG_Init( uint8 task_id )
   //Initialize the SPI bus
   SPIInitialize();
     
-  //Initialize the ADS1293
-  //ADS1293_Initialize();
-  //LIS3DH_Initialize();
-   
   // Setup a delayed profile startup
-  osal_set_event( simpleBLEPeripheral_TaskID, ECG_START_DEVICE_EVT );
-
+  osal_set_event( ecg_TaskID, ECG_START_DEVICE_EVT );
 }
+
 
 /*********************************************************************
  * @fn      ECG_ProcessEvent
  *
- * @brief   Simple BLE Peripheral Application Task event processor.  This function
+ * @brief   Application Task event processor.  This function
  *          is called to process all events for the task.  Events
  *          include timers, messages and any other user defined events.
  *
@@ -549,11 +470,11 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
   {
     uint8 *pMsg;
 
-    if ( (pMsg = osal_msg_receive( simpleBLEPeripheral_TaskID )) != NULL )
+    if ( (pMsg = osal_msg_receive( ecg_TaskID )) != NULL )
     {
-      simpleBLEPeripheral_ProcessOSALMsg( (osal_event_hdr_t *)pMsg );
+      ecg_ProcessOSALMsg( (osal_event_hdr_t *)pMsg );
 
-      // Release the OSAL message
+      // Release the OSAL message 
       VOID osal_msg_deallocate( pMsg );
     }
 
@@ -564,13 +485,13 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
   if ( events & ECG_START_DEVICE_EVT )
   {
     // Start the Device
-    VOID GAPRole_StartDevice( &simpleBLEPeripheral_PeripheralCBs );
+    VOID GAPRole_StartDevice( &ecg_PeripheralCBs );
 
     // Start Bond Manager
-    VOID GAPBondMgr_Register( &simpleBLEPeripheral_BondMgrCBs );
+    VOID GAPBondMgr_Register( &ecg_BondMgrCBs );
 
     GREEN_LED_PIN ^= 1;
-    osal_start_timerEx( simpleBLEPeripheral_TaskID, ECG_POWERON_LED_EVT, ECG_LED_SLOW_ON_PERIOD );
+    osal_start_timerEx( ecg_TaskID, ECG_POWERON_LED_EVT, ECG_LED_SLOW_ON_PERIOD );
     
     return ( events ^ ECG_START_DEVICE_EVT );
   }
@@ -578,7 +499,7 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
   if ( events & ECG_POWERON_LED_EVT )
   {
     GREEN_LED_PIN = 1;
-    osal_stop_timerEx( simpleBLEPeripheral_TaskID, ECG_POWERON_LED_EVT );
+    osal_stop_timerEx( ecg_TaskID, ECG_POWERON_LED_EVT );
 
     adv_enabled = TRUE;
     GAPRole_SetParameter( GAPROLE_ADVERT_ENABLED, sizeof( uint8 ), &adv_enabled );
@@ -589,7 +510,7 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
   if ( events & ECG_ADVERTISING_LED_EVT )
   {
     BLUE_LED_PIN ^= 1;
-    osal_start_timerEx( simpleBLEPeripheral_TaskID, ECG_ADVERTISING_LED_EVT, ECG_LED_FAST_ON_PERIOD );
+    osal_start_timerEx( ecg_TaskID, ECG_ADVERTISING_LED_EVT, ECG_LED_FAST_ON_PERIOD );
 
     return ( events ^ ECG_ADVERTISING_LED_EVT );
   }
@@ -602,11 +523,10 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     // Send all bytes as-is for testing  
     AccelProfile_SetParameter( ACCELPROFILE_ACCELDATA, 6, &I2CSlaveBuffer);
     
-    osal_start_timerEx( simpleBLEPeripheral_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
+    osal_start_timerEx( ecg_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
     
     return ( events ^ ACCEL_POLL_EVT );
   }
-  
 
 #if defined ( PLUS_BROADCASTER )
   if ( events & SBP_ADV_IN_CONNECTION_EVT )
@@ -624,7 +544,7 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
 }
 
 /*********************************************************************
- * @fn      simpleBLEPeripheral_ProcessOSALMsg
+ * @fn      ecg_ProcessOSALMsg
  *
  * @brief   Process an incoming task message.
  *
@@ -632,7 +552,7 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
  *
  * @return  none
  */
-static void simpleBLEPeripheral_ProcessOSALMsg( osal_event_hdr_t *pMsg )
+static void ecg_ProcessOSALMsg( osal_event_hdr_t *pMsg )
 {
   switch ( pMsg->event )
   {
@@ -759,29 +679,16 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
 
     case GAPROLE_ADVERTISING:
       {
-        #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-          HalLcdWriteString( "Advertising",  HAL_LCD_LINE_3 );
-        #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
-      }
-      
-      //TI_ADS1293_WriteReg(TI_ADS1293_CONFIG_REG,TI_ADS1293_CONFIG_REG_VALUE);
-      
-      BLUE_LED_PIN ^= 1;
-      osal_start_timerEx( simpleBLEPeripheral_TaskID, ECG_ADVERTISING_LED_EVT, ECG_LED_FAST_ON_PERIOD );
-        
+        BLUE_LED_PIN ^= 1;
+  
+        osal_start_timerEx( ecg_TaskID, ECG_ADVERTISING_LED_EVT, ECG_LED_FAST_ON_PERIOD );
+      }   
       break;
 
     case GAPROLE_CONNECTED:
       {
-        #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-          HalLcdWriteString( "Connected",  HAL_LCD_LINE_3 );
-        #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
-
-        osal_stop_timerEx( simpleBLEPeripheral_TaskID, ECG_ADVERTISING_LED_EVT );
+        osal_stop_timerEx( ecg_TaskID, ECG_ADVERTISING_LED_EVT );
       
-        // For testing purposes only, will draw too much power
-        //BLUE_LED_PIN = 0;
-
         BLUE_LED_PIN = 1; //turn off blue led
         
         // Turn on ADS1293
@@ -791,33 +698,21 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
 
     case GAPROLE_WAITING:
       {
-        #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-          HalLcdWriteString( "Disconnected",  HAL_LCD_LINE_3 );
-        #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
       }
       break;
 
     case GAPROLE_WAITING_AFTER_TIMEOUT:
       {
-        #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-          HalLcdWriteString( "Timed Out",  HAL_LCD_LINE_3 );
-        #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
       }
       break;
 
     case GAPROLE_ERROR:
       {
-        #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-          HalLcdWriteString( "Error",  HAL_LCD_LINE_3 );
-        #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
       }
       break;
 
     default:
       {
-        #if (defined HAL_LCD) && (HAL_LCD == TRUE)
-          HalLcdWriteString( "",  HAL_LCD_LINE_3 );
-        #endif // (defined HAL_LCD) && (HAL_LCD == TRUE)
       }
       break;
 
@@ -829,8 +724,6 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
   VOID gapProfileState;     // added to prevent compiler warning with
                             // "CC2540 Slave" configurations
 #endif
-
-
 }
 
 
@@ -886,7 +779,7 @@ static void accelProfileChangeCB( uint8 paramID )
         {
             case 0:
               // shut off accelerometer poll timer
-              osal_stop_timerEx( simpleBLEPeripheral_TaskID, ACCEL_POLL_EVT);
+              osal_stop_timerEx( ecg_TaskID, ACCEL_POLL_EVT);
               
               // kill the power
               ACCEL_VCC = 0;  
@@ -938,7 +831,13 @@ char *bdAddr2Str( uint8 *pAddr )
 }
 
 
-/* */
+/*********************************************************************
+ * @fn      EnableDRDYInterrupt
+ *
+ * @brief   Enables DRDY interrupt
+ *
+ * @return  none
+ */
 void EnableDRDYInterrupt()
 {
   // Clear interrupt flags for P1.7
@@ -999,7 +898,13 @@ static void SPIInitialize()
 }
 
 
-/* */
+/*********************************************************************
+ * @fn      ADS1293_Initialize
+ *
+ * @brief   Initialize the ADS1293 based on parameters defined in TI_ADS1293.h
+ *
+ * @return  none
+ */
 void ADS1293_Initialize()
 {
   //TI_ADS1293_ReadReg(TI_ADS1293_REVID_REG, &registers[0]);  
@@ -1072,12 +977,18 @@ void ADS1293_Initialize()
 }
 
 
+/*********************************************************************
+ * @fn      ADS1293_Control
+ *
+ * @brief   Instructs the ADS1293 to shut down or start capturing data
+ *
+ * @return  none
+ */
 static void ADS1293_Control(uint8 value)
 {
   switch(value)
   {
     case ADS1293_POWERDOWN:
-      //P1_5 = 0;
       ADS1293_VCC = 0;
       
       TI_ADS1293_WriteReg(TI_ADS1293_CONFIG_REG,TI_ADS1293_CONFIG_REG_VALUE);
@@ -1085,9 +996,6 @@ static void ADS1293_Control(uint8 value)
       GAPRole_TerminateConnection();
       break;
     case ADS1293_START_CONVERSION:
-      //ensure chip is initialized properly
-      //P1_5 = 1;
-      
       ADS1293_VCC = 1;
       
       ADS1293_Initialize();
@@ -1134,7 +1042,13 @@ void spiReadByte(uint8 *read, uint8 write)
 }
 
 
-/* */
+/*********************************************************************
+ * @fn      TI_ADS1293_ReadReg
+ *
+ * @brief   Read a register from the ADS1293
+ *
+ * @return  none
+ */
 uint8 TI_ADS1293_ReadReg(uint8 addr, uint8 *pVal)
 {
   uint8 inst;
@@ -1153,7 +1067,14 @@ uint8 TI_ADS1293_ReadReg(uint8 addr, uint8 *pVal)
 }
 
 
-/* */
+/*********************************************************************
+ * @fn      TI_ADS1293_WriteReg
+ *
+ * @brief   Write a register to the ADS1293
+ *
+ * @return  none
+ */
+
 void TI_ADS1293_WriteReg(uint8 addr, uint8 value)
 {
   uint8 inst;
@@ -1170,7 +1091,13 @@ void TI_ADS1293_WriteReg(uint8 addr, uint8 value)
 }
 
 
-/* */
+/*********************************************************************
+ * @fn      ADS1293_ReadDataStream
+ *
+ * @brief   Read the data stream, this method is called from the interrupt handler
+ *
+ * @return  none
+ */
 void ADS1293_ReadDataStream()
 {
   uint8 inst;
@@ -1191,6 +1118,13 @@ void ADS1293_ReadDataStream()
 }
 
 
+/*********************************************************************
+ * @fn      LIS3DH_ReadReg
+ *
+ * @brief   Read a register from the LIS3DH
+ *
+ * @return  none
+ */
 uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 {
   uint8 inst;
@@ -1209,6 +1143,13 @@ uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 }
 
 
+/*********************************************************************
+ * @fn      LIS3DH_ReadReg
+ *
+ * @brief   Write a register to the LIS3DH
+ *
+ * @return  none
+ */
 void LIS3DH_WriteReg(uint8 addr, uint8 value)
 {
   uint8 inst;
@@ -1225,11 +1166,13 @@ void LIS3DH_WriteReg(uint8 addr, uint8 value)
 }
 
 
-/**************************************************************************/
-/*!
-    @brief  Reads three signed 16 bit values over I2C
-*/
-/**************************************************************************/
+/*********************************************************************
+ * @fn      LIS3DH_ReadXYZ
+ *
+ * @brief   Read the XYZ registers from the LIS3DH
+ *
+ * @return  none
+ */
 void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
 {
   uint8 inst;
@@ -1253,11 +1196,14 @@ void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
   
 }
 
-/**************************************************************************/
-/*!
-    @brief  Polls the device for a new X/Y/Z reading
-*/
-/**************************************************************************/
+
+/*********************************************************************
+ * @fn      LIS3DH_Poll
+ *
+ * @brief   Poll the LIS3DH for new data
+ *
+ * @return  none
+ */
 uint8 LIS3DH_Poll(lis3dhData_t* data)
 {
   /* Check the status register until a new X/Y/Z sample is ready */
@@ -1269,18 +1215,21 @@ uint8 LIS3DH_Poll(lis3dhData_t* data)
   /* For now, always read data even if it hasn't changed */
   LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
   
-  // Send all bytes as-is for testing  
-  //AccelProfile_SetParameter( ACCELPROFILE_ACCELDATA, 6, &I2CSlaveBuffer);
-  
   return(0);
 }
 
 
+/*********************************************************************
+ * @fn      LIS3DH_Initialize
+ *
+ * @brief   Initialize the LIS3DH
+ *
+ * @return  none
+ */
 uint8 LIS3DH_Initialize()
 {  
   registers[0] = 0x00;
   
-  //P1_4 = 1;
   ACCEL_VCC = 1;
   
   LIS3DH_ReadReg(LIS3DH_REGISTER_WHO_AM_I, &registers[0]);
@@ -1295,16 +1244,8 @@ uint8 LIS3DH_Initialize()
     LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  /* Enable block update */
     LIS3DH_CTRL_REG4_SCALE_2G);        /* +/-2G measurement range */
   
-  //BLE connection safe? probably not. 
-  // interrupts
-  // only poll when we get an ECG interrupt
-  // use a timer for testing
-  //do { 
-  //  LIS3DH_Poll(&data);
-  //} while(1);
-  
-  //test
-  osal_start_timerEx( simpleBLEPeripheral_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
+  /* Start a timer which will poll the LIS3DH */
+  osal_start_timerEx( ecg_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
    
   return(0);
 }
