@@ -121,8 +121,14 @@
 
 #define LIS3DH_CS       P1_0
 
+#define BATT_CHECK_SW   P1_1
+#define BATT_CHECK_ADC  P0_7
+#define BATT_MAX        2.1 //volts
+#define BATT_MIN        1.4 //volts
+
 #define CS_DISABLED     1
 #define CS_ENABLED      0
+
 
 //ADS1293 CONTROL register state values
 #define ADS1293_START_CONVERSION 0x01
@@ -141,6 +147,9 @@
 
 #define ADS1293_VCC     P1_5
 #define ACCEL_VCC       P1_4
+
+#define OFF             0
+#define ON              1
 
 /*********************************************************************
  * TYPEDEFS
@@ -169,6 +178,9 @@ uint8 adv_enabled;
 lis3dhData_t data;       //rename
 uint8 buffer = 0x00;     //rename
 uint8 I2CSlaveBuffer[6]; //rename
+
+uint16 battADCValue;
+uint16 battLowLevel = 300; //need to verify this value
 
 static uint8 ecg_TaskID;   // Task ID for internal task/event processing
 
@@ -221,7 +233,7 @@ static uint8 advertData[] =
 };
 
 // GAP GATT Attributes
-static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "ECG";
+static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "ECG8";
 
 /*********************************************************************
  * LOCAL FUNCTIONS
@@ -248,6 +260,8 @@ static char *bdAddr2Str ( uint8 *pAddr );
 
 uint8 LIS3DH_Initialize();
 uint8 LIS3DH_Poll(lis3dhData_t* data);
+
+void checkBattery();
 
 
 /*********************************************************************
@@ -421,6 +435,19 @@ void ECG_Init( uint8 task_id )
   P1 |= 0xC0;   // All pins on port 1 to low, except P1_6, and P1_7
   P2 |= 0x01;   // All pins on port 2 to low, except P2_0
 
+  //FOR BATT ADC
+  P0DIR = 0x7C;
+  P0INP = 0x00;
+  P2INP = 0x20;
+
+  APCFG = 0x80;
+  
+  /*
+  uint8 temp;
+  temp = P0INP;
+  temp = P2INP;
+  */
+  
   // Register callbacks with profiles
   VOID ECGProfile_RegisterAppCBs( &ecg_ECGProfileCBs );
   VOID AccelProfile_RegisterAppCBs( &ecg_AccelProfileCBs );
@@ -440,6 +467,9 @@ void ECG_Init( uint8 task_id )
 
 #endif // defined ( DC_DC_P0_7 )
 
+  //check battery on startup
+  checkBattery();
+  
   //Initialize the SPI bus
   SPIInitialize();
     
@@ -1183,3 +1213,28 @@ uint8 LIS3DH_Initialize()
    
   return(0);
 }
+
+
+/*********************************************************************
+ * @fn      checkBattery
+ *
+ * @brief   ...
+ *
+ * @return  none
+ */
+void checkBattery()
+{   
+  BATT_CHECK_SW = ON;
+  
+  HalAdcInit();
+  
+  HalAdcSetReference( HAL_ADC_REF_125V );
+  battADCValue =  HalAdcRead(HAL_ADC_CHN_AIN7,HAL_ADC_RESOLUTION_8);
+  
+  printf("Battery: %d\n",battADCValue);
+  
+  if (battADCValue < battLowLevel)
+  {
+  }
+}
+
