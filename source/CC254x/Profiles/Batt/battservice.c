@@ -86,6 +86,9 @@ CONST uint8 battLevelUUID[ATT_BT_UUID_SIZE] =
   LO_UINT16(BATT_LEVEL_UUID), HI_UINT16(BATT_LEVEL_UUID)
 };
 
+uint16 adc;
+uint8 percent;
+  
 /*********************************************************************
  * EXTERNAL VARIABLES
  */
@@ -533,8 +536,8 @@ static void battNotifyCB( linkDBItem_t *pLinkItem )
  */
 static uint8 battMeasure( void )
 {
-  uint16 adc;
-  uint8 percent;
+  //uint16 adc;
+  //uint8 percent;
 
   //Battery service modification for ECG devide
   P1_1 = 1;
@@ -584,7 +587,7 @@ static uint8 battMeasure( void )
   }
 
   // Configure ADC and perform a read
-  HalAdcSetReference( HAL_ADC_REF_125V );
+  HalAdcSetReference( HAL_ADC_REF_AVDD );
   adc = HalAdcRead( battServiceAdcCh, HAL_ADC_RESOLUTION_10 );
 
   // Call measurement teardown callback
@@ -593,6 +596,7 @@ static uint8 battMeasure( void )
     battServiceTeardownCB();
   }
 
+  /*
   if (adc >= battMaxLevel)
   {
     percent = 100;
@@ -603,7 +607,8 @@ static uint8 battMeasure( void )
   }
   else
   {
-    if (battServiceCalcCB != NULL)
+  */
+  if (battServiceCalcCB != NULL)
     {
       percent = battServiceCalcCB(adc);
     }
@@ -615,13 +620,14 @@ static uint8 battMeasure( void )
       // range += (range & 1);
       range >>= 2; // divide by 4
 
-      percent = (uint8) ((((adc - battMinLevel) * 25) + (range - 1)) / range);
+      //percent = (uint8) ((((adc - battMinLevel) * 25) + (range - 1)) / range);
+
+      percent = (adc / battMaxLevel) * 100;
     }
-  }
+  //}
 
   //Battery service modification for ECG device
   P1_1 = 0;
-  
   
   return percent;
 }

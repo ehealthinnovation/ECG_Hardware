@@ -12,7 +12,7 @@
           
           
           
-        <Column0>585</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>280</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -52,14 +52,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>528</SelStart><SelEnd>528</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG_Main.c</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>1256</SelStart><SelEnd>1256</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\ble\include\gap.h</Filename><XPos>0</XPos><YPos>258</YPos><SelStart>18240</SelStart><SelEnd>18240</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.c</Filename><XPos>0</XPos><YPos>549</YPos><SelStart>17156</SelStart><SelEnd>17156</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG_Main.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>1085</SelStart><SelEnd>1085</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\target\CC2540EB\hal_sleep.c</Filename><XPos>0</XPos><YPos>236</YPos><SelStart>11993</SelStart><SelEnd>11993</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Profiles\Batt\battservice.c</Filename><XPos>0</XPos><YPos>337</YPos><SelStart>11052</SelStart><SelEnd>11066</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\target\CC2540EB\hal_adc.c</Filename><XPos>0</XPos><YPos>161</YPos><SelStart>6923</SelStart><SelEnd>6923</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>1079</SelStart><SelEnd>1079</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\osal\common\OSAL_Timers.c</Filename><XPos>0</XPos><YPos>255</YPos><SelStart>7565</SelStart><SelEnd>7565</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\include\hal_adc.h</Filename><XPos>0</XPos><YPos>90</YPos><SelStart>4773</SelStart><SelEnd>4789</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-010d0cd8><key>iaridepm.enu1</key></Toolbar-010d0cd8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>677</Bottom><Right>676</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>353125</sizeVertCX><sizeVertCY>681043</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>275</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>277</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>277834</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>200602</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0302fd50><key>iaridepm.enu1</key></Toolbar-0302fd50></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>681</Bottom><Right>371</Right><x>-2</x><y>-2</y><xscreen>110</xscreen><yscreen>98</yscreen><sizeHorzCX>57292</sizeHorzCX><sizeHorzCY>98295</sizeHorzCY><sizeVertCX>194271</sizeVertCX><sizeVertCY>685055</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>271</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>273</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>273821</sizeHorzCY><sizeVertCX>57292</sizeVertCX><sizeVertCY>98295</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

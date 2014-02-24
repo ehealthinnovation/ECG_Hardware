@@ -19,14 +19,14 @@
           
           
           
-        <Column0>124</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>638</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         
         
         
       <PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow></Disassembly>
-    <Watch><Format><struct_types><Fmt><Key>lis3dhData_t-x</Key><Value>1</Value></Fmt></struct_types><watch_formats/></Format><Column0>100</Column0><Column1>100</Column1><Column2>100</Column2><Column3>100</Column3></Watch></Static>
+    <Watch><Format><struct_types><Fmt><Key>lis3dhData_t-x</Key><Value>1</Value></Fmt></struct_types><watch_formats><Fmt><Key>{W}Watch-0:APCFG</Key><Value>1</Value></Fmt><Fmt><Key>{W}Watch-0:P0DIR</Key><Value>1</Value></Fmt><Fmt><Key>{W}Watch-0:P0SEL</Key><Value>1</Value></Fmt></watch_formats></Format><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><Column0>93</Column0><Column1>100</Column1><Column2>100</Column2><Column3>100</Column3></Watch><TerminalIO><InputSource>1</InputSource><InputMode>10</InputMode><Filename>$PROJ_DIR$\TermIOInput.txt</Filename><InputEcho>1</InputEcho><ShowReset>0</ShowReset></TerminalIO></Static>
     <Windows>
       
       
@@ -55,24 +55,24 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>ECG</ExpandedNode><ExpandedNode>ECG/PROFILES</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>ECG</ExpandedNode><ExpandedNode>ECG/APP</ExpandedNode><ExpandedNode>ECG/PROFILES</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1><Wnd2><Tabs><Tab><Identity>TabID-20290-6292</Identity><TabName>Watch</TabName><Factory>Watch</Factory><Session><Expressions><Expression><Expression>registers</Expression></Expression><Expression><Expression>data</Expression></Expression><Expression><Expression>buffer</Expression></Expression></Expressions><TabId>0</TabId><Column0>100</Column0><Column1>100</Column1><Column2>100</Column2><Column3>100</Column3></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-19961-5462</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd2><Tabs><Tab><Identity>TabID-28732-9680</Identity><TabName>Terminal I/O</TabName><Factory>TerminalIO</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd2><Wnd4><Tabs><Tab><Identity>TabID-7691-16570</Identity><TabName>Watch</TabName><Factory>Watch</Factory><Session><Expressions><Expression><Expression>adc</Expression></Expression><Expression><Expression>battMaxLevel</Expression></Expression><Expression><Expression>adc</Expression></Expression><Expression><Expression>percent</Expression></Expression></Expressions><TabId>1</TabId><Column0>93</Column0><Column1>100</Column1><Column2>100</Column2><Column3>100</Column3></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd4></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.c</Filename><XPos>0</XPos><YPos>256</YPos><SelStart>7676</SelStart><SelEnd>7676</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG_Main.c</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>1085</SelStart><SelEnd>1085</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\ble\include\gap.h</Filename><XPos>0</XPos><YPos>258</YPos><SelStart>18240</SelStart><SelEnd>18240</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.c</Filename><XPos>0</XPos><YPos>1230</YPos><SelStart>33768</SelStart><SelEnd>33805</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG_Main.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>1085</SelStart><SelEnd>1085</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\target\CC2540EB\hal_sleep.c</Filename><XPos>0</XPos><YPos>236</YPos><SelStart>11993</SelStart><SelEnd>11993</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Profiles\Batt\battservice.c</Filename><XPos>0</XPos><YPos>611</YPos><SelStart>17993</SelStart><SelEnd>17993</SelEnd></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\target\CC2540EB\hal_adc.c</Filename><XPos>0</XPos><YPos>161</YPos><SelStart>6923</SelStart><SelEnd>6923</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\ECG.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>1079</SelStart><SelEnd>1079</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\osal\common\OSAL_Timers.c</Filename><XPos>0</XPos><YPos>255</YPos><SelStart>7565</SelStart><SelEnd>7565</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Texas Instruments\BLE-CC254x-1.3.2\Components\hal\include\hal_adc.h</Filename><XPos>0</XPos><YPos>90</YPos><SelStart>4773</SelStart><SelEnd>4789</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-03f00cd8><key>iaridepm.enu1</key></Toolbar-03f00cd8></Sizes></Row0><Row1><Sizes><Toolbar-12b3df18><key>debuggergui.enu1</key></Toolbar-12b3df18></Sizes></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>730</Bottom><Right>198</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>734203</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>730</Bottom><Right>738</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>385417</sizeVertCX><sizeVertCY>734203</sizeVertCY></Rect></Wnd2></Sizes></Row0><Row1><Sizes><Wnd3><Rect><Top>-2</Top><Left>736</Left><Bottom>730</Bottom><Right>936</Right><x>736</x><y>-2</y><xscreen>200</xscreen><yscreen>192</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>192578</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>734203</sizeVertCY></Rect></Wnd3></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>200</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>200602</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0302fd50><key>iaridepm.enu1</key></Toolbar-0302fd50></Sizes></Row0><Row1><Sizes><Toolbar-124cd5d8><key>debuggergui.enu1</key></Toolbar-124cd5d8></Sizes></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>645</Bottom><Right>729</Right><x>-2</x><y>-2</y><xscreen>270</xscreen><yscreen>285</yscreen><sizeHorzCX>140625</sizeHorzCX><sizeHorzCY>285858</sizeHorzCY><sizeVertCX>380729</sizeVertCX><sizeVertCY>648947</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>645</Bottom><Right>466</Right><x>-2</x><y>-2</y><xscreen>270</xscreen><yscreen>285</yscreen><sizeHorzCX>140625</sizeHorzCX><sizeHorzCY>285858</sizeHorzCY><sizeVertCX>243750</sizeVertCX><sizeVertCY>648947</sizeVertCY></Rect></Wnd2></Sizes></Row0><Row1><Sizes><Wnd4><Rect><Top>-2</Top><Left>464</Left><Bottom>645</Bottom><Right>664</Right><x>464</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>648947</sizeVertCY></Rect></Wnd4></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>283</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>285</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>285858</sizeHorzCY><sizeVertCX>140625</sizeVertCX><sizeVertCY>285858</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 

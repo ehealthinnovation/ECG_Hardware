@@ -64,6 +64,9 @@
  * CONSTANTS
  */
 
+// How often we check the battery and report the percentage back to the host in milliseconds
+#define BATT_PERIODIC_CHECK_EVT_PERIOD             5000
+
 // How often the accelerometer is polled (interrupts not supported at the moment)
 #define ACCEL_POLL_EVT_PERIOD             20
 
@@ -92,7 +95,7 @@
 #define DEFAULT_DESIRED_SLAVE_LATENCY         4
 
 // Supervision timeout value (units of 10ms, 1000=10s) if automatic parameter update request is enabled
-#define DEFAULT_DESIRED_CONN_TIMEOUT          3200
+#define DEFAULT_DESIRED_CONN_TIMEOUT          1000
 
 // Whether to enable automatic parameter update request when a connection is formed
 #define DEFAULT_ENABLE_UPDATE_REQUEST         FALSE
@@ -422,7 +425,7 @@ void ECG_Init( uint8 task_id )
   VOID OADTarget_AddService();                    // OAD Profile
 #endif
 
-  P0SEL = 0; // Configure Port 0 as GPIO
+  P0SEL = 0x80; // Configure Port 0 as GPIO
   P1SEL = 0; // Configure Port 1 as GPIO
   P2SEL = 0; // Configure Port 2 as GPIO
 
@@ -472,7 +475,10 @@ void ECG_Init( uint8 task_id )
   
   //Initialize the SPI bus
   SPIInitialize();
-    
+  
+  //Initialize the HAL ADC  
+  HalAdcInit();
+  
   // Setup a delayed profile startup
   osal_set_event( ecg_TaskID, ECG_START_DEVICE_EVT );
 }
@@ -558,6 +564,18 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     return ( events ^ ACCEL_POLL_EVT );
   }
 
+  if ( events & BATT_PERIODIC_CHECK_EVT )
+  {
+    //checkBattery(); //call the batt profile method, not this one :)
+    //GREEN_LED_PIN ^= 1;
+    Batt_MeasLevel();
+    
+    osal_start_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT, BATT_PERIODIC_CHECK_EVT_PERIOD );
+    
+    return ( events ^ BATT_PERIODIC_CHECK_EVT );
+  }
+  
+  
 #if defined ( PLUS_BROADCASTER )
   if ( events & SBP_ADV_IN_CONNECTION_EVT )
   {
@@ -572,6 +590,7 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
   // Discard unknown events
   return 0;
 }
+
 
 /*********************************************************************
  * @fn      ecg_ProcessOSALMsg
@@ -653,8 +672,10 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
     case GAPROLE_CONNECTED:
       {
         osal_stop_timerEx( ecg_TaskID, ECG_ADVERTISING_LED_EVT );
-      
+        
         BLUE_LED_PIN = 1; //turn off blue led
+        
+        osal_start_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT, BATT_PERIODIC_CHECK_EVT_PERIOD );
         
         // Turn on ADS1293
         ADS1293_VCC = 1;
@@ -1226,15 +1247,11 @@ void checkBattery()
 {   
   BATT_CHECK_SW = ON;
   
-  HalAdcInit();
-  
-  HalAdcSetReference( HAL_ADC_REF_125V );
-  battADCValue =  HalAdcRead(HAL_ADC_CHN_AIN7,HAL_ADC_RESOLUTION_8);
+  HalAdcSetReference( HAL_ADC_REF_AVDD );
+  battADCValue =  HalAdcRead(HAL_ADC_CHN_AIN7,HAL_ADC_RESOLUTION_10);
   
   printf("Battery: %d\n",battADCValue);
   
-  if (battADCValue < battLowLevel)
-  {
-  }
+  //BATT_CHECK_SW = OFF;
 }
 
