@@ -61,8 +61,8 @@
  */
 
 // ADC voltage levels
-#define BATT_ADC_LEVEL_3V           409
-#define BATT_ADC_LEVEL_2V           273
+//#define BATT_ADC_LEVEL_3V           243
+//#define BATT_ADC_LEVEL_2V           213
 
 #define BATT_LEVEL_VALUE_IDX        2 // Position of battery level in attribute array
 #define BATT_LEVEL_VALUE_CCCD_IDX   3 // Position of battery level CCCD in attribute array
@@ -88,7 +88,10 @@ CONST uint8 battLevelUUID[ATT_BT_UUID_SIZE] =
 
 uint16 adc;
 uint8 percent;
-  
+uint16 range;
+uint16 battMinLevel = 213;
+uint16 battMaxLevel = 243;
+
 /*********************************************************************
  * EXTERNAL VARIABLES
  */
@@ -113,8 +116,8 @@ static battServiceTeardownCB_t battServiceTeardownCB = NULL;
 // Measurement calculation callback
 static battServiceCalcCB_t battServiceCalcCB = NULL;
 
-static uint16 battMinLevel = BATT_ADC_LEVEL_2V; // For VDD/3 measurements
-static uint16 battMaxLevel = BATT_ADC_LEVEL_3V; // For VDD/3 measurements
+//static uint16 battMinLevel = BATT_ADC_LEVEL_2V; // For VDD/3 measurements
+//static uint16 battMaxLevel = BATT_ADC_LEVEL_3V; // For VDD/3 measurements
 
 // Critical battery level setting
 static uint8 battCriticalLevel;
@@ -357,14 +360,14 @@ bStatus_t Batt_MeasLevel( void )
   level = battMeasure();
 
   // If level has gone down
-  if (level < battLevel)
-  {
+  //if (level < battLevel)
+  //{
     // Update level
     battLevel = level;
 
     // Send a notification
     battNotifyLevel();
-  }
+  //}
 
   return SUCCESS;
 }
@@ -431,11 +434,11 @@ static uint8 battReadAttrCB( uint16 connHandle, gattAttribute_t *pAttr,
     level = battMeasure();
 
     // If level has gone down
-    if (level < battLevel)
-    {
+    //if (level < battLevel)
+    //{
       // Update level
       battLevel = level;
-    }
+    //}
 
     *pLen = 1;
     pValue[0] = battLevel;
@@ -543,10 +546,10 @@ static uint8 battMeasure( void )
   P1_1 = 1;
 
   //Wait for DCDC to switch fully, 8ms
-  for(uint8 i=0;i<32;i++)
-  {
-    WAIT_1_3US(250);
-  }
+  //for(uint8 i=0;i<32;i++)
+  //{
+  //  WAIT_1_3US(250);
+  //}
     
   /**
    * Battery level conversion from ADC to a percentage:
@@ -596,7 +599,7 @@ static uint8 battMeasure( void )
     battServiceTeardownCB();
   }
 
-  /*
+
   if (adc >= battMaxLevel)
   {
     percent = 100;
@@ -607,24 +610,22 @@ static uint8 battMeasure( void )
   }
   else
   {
-  */
+  
   if (battServiceCalcCB != NULL)
     {
       percent = battServiceCalcCB(adc);
     }
     else
     {
-      uint16 range =  battMaxLevel - battMinLevel + 1;
+      range =  battMaxLevel - battMinLevel + 1;
 
       // optional if you want to keep it even, otherwise just take floor of divide
       // range += (range & 1);
       range >>= 2; // divide by 4
 
-      //percent = (uint8) ((((adc - battMinLevel) * 25) + (range - 1)) / range);
-
-      percent = (adc / battMaxLevel) * 100;
+      percent = (uint8) ((((adc - battMinLevel) * 25) + (range - 1)) / range);
     }
-  //}
+  }
 
   //Battery service modification for ECG device
   P1_1 = 0;

@@ -183,7 +183,10 @@ uint8 buffer = 0x00;     //rename
 uint8 I2CSlaveBuffer[6]; //rename
 
 uint16 battADCValue;
-uint16 battLowLevel = 300; //need to verify this value
+uint16 battLowLevel = 213;
+uint16 battHighLevel = 243;
+uint8 battPercent;
+uint16 battRange;
 
 static uint8 ecg_TaskID;   // Task ID for internal task/event processing
 
@@ -440,16 +443,10 @@ void ECG_Init( uint8 task_id )
 
   //FOR BATT ADC
   P0DIR = 0x7C;
-  P0INP = 0x00;
-  P2INP = 0x20;
+  //P0INP = 0x00;
+  //P2INP = 0x20; /* !!! */
 
   APCFG = 0x80;
-  
-  /*
-  uint8 temp;
-  temp = P0INP;
-  temp = P2INP;
-  */
   
   // Register callbacks with profiles
   VOID ECGProfile_RegisterAppCBs( &ecg_ECGProfileCBs );
@@ -628,6 +625,8 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
     if ( newState != GAPROLE_CONNECTED)
     {
       // Disconnected
+      osal_stop_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT );
+
       TI_ADS1293_WriteReg(TI_ADS1293_CONFIG_REG,TI_ADS1293_CONFIG_REG_VALUE);
     }
   }
@@ -1247,11 +1246,25 @@ void checkBattery()
 {   
   BATT_CHECK_SW = ON;
   
+  //disable internal resistor so we get a proper 1/2 voltage on the ADC pin
+  P2INP |= 0x20;
+  
   HalAdcSetReference( HAL_ADC_REF_AVDD );
   battADCValue =  HalAdcRead(HAL_ADC_CHN_AIN7,HAL_ADC_RESOLUTION_10);
   
+  //enable internal resistor (required for SPI)
+  P2INP = 0x00;
+  
   printf("Battery: %d\n",battADCValue);
   
-  //BATT_CHECK_SW = OFF;
+  battRange =  battHighLevel - battLowLevel + 1;
+
+  battRange >>= 2; // divide by 4
+      
+  battPercent = (uint8) ((((battADCValue - battLowLevel) * 25) + (battRange - 1)) / battRange);
+  
+  printf("Percent: %d\n",battPercent);
+  
+  BATT_CHECK_SW = OFF;
 }
 
