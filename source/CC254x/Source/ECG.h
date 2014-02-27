@@ -33,7 +33,9 @@ extern "C"
 #define ECG_POWERON_LED_EVT                               0x0004
 #define ECG_ADVERTISING_LED_EVT                           0x0008
 #define ACCEL_POLL_EVT                                    0x0010
-#define BATT_PERIODIC_CHECK_EVT                           0x0020
+//#define BATT_PERIODIC_CHECK_EVT                           0x0020
+//#define BATT_LOW_EVT                                      0x0040
+
   
 /*********************************************************************
  * MACROS

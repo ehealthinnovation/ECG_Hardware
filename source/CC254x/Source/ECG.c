@@ -34,7 +34,7 @@
 #include "gattservapp.h"
 #include "devinfoservice.h"
 
-#include "battservice.h"
+//#include "battservice.h"
 #include "peripheral.h"
 
 #include "gapbondmgr.h"
@@ -49,11 +49,11 @@
 #include "ccdefines.h"
 
 #include "ECGProfile.h"
-#include "AccelProfile.h"
+//#include "AccelProfile.h"
 #include "TI_ADS1293.h"
 #include "TI_ADS1293_register_settings.h"
 
-#include "lis3dh.h"
+//#include "lis3dh.h"
 
 
 /*********************************************************************
@@ -64,11 +64,13 @@
  * CONSTANTS
  */
 
+//#define LOW_BATTERY_PERCENTAGE            40
+
 // How often we check the battery and report the percentage back to the host in milliseconds
-#define BATT_PERIODIC_CHECK_EVT_PERIOD             5000
+//#define BATT_PERIODIC_CHECK_EVT_PERIOD    30000
 
 // How often the accelerometer is polled (interrupts not supported at the moment)
-#define ACCEL_POLL_EVT_PERIOD             20
+//#define ACCEL_POLL_EVT_PERIOD             20
 
 // How long an LED stays on, defined in milliseconds
 #define ECG_LED_FAST_ON_PERIOD            500
@@ -122,7 +124,7 @@
 #define ADS1293_CS      P0_4 //CS
 #define SCK             P0_5 //CLK
 
-#define LIS3DH_CS       P1_0
+//#define LIS3DH_CS       P1_0
 
 #define BATT_CHECK_SW   P1_1
 #define BATT_CHECK_ADC  P0_7
@@ -139,8 +141,8 @@
 #define ADS1293_POWERDOWN 0x04
 
 //LIS3DH control values
-#define LIS3DH_POWERDOWN 0x00
-#define LIS3DH_STREAM 0x01
+//#define LIS3DH_POWERDOWN 0x00
+//#define LIS3DH_STREAM 0x01
 
 //#define CH_DATA_SIZE 3 // 3 bytes
 
@@ -178,15 +180,9 @@ uint8 ecg_data[18];
 uint8 byteCounter = 0;
 uint8 adv_enabled;
 
-lis3dhData_t data;       //rename
-uint8 buffer = 0x00;     //rename
-uint8 I2CSlaveBuffer[6]; //rename
-
-uint16 battADCValue;
-uint16 battLowLevel = 213;
-uint16 battHighLevel = 243;
-uint8 battPercent;
-uint16 battRange;
+//lis3dhData_t data;       //rename
+//uint8 buffer = 0x00;     //rename
+//uint8 I2CSlaveBuffer[6]; //rename
 
 static uint8 ecg_TaskID;   // Task ID for internal task/event processing
 
@@ -234,8 +230,8 @@ static uint8 advertData[] =
   GAP_ADTYPE_16BIT_MORE,
   LO_UINT16( ECGPROFILE_SERV_UUID ),
   HI_UINT16( ECGPROFILE_SERV_UUID ),
-  LO_UINT16( ACCELPROFILE_SERV_UUID ),
-  HI_UINT16( ACCELPROFILE_SERV_UUID ),
+  //LO_UINT16( ACCELPROFILE_SERV_UUID ),
+  //HI_UINT16( ACCELPROFILE_SERV_UUID ),
 };
 
 // GAP GATT Attributes
@@ -247,7 +243,7 @@ static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "ECG8";
 static void ecg_ProcessOSALMsg( osal_event_hdr_t *pMsg );
 static void peripheralStateNotificationCB( gaprole_States_t newState );
 static void ECGProfileChangeCB( uint8 paramID );
-static void accelProfileChangeCB( uint8 paramID );
+//static void accelProfileChangeCB( uint8 paramID );
 
 static void SPIInitialize();
 static void ADS1293_Initialize();
@@ -262,12 +258,12 @@ void spiReadByte(uint8 *read, uint8 write);
 void EnableDRDYInterrupt();
 void ADS1293_ReadDataStream();
 
-static char *bdAddr2Str ( uint8 *pAddr );
+//static char *bdAddr2Str ( uint8 *pAddr );
 
-uint8 LIS3DH_Initialize();
-uint8 LIS3DH_Poll(lis3dhData_t* data);
+//uint8 LIS3DH_Initialize();
+//uint8 LIS3DH_Poll(lis3dhData_t* data);
 
-void checkBattery();
+uint8 checkBattery();
 
 
 /*********************************************************************
@@ -294,10 +290,10 @@ static ECGProfileCBs_t ecg_ECGProfileCBs =
   ECGProfileChangeCB
 };
 
-static AccelProfileCBs_t ecg_AccelProfileCBs =
-{
-  accelProfileChangeCB
-};
+//static AccelProfileCBs_t ecg_AccelProfileCBs =
+//{
+//  accelProfileChangeCB
+//};
 
 
 /*********************************************************************
@@ -421,8 +417,8 @@ void ECG_Init( uint8 task_id )
   GATTServApp_AddService( GATT_ALL_SERVICES );    // GATT attributes
   DevInfo_AddService();                           // Device Information Service
   ECGProfile_AddService( GATT_ALL_SERVICES );     // ECG Profile
-  AccelProfile_AddService( GATT_ALL_SERVICES );   // Accelerometer Profile
-  Batt_AddService();                              // Battery Profile
+  //AccelProfile_AddService( GATT_ALL_SERVICES );   // Accelerometer Profile
+  //Batt_AddService();                              // Battery Profile
   
 #if defined FEATURE_OAD
   VOID OADTarget_AddService();                    // OAD Profile
@@ -441,21 +437,17 @@ void ECG_Init( uint8 task_id )
   P1 |= 0xC0;   // All pins on port 1 to low, except P1_6, and P1_7
   P2 |= 0x01;   // All pins on port 2 to low, except P2_0
 
-  //FOR BATT ADC
   P0DIR = 0x7C;
-  //P0INP = 0x00;
-  //P2INP = 0x20; /* !!! */
-
   APCFG = 0x80;
   
   // Register callbacks with profiles
   VOID ECGProfile_RegisterAppCBs( &ecg_ECGProfileCBs );
-  VOID AccelProfile_RegisterAppCBs( &ecg_AccelProfileCBs );
+  //VOID AccelProfile_RegisterAppCBs( &ecg_AccelProfileCBs );
 
   // Enable clock divide on halt
   // This reduces active current while radio is active and CC254x MCU
   // is halted
-  HCI_EXT_ClkDivOnHaltCmd( HCI_EXT_ENABLE_CLK_DIVIDE_ON_HALT );
+  //HCI_EXT_ClkDivOnHaltCmd( HCI_EXT_ENABLE_CLK_DIVIDE_ON_HALT );
 
   HCI_EXT_SetRxGainCmd(HCI_EXT_RX_GAIN_HIGH);
   HCI_EXT_SetTxPowerCmd( HCI_EXT_TX_POWER_4_DBM );
@@ -466,15 +458,28 @@ void ECG_Init( uint8 task_id )
   HCI_EXT_MapPmIoPortCmd( HCI_EXT_PM_IO_PORT_P0, HCI_EXT_PM_IO_PORT_PIN7 );
 
 #endif // defined ( DC_DC_P0_7 )
-
-  //check battery on startup
-  checkBattery();
   
   //Initialize the SPI bus
   SPIInitialize();
   
   //Initialize the HAL ADC  
   HalAdcInit();
+ 
+  //Check battery and flash red LED if low
+  //if ( checkBattery() < LOW_BATTERY_PERCENTAGE )
+  //{
+  //  P2INP = 0x80;
+    
+  //  RED_LED_PIN ^= 1;
+    
+    //osal_start_timerEx( ecg_TaskID, BATT_LOW_EVT, ECG_LED_FAST_ON_PERIOD );
+  //}
+  //else
+  //{
+    GREEN_LED_PIN ^= 1;
+    
+    osal_start_timerEx( ecg_TaskID, ECG_POWERON_LED_EVT, ECG_LED_SLOW_ON_PERIOD );
+  //}
   
   // Setup a delayed profile startup
   osal_set_event( ecg_TaskID, ECG_START_DEVICE_EVT );
@@ -523,8 +528,8 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     // Start Bond Manager
     VOID GAPBondMgr_Register( &ecg_BondMgrCBs );
 
-    GREEN_LED_PIN ^= 1;
-    osal_start_timerEx( ecg_TaskID, ECG_POWERON_LED_EVT, ECG_LED_SLOW_ON_PERIOD );
+    //GREEN_LED_PIN ^= 1;
+    //osal_start_timerEx( ecg_TaskID, ECG_POWERON_LED_EVT, ECG_LED_SLOW_ON_PERIOD );
     
     return ( events ^ ECG_START_DEVICE_EVT );
   }
@@ -548,6 +553,7 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     return ( events ^ ECG_ADVERTISING_LED_EVT );
   }
 
+  /*
   if ( events & ACCEL_POLL_EVT )
   {
     //LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
@@ -560,18 +566,29 @@ uint16 ECG_ProcessEvent( uint8 task_id, uint16 events )
     
     return ( events ^ ACCEL_POLL_EVT );
   }
-
+  */
+  
+  /*
   if ( events & BATT_PERIODIC_CHECK_EVT )
   {
-    //checkBattery(); //call the batt profile method, not this one :)
-    //GREEN_LED_PIN ^= 1;
     Batt_MeasLevel();
     
     osal_start_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT, BATT_PERIODIC_CHECK_EVT_PERIOD );
     
     return ( events ^ BATT_PERIODIC_CHECK_EVT );
   }
+  */
   
+  /*
+  if ( events & BATT_LOW_EVT )
+  {
+    RED_LED_PIN ^= 1;
+    
+    osal_start_timerEx( ecg_TaskID, BATT_LOW_EVT, ECG_LED_FAST_ON_PERIOD );
+
+    return ( events ^ BATT_LOW_EVT );
+  }
+  */
   
 #if defined ( PLUS_BROADCASTER )
   if ( events & SBP_ADV_IN_CONNECTION_EVT )
@@ -625,7 +642,7 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
     if ( newState != GAPROLE_CONNECTED)
     {
       // Disconnected
-      osal_stop_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT );
+      //osal_stop_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT );
 
       TI_ADS1293_WriteReg(TI_ADS1293_CONFIG_REG,TI_ADS1293_CONFIG_REG_VALUE);
     }
@@ -656,7 +673,7 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
 
         DevInfo_SetParameter(DEVINFO_SYSTEM_ID, DEVINFO_SYSTEM_ID_LEN, systemId);
 
-        printf("Addr: %s",bdAddr2Str( ownAddress ));
+        //printf("Addr: %s",bdAddr2Str( ownAddress ));
       }
       break;
 
@@ -674,10 +691,10 @@ static void peripheralStateNotificationCB( gaprole_States_t newState )
         
         BLUE_LED_PIN = 1; //turn off blue led
         
-        osal_start_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT, BATT_PERIODIC_CHECK_EVT_PERIOD );
+        //osal_start_timerEx( ecg_TaskID, BATT_PERIODIC_CHECK_EVT, BATT_PERIODIC_CHECK_EVT_PERIOD );
         
         // Turn on ADS1293
-        ADS1293_VCC = 1;
+        //ADS1293_VCC = 1;
       }
       break;
 
@@ -749,6 +766,7 @@ static void ECGProfileChangeCB( uint8 paramID )
  *
  * @return  none
  */
+/*
 static void accelProfileChangeCB( uint8 paramID ) 
 {
   //note: only supporting a default 3-axis configuration for now
@@ -771,7 +789,7 @@ static void accelProfileChangeCB( uint8 paramID )
               break;
             case 1:
               //initialize the accelerometer
-              LIS3DH_Initialize();
+              //LIS3DH_Initialize();
               break;
         }
       break;
@@ -781,7 +799,7 @@ static void accelProfileChangeCB( uint8 paramID )
       break;
   }
 }
-
+*/
 
 /*********************************************************************
  * @fn      bdAddr2Str
@@ -791,6 +809,7 @@ static void accelProfileChangeCB( uint8 paramID )
  *
  * @return  none
  */
+/*
 char *bdAddr2Str( uint8 *pAddr )
 {
   uint8       i;
@@ -813,6 +832,27 @@ char *bdAddr2Str( uint8 *pAddr )
   *pStr = 0;
 
   return str;
+}
+*/
+
+/*********************************************************************
+ * @fn      DisableDRDYInterrupt
+ *
+ * @brief   Disables DRDY interrupt
+ *
+ * @return  none
+ */
+void DisableDRDYInterrupt()
+{
+  // Clear interrupt flags for P1.7
+  P0IFG = ~BIT1;              // Clear status flag for pin.
+  P0IF = 0;                   // Clear CPU interrupt status flag for P0.
+    
+  // Set individual interrupt enable bit in the peripherals SFR
+  P0IEN |= BIT1;                              // Enable interrupt from pin.
+
+  // Disable P0 interrupts.
+  IEN1 &= ~IEN1_P0IE;  
 }
 
 
@@ -858,7 +898,7 @@ static void SPIInitialize()
 
   //Make sure CS pins are disabled
   ADS1293_CS = CS_DISABLED;
-  LIS3DH_CS = CS_DISABLED;
+  //S3DH_CS = CS_DISABLED;
 
   // SPI master mode
   U0CSR = 0x00;
@@ -1110,6 +1150,7 @@ void ADS1293_ReadDataStream()
  *
  * @return  none
  */
+/*
 uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
 {
   uint8 inst;
@@ -1126,15 +1167,16 @@ uint8 LIS3DH_ReadReg(uint8 addr, uint8 *pVal)
   
   return(0);
 }
-
+*/
 
 /*********************************************************************
- * @fn      LIS3DH_ReadReg
+ * @fn      LIS3DH_WriteReg
  *
  * @brief   Write a register to the LIS3DH
  *
  * @return  none
  */
+/*
 void LIS3DH_WriteReg(uint8 addr, uint8 value)
 {
   uint8 inst;
@@ -1149,6 +1191,7 @@ void LIS3DH_WriteReg(uint8 addr, uint8 value)
   
   LIS3DH_CS = CS_DISABLED;
 }
+*/
 
 
 /*********************************************************************
@@ -1158,6 +1201,7 @@ void LIS3DH_WriteReg(uint8 addr, uint8 value)
  *
  * @return  none
  */
+/*
 void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
 {
   uint8 inst;
@@ -1179,7 +1223,7 @@ void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
     
   LIS3DH_CS = CS_DISABLED;    
 }
-
+*/
 
 /*********************************************************************
  * @fn      LIS3DH_Poll
@@ -1188,20 +1232,21 @@ void LIS3DH_ReadXYZ(uint8 addr, uint16 *x, uint16 *y, uint16 *z)
  *
  * @return  none
  */
+/*
 uint8 LIS3DH_Poll(lis3dhData_t* data)
 {
-  /* Check the status register until a new X/Y/Z sample is ready */
+  //Check the status register until a new X/Y/Z sample is ready
   //do
   //{
     LIS3DH_ReadReg(LIS3DH_REGISTER_STATUS_REG2, &buffer);
   //} while (!(buffer & LIS3DH_STATUS_REG_ZYXDA));
   
-  /* For now, always read data even if it hasn't changed */
+  // For now, always read data even if it hasn't changed
   LIS3DH_ReadXYZ(LIS3DH_REGISTER_OUT_X_L, &(data->x), &(data->y), &(data->z));
   
   return(0);
 }
-
+*/
 
 /*********************************************************************
  * @fn      LIS3DH_Initialize
@@ -1210,6 +1255,7 @@ uint8 LIS3DH_Poll(lis3dhData_t* data)
  *
  * @return  none
  */
+/*
 uint8 LIS3DH_Initialize()
 {  
   registers[0] = 0x00;
@@ -1218,22 +1264,22 @@ uint8 LIS3DH_Initialize()
   
   LIS3DH_ReadReg(LIS3DH_REGISTER_WHO_AM_I, &registers[0]);
   
-  /* Normal mode, 50Hz */
+  // Normal mode, 50Hz
   LIS3DH_WriteReg(LIS3DH_REGISTER_CTRL_REG1,
     LIS3DH_CTRL_REG1_DATARATE_50HZ |    
     LIS3DH_CTRL_REG1_XYZEN);
     
-  /* Enable block update and set range to +/-2G */
+  // Enable block update and set range to +/-2G
   LIS3DH_WriteReg(LIS3DH_REGISTER_CTRL_REG4,
-    LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  /* Enable block update */
-    LIS3DH_CTRL_REG4_SCALE_2G);        /* +/-2G measurement range */
+    LIS3DH_CTRL_REG4_BLOCKDATAUPDATE |  // Enable block update 
+    LIS3DH_CTRL_REG4_SCALE_2G);        // +/-2G measurement range
   
-  /* Start a timer which will poll the LIS3DH */
+  // Start a timer which will poll the LIS3DH 
   osal_start_timerEx( ecg_TaskID, ACCEL_POLL_EVT, ACCEL_POLL_EVT_PERIOD );
    
   return(0);
 }
-
+*/
 
 /*********************************************************************
  * @fn      checkBattery
@@ -1242,8 +1288,16 @@ uint8 LIS3DH_Initialize()
  *
  * @return  none
  */
-void checkBattery()
+uint8 checkBattery()
 {   
+  uint16 battADCValue;
+  uint16 battLowLevel = 213;
+  uint16 battHighLevel = 243;
+  uint8 battPercent;
+  uint16 battRange;
+
+  DisableDRDYInterrupt();
+    
   BATT_CHECK_SW = ON;
   
   //disable internal resistor so we get a proper 1/2 voltage on the ADC pin
@@ -1266,5 +1320,12 @@ void checkBattery()
   printf("Percent: %d\n",battPercent);
   
   BATT_CHECK_SW = OFF;
+
+  if( gapProfileState == GAPROLE_CONNECTED )
+  {
+    EnableDRDYInterrupt();
+  }
+  
+  return battPercent;
 }
 

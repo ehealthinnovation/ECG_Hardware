@@ -369,6 +369,9 @@ bStatus_t Batt_MeasLevel( void )
     battNotifyLevel();
   //}
 
+  //Enable DRDY interrupt
+  IEN1 |= 0x20;  
+    
   return SUCCESS;
 }
 
@@ -541,6 +544,9 @@ static uint8 battMeasure( void )
 {
   //uint16 adc;
   //uint8 percent;
+  
+  //Disable DRDY interrupt
+  IEN1 &= ~0x20;  
 
   //Battery service modification for ECG devide
   P1_1 = 1;
@@ -589,9 +595,14 @@ static uint8 battMeasure( void )
     battServiceSetupCB();
   }
 
-  // Configure ADC and perform a read
+  //disable internal resistor so we get a proper 1/2 voltage on the ADC pin
+  P2INP |= 0x20;
+  
   HalAdcSetReference( HAL_ADC_REF_AVDD );
-  adc = HalAdcRead( battServiceAdcCh, HAL_ADC_RESOLUTION_10 );
+  adc =  HalAdcRead(battServiceAdcCh,HAL_ADC_RESOLUTION_10);
+  
+  //enable internal resistor (required for SPI)
+  P2INP = 0x00;
 
   // Call measurement teardown callback
   if (battServiceTeardownCB != NULL)
@@ -629,6 +640,8 @@ static uint8 battMeasure( void )
 
   //Battery service modification for ECG device
   P1_1 = 0;
+  
+  //IEN1 |= 0x20;  
   
   return percent;
 }
