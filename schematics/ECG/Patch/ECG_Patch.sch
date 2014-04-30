@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="6.4">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -116,18 +116,19 @@
 <wire x1="-5.334" y1="0" x2="-2.064" y2="0" width="0.127" layer="21"/>
 <pad name="SUPPORT" x="-1.574" y="0" drill="1.45"/>
 <wire x1="5.306" y1="0.8" x2="5.306" y2="-0.8" width="0.127" layer="21"/>
-<wire x1="3.906" y1="1" x2="3.906" y2="0.8" width="0.127" layer="21"/>
-<wire x1="3.906" y1="0.8" x2="3.906" y2="-0.8" width="0.127" layer="21"/>
-<wire x1="3.906" y1="-0.8" x2="3.906" y2="-1" width="0.127" layer="21"/>
+<wire x1="2.4638" y1="0.8" x2="2.4638" y2="-0.7874" width="0.127" layer="21"/>
+<wire x1="2.4638" y1="-0.7874" x2="2.4638" y2="-0.8" width="0.127" layer="21"/>
 <wire x1="-2.064" y1="1.27" x2="-2.064" y2="0" width="0.127" layer="21"/>
 <wire x1="-2.064" y1="0" x2="-2.064" y2="-1.27" width="0.127" layer="21"/>
 <wire x1="-2.064" y1="1.27" x2="2.126" y2="1.27" width="0.127" layer="21"/>
 <wire x1="-2.064" y1="-1.27" x2="2.126" y2="-1.27" width="0.127" layer="21"/>
 <wire x1="2.136" y1="1.27" x2="2.136" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="2.166" y1="1" x2="3.906" y2="1" width="0.127" layer="21"/>
-<wire x1="2.166" y1="-1" x2="3.906" y2="-1" width="0.127" layer="21"/>
-<wire x1="5.306" y1="0.8" x2="3.906" y2="0.8" width="0.127" layer="21"/>
-<wire x1="5.306" y1="-0.8" x2="3.906" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="2.166" y1="1" x2="2.4638" y2="1" width="0.127" layer="21"/>
+<wire x1="2.166" y1="-1" x2="2.4638" y2="-1" width="0.127" layer="21"/>
+<wire x1="5.306" y1="0.8" x2="2.4638" y2="0.8" width="0.127" layer="21"/>
+<wire x1="5.306" y1="-0.8" x2="2.4638" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="2.4638" y1="0.8" x2="2.4638" y2="0.9906" width="0.127" layer="21"/>
+<wire x1="2.4638" y1="-0.8" x2="2.4638" y2="-0.9906" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
