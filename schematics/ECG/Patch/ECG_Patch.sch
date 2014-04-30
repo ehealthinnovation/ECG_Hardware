@@ -212,12 +212,12 @@
 </class>
 </classes>
 <parts>
-<part name="U$1" library="pins" deviceset="PISTON_RA_TH" device=""/>
-<part name="U$2" library="pins" deviceset="PISTON_RA_TH" device=""/>
-<part name="U$3" library="pins" deviceset="PISTON_RA_TH" device=""/>
-<part name="U$4" library="pins" deviceset="PISTON_RA_TH" device=""/>
-<part name="U$5" library="pins" deviceset="PISTON_RA_TH" device=""/>
-<part name="U$6" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="P2" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="P3" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="P4" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="P5" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="P1" library="pins" deviceset="PISTON_RA_TH" device=""/>
+<part name="P6" library="pins" deviceset="PISTON_RA_TH" device=""/>
 <part name="LL" library="wirepad" deviceset="1,6/0,8" device=""/>
 <part name="RL" library="wirepad" deviceset="1,6/0,8" device=""/>
 <part name="LA" library="wirepad" deviceset="1,6/0,8" device=""/>
@@ -228,12 +228,12 @@
 <plain>
 </plain>
 <instances>
-<instance part="U$1" gate="PIN" x="17.78" y="66.04"/>
-<instance part="U$2" gate="PIN" x="17.78" y="68.58"/>
-<instance part="U$3" gate="PIN" x="17.78" y="63.5"/>
-<instance part="U$4" gate="PIN" x="17.78" y="60.96"/>
-<instance part="U$5" gate="PIN" x="17.78" y="76.2"/>
-<instance part="U$6" gate="PIN" x="17.78" y="53.34"/>
+<instance part="P2" gate="PIN" x="17.78" y="66.04"/>
+<instance part="P3" gate="PIN" x="17.78" y="68.58"/>
+<instance part="P4" gate="PIN" x="17.78" y="63.5"/>
+<instance part="P5" gate="PIN" x="17.78" y="60.96"/>
+<instance part="P1" gate="PIN" x="17.78" y="76.2"/>
+<instance part="P6" gate="PIN" x="17.78" y="53.34"/>
 <instance part="LL" gate="P" x="2.54" y="68.58"/>
 <instance part="RL" gate="P" x="2.54" y="66.04"/>
 <instance part="LA" gate="P" x="2.54" y="63.5"/>
@@ -244,7 +244,7 @@
 <nets>
 <net name="LL" class="0">
 <segment>
-<pinref part="U$2" gate="PIN" pin="1"/>
+<pinref part="P3" gate="PIN" pin="1"/>
 <wire x1="12.7" y1="68.58" x2="5.08" y2="68.58" width="0.1524" layer="91"/>
 <junction x="12.7" y="68.58"/>
 <label x="7.62" y="68.58" size="1.27" layer="95"/>
@@ -254,7 +254,7 @@
 </net>
 <net name="RL" class="0">
 <segment>
-<pinref part="U$1" gate="PIN" pin="1"/>
+<pinref part="P2" gate="PIN" pin="1"/>
 <wire x1="12.7" y1="66.04" x2="5.08" y2="66.04" width="0.1524" layer="91"/>
 <junction x="12.7" y="66.04"/>
 <label x="7.62" y="66.04" size="1.27" layer="95"/>
@@ -264,7 +264,7 @@
 </net>
 <net name="LA" class="0">
 <segment>
-<pinref part="U$3" gate="PIN" pin="1"/>
+<pinref part="P4" gate="PIN" pin="1"/>
 <wire x1="12.7" y1="63.5" x2="5.08" y2="63.5" width="0.1524" layer="91"/>
 <junction x="12.7" y="63.5"/>
 <label x="7.62" y="63.5" size="1.27" layer="95"/>
@@ -274,7 +274,7 @@
 </net>
 <net name="RA" class="0">
 <segment>
-<pinref part="U$4" gate="PIN" pin="1"/>
+<pinref part="P5" gate="PIN" pin="1"/>
 <wire x1="12.7" y1="60.96" x2="5.08" y2="60.96" width="0.1524" layer="91"/>
 <junction x="12.7" y="60.96"/>
 <label x="7.62" y="60.96" size="1.27" layer="95"/>
@@ -284,13 +284,13 @@
 </net>
 <net name="BATT" class="0">
 <segment>
-<pinref part="U$5" gate="PIN" pin="1"/>
+<pinref part="P1" gate="PIN" pin="1"/>
 <wire x1="12.7" y1="76.2" x2="10.16" y2="76.2" width="0.1524" layer="91"/>
 <junction x="12.7" y="76.2"/>
 <label x="7.62" y="76.2" size="1.27" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$6" gate="PIN" pin="1"/>
+<pinref part="P6" gate="PIN" pin="1"/>
 <wire x1="12.7" y1="53.34" x2="10.16" y2="53.34" width="0.1524" layer="91"/>
 <junction x="12.7" y="53.34"/>
 <label x="7.62" y="53.34" size="1.27" layer="95"/>
